@@ -1,87 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Home</title>
-		<meta charset="utf-8">
-		<meta name="format-detection" content="telephone=no" />
-		<link rel="icon" href="images/favicon.ico">
-		<link rel="shortcut icon" href="images/favicon.ico" />
-		<link rel="stylesheet" href="css/countdown.css">
-		<link rel="stylesheet" href="css/style_common.css" />
-		<link rel="stylesheet" href="css/style4.css" />
-		<link rel="stylesheet" href="css/camera.css">
-		<link rel="stylesheet" href="css/style.css">
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery-migrate-1.2.1.js"></script>
-		<script src="js/script.js"></script>
-		<script src="js/superfish.js"></script>
-		<script src="js/jquery.ui.totop.js"></script>
-		<script src="js/jquery.equalheights.js"></script>
-		<script src="js/jquery.mobilemenu.js"></script>
-		<script src="js/camera.js"></script>
-		<!--[if (gt IE 9)|!(IE)]><!-->
-		<script src="js/jquery.mobile.customized.min.js"></script>
-		<!--<![endif]-->
-		<script>
-			$(document).ready(function(){
-				jQuery('#camera_wrap').camera({
-					loader: false,
-					pagination: false ,
-					minHeight: '444',
-					thumbnails: false,
-					height: '27.86458333333333%',
-					caption: true,
-					navigation: true,
-					fx: 'simpleFade'
-				});
-				$().UItoTop({ easingType: 'easeOutQuart' });
-			});
-		</script>
-		<!--[if lt IE 8]>
-			<div style=' clear: both; text-align:center; position: relative;'>
-				<a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-					<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-				</a>
-			</div>
-		<![endif]-->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<link rel="stylesheet" media="screen" href="css/ie.css">
-		<![endif]-->
-	</head>
+<!--==============================head=================================-->
+<head>
+	<?php
+	include_once 'head.html';
+	?>
+	<title>GAMO: Home</title>
+</head>
 	<body class="page1" id="top">
 		<div class="main">
-<!--==============================header=================================-->
-			<header>
-				<div class="container_12">
-					<div class="grid_12">
-						<div class="socials">
-							<a href="#" class="fa fa-twitter"></a>
-							<a href="#" class="fa fa-facebook"></a>
-							<a href="#" class="fa fa-google-plus"></a>
-							<a href="#" class="fa fa-instagram"></a>
-						</div>
-						<h1>
-							<a href="index.html">
-								<img src="images/logo.png" alt="Your Happy Family">
-							</a>
-						</h1>
-						<div class="menu_block">
-							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
-								<ul class="sf-menu">
-									<li class="current"><a href="index.html">Home</a></li>
-									<li><a href="index-1.html">About Club</a></li>
-									<li><a href="index-2.html">Race Calendar</a></li>
-									<li><a href="index-3.html">Membership</a></li>
-									<li><a href="index-4.html">Contacts</a></li>
-								</ul>
-							</nav>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</header>
+			<!--==============================header=================================-->
+			<?php
+				include_once 'header.html';
+			?>
+			<!--Funció canvi Current-->
+			<script type="text/javascript">
+				$(document).ready(function() {
+					//Remou current de tots i inclou a l'actual.
+					$(".li1").attr("class","li1 current");
+					$(".li2").attr("class","li2");
+					$(".li3").removeClass("class","li3");
+				});
+			</script>
 			<div class="slider_wrapper">
 				<div id="camera_wrap" class="">
 					<div data-src="images/slide.jpg">
@@ -102,16 +40,8 @@
 				</div>
 			</div>
 <!--==============================Content=================================-->
-			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 21, 2014!</div>
+			<div class="content">
 				<div class="container_12">
-					<div class="grid_12">
-						<h2 class="center">The Next Marathon</h2>
-						<div class="count_wrap">
-							<div id="counter"></div>
-							<div class="clear"></div>
-							<a href="#">Join Us</a>
-						</div>
-					</div>
 					<div class="clear"></div>
 					<div class="grid_4">
 						<div class="box">
@@ -144,6 +74,7 @@
 						</div>
 					</div>
 					<div class="clear"></div>
+					<!--
 					<div class="grid_7">
 						<h3>Welcome to Our Club</h3>
 						<img src="images/page1_img4.jpg" alt="" class="img_inner fleft">
@@ -173,9 +104,10 @@
 						</div>
 					</div>
 					<div class="clear"></div>
+					-->
 					<div class="grid_12">
 						<div class="hor_separator"></div>
-						<h3 class="head1 center">We Will Never Stop</h3>
+						<h3 class="head1 center">We Will Never Stahp</h3>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_12">
@@ -235,24 +167,11 @@
 				</div>
 			</div>
 		</div>
-<!--==============================footer=================================-->
+		<!--==============================footer=================================-->
 		<footer>
-			<div class="container_12">
-				<div class="grid_12">
-					<div class="f_logo">
-						<a href="index.html">Marathon</a>
-					</div>
-					<div class="f_contacts">
-						<a href="#" class="mail_link"><span class="fa fa-envelope"></span> MAIL@DEMOLINK.ORG</a>
-						<div class="f_phone"><span class="fa fa-phone"></span>+1 800 559 6580</div>
-					</div>
-					<div class="copy">
-						<span>Marathon &copy; 2014 | <a href="#">Privacy Policy</a></span>
-						Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
+		<?php
+			include_once 'footer.html';
+		?>
 		</footer>
 		<script src="js/jquery.countdown.js"></script>
 		<script src="js/cd_config.js"></script>
