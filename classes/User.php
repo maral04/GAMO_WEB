@@ -1,11 +1,12 @@
 <?php
-include_once "DataBase.php";
 /**
  * Created by PhpStorm.
  * User: Arnau
  * Date: 25/04/2016
  * Time: 12:53
  */
+include_once "DataBase.php";
+
 class User
 {
     private $name;
@@ -14,16 +15,10 @@ class User
     private $password;
     private $db;
 
-    /**
-     * User constructor.
-     * @param $name
-     * @param $lastname
-     * @param $email
-     * @param $password
-     */
 
     public function _construct(){
         $this->db = new DataBase();
+
     }
 
     public function init($name, $lastname, $email, $password1, $password2)
@@ -35,6 +30,10 @@ class User
     }
 
     public function validate ($email = null, $password = null){
+        if($this->db == null){
+            $this->db = new DataBase();
+        }
+
         $conn = $this->db->connect();
 
         if($email != null && $password != null){
