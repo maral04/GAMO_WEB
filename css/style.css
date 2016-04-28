@@ -884,3 +884,18 @@ header h1 a {
 }
 
 }
+.formRegistre{
+    text-align: center;
+    width:57%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+.formRegistre input{
+    margin-bottom: 7px;
+    margin-top: 7px;
+    border: 0px solid;
+    width: 50%;
+}
+.formRegistre .registre{
+    margin-bottom: 25px;
+}
