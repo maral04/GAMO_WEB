@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
     font-size: 60px;
-    line-height: 60px;    
+    line-height: 60px;
     padding-top: 65px;
 }
 
@@ -425,9 +425,10 @@ header h1 a img {
 
 .block3 {
     background-color: #eef6f4;
-    padding: 0 48px 23px 28px;
+    padding: 2%;
     border-radius: 2px;
     margin-right: 6px;
+    margin-bottom:2%;
 }
 
 .block3 em {
@@ -450,11 +451,11 @@ header h1 a img {
 }
 
 /**Gallery**/
-
+/*
 a.gal {
     background: url(../images/magnifier.png) center center no-repeat #86c8b4;
     display: block;
-}
+}*/
 
 a.gal img {
     width: 100%;
@@ -835,7 +836,6 @@ header h1 a {
     height: auto;
 }
 
-
  .map {
  	padding-right: 0px !important;
  }
@@ -882,5 +882,66 @@ header h1 a {
     left: 50% !important;
     margin-left: -140px;
 }
+}
 
+.eventTitle{
+    text-transform: uppercase;
+    font-size:2em;
+    margin-bottom:2%;
+}
+.descripcio{
+    overflow-wrap:break-word;
+    height:95px;
+}
+
+.tag {
+    position: absolute;
+    left:2%;
+    top:2%;
+    z-index: 1000;
+    font-weight: bold;
+}
+
+.fRight{
+    float:right;
+}
+
+.gran{
+    font-size:1.4em;
+    font-weight: bold;
+    color: #86c8b4;
+}
+
+.click{
+    cursor:pointer;
+}
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
 }
