@@ -931,7 +931,6 @@ button.accordion {
 button.accordion.active, button.accordion:hover {
     background-color: #ddd;
 }
-<<<<<<< HEAD
 
 div.panel {
     padding: 0 18px;
@@ -946,7 +945,7 @@ div.panel.show {
     opacity: 1;
     max-height: 500px;
 }
-=======
+
 .formRegistre{
     text-align: center;
     width:57%;
@@ -962,4 +961,3 @@ div.panel.show {
 .formRegistre .registre{
     margin-bottom: 25px;
 }
->>>>>>> origin/master

@@ -69,8 +69,5 @@ class DataBase
             return false;
         }
     }
-
-
-
 }
 ?>

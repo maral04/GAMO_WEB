@@ -33,11 +33,11 @@
                 while ($event = mysqli_fetch_assoc($result)) {
                 $numProves = $db->recuperarNumProves($event['Id']);
 
-                if ($numProves <= 1) {
+                if ($numProves['COUNT(*)'] <= 1) {
                     echo "<div class='block3'>";
                 } else {
                 //Si l'event té més d'una prova, es preparen events desplegables.
-                echo "<div class='block3 accordion'>";
+                echo "<div class='block3 accordion click'>";
                 }
                 ?>
                 <div class="block2">
@@ -49,12 +49,12 @@
                                 </li>
                             </ul>
                         </div>-->
-                        <img class="click" src="images/page1_img10.jpg" alt="">
+                        <img src="images/page1_img10.jpg" alt="">
                     </div>
                     <div class="grid_4">
                         <!-- afegir HREF A L'H1 -->
                         <!-- Titol (event) -->
-                        <h1 class="eventTitle click"><?php echo $event['titol'] ?></h1>
+                        <h1 class="eventTitle"><?php echo $event['titol'] ?></h1>
                 <!-- Població (localitzacio)) -->
                 <a><?php echo $event['poblacio'] ?></a>
                 <div class="fRight">
@@ -69,7 +69,7 @@
                 //Si l'event només té una prova, mostra més informació d'aquesta.
                 if ($numProves['COUNT(*)'] == 1) {
                     $prova = $db->recuperarProves($event['Id']);
-                    echo "<a class='click'>Màx. Participants " . $prova['limit_inscrits'] . "</a>
+                    echo "<a>Màx. Participants " . $prova['limit_inscrits'] . "</a>
                             <div class='grid_1 fRight'>
                                 <a class='gran fRight'>" . $prova['distancia'] . "Km</a>
                             </div>";
@@ -80,11 +80,16 @@
 
     </div>
             <?php
-            //POSAR IF.
-            echo "<div class='panel'>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>";
-
+            if($numProves['COUNT(*)'] > 1){
+                echo "<div class='panel'>
+                    <div class='block3'>
+                        <div class='grid_2'>
+                            <img class='' src='images/page1_img6.jpg' alt=''>
+                        </div>
+                        <a>a</a>
+                    </div>
+                </div>";
+            }
             ?>
 <?php } ?>
 </div>
@@ -115,8 +120,6 @@
     include_once 'footer.html';
     ?>
 </footer>
-<script type="text/javascript" src="js/jquery.calendario.js"></script>
-<script type="text/javascript" src="js/data.js"></script>
 
 <script>
     var acc = document.getElementsByClassName("accordion");
@@ -129,40 +132,5 @@
         }
     }
 </script>
-
-<!--<script type="text/javascript">
-    $(function() {
-        $( ".desplegable" ).accordion();
-    });
-</script>-->
-
-
-<!--<script type="text/javascript">
-    $(function() {
-        var cal = $( '#calendar' ).calendario( {
-            onDayClick : function( $el, $contentEl, dateProperties ) {
-                for( var key in dateProperties ) {
-                    console.log( key + ' = ' + dateProperties[ key ] );
-                }
-            },
-            caldata : codropsEvents
-        } ),
-        $month = $( '#custom-month' ).html( cal.getMonthName() ),
-        $year = $( '#custom-year' ).html( cal.getYear() );
-        $( '#custom-next' ).on( 'click', function() {
-            cal.gotoNextMonth( updateMonthYear );
-        } );
-        $( '#custom-prev' ).on( 'click', function() {
-            cal.gotoPreviousMonth( updateMonthYear );
-        } );
-        $( '#custom-current' ).on( 'click', function() {
-            cal.gotoNow( updateMonthYear );
-        } );
-        function updateMonthYear() {
-            $month.html( cal.getMonthName() );
-            $year.html( cal.getYear() );
-        }
-    });
-</script>-->
 </body>
 </html>
