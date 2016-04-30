@@ -13,8 +13,9 @@ if(isset($_POST['submitUser'])){
     var_dump($res);
     if($res === true) {
         $error = $user->save();
-        if($error != "") $res = $error;
-        echo header("Location: ../register.php?error=".$res);
+        var_dump($error);
+        if($error !== true) header("Location: ../register.php?error=".$error);
+        else echo "<h1>Success</h1>";
     }
     else header("Location: ../register.php?error=".$res);
     /*Validar registre d'usuari*/
