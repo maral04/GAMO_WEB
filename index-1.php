@@ -7,7 +7,7 @@
 </head>
 <body class="" id="top">
 <div class="main">
-   <!-- parida, esborrar.--> <!--==============================header=================================-->
+	<!--==============================header=================================-->
     <?php
     include_once 'header.html';
     ?>
@@ -120,7 +120,7 @@
     include_once 'footer.html';
     ?>
 </footer>
-
+<!-- parida, esborrar.-->
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
