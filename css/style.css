@@ -899,3 +899,17 @@ header h1 a {
 .formRegistre .registre{
     margin-bottom: 25px;
 }
+.error{
+    width:50%;
+    max-width: 100%;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    margin: 0 auto;
+    height: 35px;
+    padding-top: 12px;
+    margin-top: 15px;
+}
+.error img{
+    margin-right: 8px;
+}

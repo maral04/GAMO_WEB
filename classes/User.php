@@ -23,10 +23,17 @@ class User
 
     public function init($name, $lastname, $email, $password1, $password2)
     {
-        $this->name = $name;
-        $this->lastname = $lastname;
-        $this->email = $email;
-        $this->setPassword($password1,$password2);
+        $error = "";
+        if(!$this->setName($name)) $error = "Required field names";
+        if(!$this->setLastname($lastname))$error = "Required field lastname";
+        $errorpsw = $this->setPassword($password1,$password2);
+
+        if ($errorpsw === true)$error = "";
+        else $error = $errorpsw;
+        if (!$this->setEmail($email))$error = "Required field email";
+
+        if(trim($error) == "")return true;
+        else return $error;
     }
 
     public function validate ($email = null, $password = null){
@@ -51,6 +58,49 @@ class User
         }
 
         $conn->close();
+    }
+
+    public function save($update = false){
+        if($this->db == null)$this->db = new DataBase();
+        $conn = $this->db->connect();
+
+        if(!$update) {
+            $error = "";
+            if (!$this->exist()) {
+                if ($conn != null) {
+
+                    $mysql = mysqli_prepare($conn, "INSERT INTO usuari (nom, cNom, email, contrasenya)  VALUES (?,?,?,?)");
+
+                    mysqli_stmt_bind_param($mysql, "ssss", $this->name , $this->lastname, $this->email, $this->password );
+
+                    if (mysqli_stmt_execute($mysql)) return true;
+                    else echo mysqli_stmt_error($mysql);
+                }
+                $error = "Error with register ";
+            } else {
+
+                $error = "Email already registered";
+            }
+        }
+
+        return $error;
+    }
+
+    private function exist(){
+        if($this->db == null)$this->db = new DataBase();
+        $conn = $this->db->connect();
+
+        $sql = "SELECT email FROM usuari WHERE email ='".trim($this->email)."'";
+
+        $result = $conn->query($sql);
+
+        if(is_object($result)) {
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     /**
@@ -90,13 +140,26 @@ class User
         }else return false;
     }
 
-    public function setPassword($password1,$password2)
+    public function setPassword($password1,$password2 = null)
     {
-        if(trim($password1) != "" && trim($password2) != "" && $password2 ==  $password1 && strlen($password2) > 6 ){
-            $this->password = $password1;
-            return true;
+        if($password2!= null) {
+            if (trim($password1) != "" && trim($password2) != "" && strlen($password2) >= 6) {
+                if($password2 == $password1) {
+                    $this->password = $password1;
+                    return true;
+                }else{
+                    return "Passwords doesn't match";
+                }
+            } else {
+                return "Passwords incorrects";
+            }
         }else{
-            return false;
+            if (strlen($password2) > 6) {
+                $this->password = $password1;
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

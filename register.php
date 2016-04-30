@@ -1,5 +1,6 @@
 <head>
-<?php include_once "head.html"; ?>
+<?php include_once "head.html";
+?>
 </head>
 
 <body class="" id="top">
@@ -12,7 +13,7 @@
                 <form class="form-horizontal" method="post" action="actions/validateUser.php">
                     <fieldset>
                         <!-- Form Name -->
-                        <h3 class="registre">Registre</h3>
+                        <h3 class="registre">Register</h3>
 
                         <!-- Text input-->
                         <div class="form-group">
@@ -58,9 +59,16 @@
 
                             </div>
                         </div>
+
                         <div class="btns">
                             <input type="submit" name="submitUser" class="btn" value="Submit"/>
                         </div>
+
+                        <?php
+                        if(isset($_GET['error'])){
+                            echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                        }
+                        ?>
                     </fieldset>
                 </form>
             </div>

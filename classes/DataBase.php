@@ -33,5 +33,15 @@ class DataBase
         }
     }
 
+    /**
+     * @return mysqli
+     */
+    public function getConn()
+    {
+        return $this->conn;
+    }
+
+
+
 
 }
