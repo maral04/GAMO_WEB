@@ -342,7 +342,8 @@ header h1 a img {
 /**Content**/
 
 .content {
-    padding-bottom: 84px;
+    padding-bottom: 60px;
+    padding-top: 30px;
 }
 .page1  .content {
     padding-bottom: 57px;
@@ -955,9 +956,11 @@ div.panel.show {
 .formRegistre input{
     margin-bottom: 7px;
     margin-top: 7px;
-    border: 0px solid;
+    //border: 0px solid;
     width: 50%;
 }
+
+
 .formRegistre .registre{
     margin-bottom: 25px;
 }
@@ -975,3 +978,14 @@ div.panel.show {
 .error img{
     margin-right: 8px;
 }
+#loginContent{
+   background-image: url("../images/backgrounds/mtb.jpg") ;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+#registerContent{
+    background-image: url("../images/backgrounds/trail.jpg") ;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+

@@ -7,7 +7,7 @@
 
 <div class="main">
     <?php include_once "header.html"; ?>
-    <div class="content">
+    <div class="content" id="registerContent">
         <div class="container_12">
             <div class="formRegistre block3">
                 <form class="form-horizontal" method="post" action="actions/validateUser.php">
