@@ -20,10 +20,8 @@
                             <label class="col-md-4 control-label" for="tbName">Name</label>
                             <div class="col-md-6">
                                 <input id="tbNom" name="tbName" type="text" placeholder="" class="form-control input-md" required="">
-
                             </div>
                         </div>
-
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbLastName">Last name</label>

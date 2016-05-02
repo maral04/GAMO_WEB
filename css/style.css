@@ -891,7 +891,7 @@ header h1 a {
     font-size:2em;
     margin-bottom:2%;
 }
-.descripcio{
+.descripcioEvent{
     overflow-wrap:break-word;
     height:95px;
 }
@@ -965,10 +965,10 @@ div.panel.show {
     width: 50%;
 }
 
-
 .formRegistre .registre{
     margin-bottom: 25px;
 }
+
 .error{
     width:50%;
     max-width: 100%;
@@ -1006,4 +1006,11 @@ div.panel.show {
     width:35%;
 }
 
-<!--arnaldo horteplanicus -->
+h4{
+    font-size:1.4em;
+}
+
+.descripcioProva{
+    overflow-wrap:break-word;
+    height:45px;
+}
