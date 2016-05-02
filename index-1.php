@@ -5,15 +5,28 @@
     ?>
     <title>GAMO: Event List</title>
     <script>
-        $(".accordion").on("click", function()
-        {
-            var id = $(this).attr('eventid');
-            $.ajax({
-                dataType: "json",
-                url: "http://localhost/GAMO_WEB/api/events/getProves.php?eventId="+id,
-                success: function(data) {
-                    console.log((data));
-                }
+        $(document).ready(function() {
+            $(".accordion").on("click", function () {
+                //console.log("asd");
+
+                 var id = $(this).attr('eventid');
+                 $.ajax({
+                 dataType: "json",
+                 type: "GET",
+                 url: "http://localhost/GAMO_WEB/api/events/getProves.php?eventId="+id,
+                 success: function(data) {
+                 console.log(data);
+                 },
+                 error: function(xhr, status){
+                     alert(xhr+status);
+                 },
+                 complete: function(xhr, status){
+                     alert(xhr+status);
+                 }
+                 /*default: function(){
+                    console.log("tumamanofunka!");
+                 }*/
+                 });
             });
         });
     </script>
