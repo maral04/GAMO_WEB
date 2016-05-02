@@ -7,39 +7,79 @@
     <script>
         $(document).ready(function(){
             $(".accordion").on("click", function() {
-                var id = $(this).attr('eventid');
-                $.ajax({
-                    // la URL para la petición
-                    url: 'http://localhost/GAMO_WEB/api/events/getProves.php',
+                //Si troba la class "active", no fa la funció.
+                if($(this).hasClass("active")){
 
-                    // la información a enviar
-                    // (también es posible utilizar una cadena de datos)
-                    data: {eventId: id},
+                    //Netejar Panel.
+                    //S'ha de fer.
 
-                    // especifica si será una petición POST o GET
-                    type: 'GET',
+                    var id = $(this).attr('eventid');
+                    $.ajax({
+                        // la URL para la petición
+                        url: 'http://localhost/GAMO_WEB/api/events/getProves.php',
 
-                    // el tipo de información que se espera de respuesta
-                    dataType: 'json',
+                        // la información a enviar
+                        // (también es posible utilizar una cadena de datos)
+                        data: {eventId: id},
 
-                    // código a ejecutar si la petición es satisfactoria;
-                    // la respuesta es pasada como argumento a la función
-                    success: function (json) {
-                        console.log(json);
-                    },
+                        // especifica si será una petición POST o GET
+                        type: 'GET',
 
-                    // código a ejecutar si la petición falla;
-                    // son pasados como argumentos a la función
-                    // el objeto de la petición en crudo y código de estatus de la petición
-                    error: function (request, status, error) {
-                        alert(request.responseText);
-                        console.log(error);
-                    },
+                        // el tipo de información que se espera de respuesta
+                        dataType: 'json',
 
-                    // código a ejecutar sin importar si la petición falló o no
-                    complete: function (xhr, status) {
-                    }
-                });
+                        // código a ejecutar si la petición es satisfactoria;
+                        // la respuesta es pasada como argumento a la función
+                        success: function (json) {
+                            for(var i = 0; i < json.length;i++){
+
+                                //$(this).getElementsByClassName('panel');
+
+                            }
+
+                            /*
+                            <div class='block3'>
+                                <div class='block2'>
+                                    <div class='grid_2'>
+                                        <!-- Imatges (prova) -->
+                                        <img class='' src='images/page1_img6.jpg' alt=''>
+                                    </div>
+                                    <div class='grid_4'>
+                                        <!-- nom (prova) -->
+                                        <h4>Ultra Second TrailRaceMasterPum</h4>
+
+                                        <!-- FK_Id_Localitzacio (prova) poblacio (localitzacio) -->
+                                        <a>Barcelinonino</a>
+                                        <div class='fRight'>
+                                            <!-- data_hora_inici (prova) -->
+                                            <a>2016-04-05 13:30:00</a>
+                                        </div>
+                                        <div class='descripcioProva'>
+                                            <!-- descripcio (prova) -->
+                                            <a>SDIASJDA LALALALASD</a>
+                                        </div>
+                                        <a></a>
+                                        <div class='grid_1 fRight'>
+                                            <!-- SIDA Max Members, desnivellPositiu, Distancia -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*/
+                        },
+
+                        // código a ejecutar si la petición falla;
+                        // son pasados como argumentos a la función
+                        // el objeto de la petición en crudo y código de estatus de la petición
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                            console.log(error);
+                        },
+
+                        // código a ejecutar sin importar si la petición falló o no
+                        complete: function (xhr, status) {
+                        }
+                    });
+                }
             });
         });
     </script>
@@ -78,17 +118,21 @@
                 //Si l'event té més d'una prova, es preparen events desplegables.
                 echo "<div class='block3 accordion click' eventid='".$event['Id']."'>";
                 }
+                echo "
+                <div class='block2'>
+                    <div class='grid_3'>";
+                        //Si la prova té imatges, posa la primera. Sino, una per defecte.
+                        //Imatges (prova)
+                        /*if(){
+                            //$prova['distancia']
+
+                        }else{
+
+
+                        }*/
+
+                    echo '<img class="" src="images/page1_img6.jpg" alt="">';
                 ?>
-                <div class="block2">
-                    <div class="grid_3">
-                        <!--<div class="tag">
-                            <ul class="list">
-                                <li>
-                                    <div class="list_count">1</div>
-                                </li>
-                            </ul>
-                        </div>-->
-                        <img src="images/page1_img10.jpg" alt="">
                     </div>
                     <div class="grid_4">
                         <!-- afegir HREF A L'H1 -->
@@ -119,34 +163,7 @@
     </div>
             <?php
             if($numProves['COUNT(*)'] > 1){
-                echo "<div class='panel'>
-                    <div class='block3'>
-                        <div class='block2'>
-                            <div class='grid_2'>
-                                <!-- Imatges (prova) -->
-                                <img class='' src='images/page1_img6.jpg' alt=''>
-                            </div>
-                            <div class='grid_4'>
-                                <!-- nom (prova) -->
-                                <h4>Ultra Second TrailRaceMasterPum</h4>
-
-                                <!-- FK_Id_Localitzacio (prova) poblacio (localitzacio) -->
-                                <a>Barcelinonino</a>
-                                <div class='fRight'>
-                                    <!-- data_hora_inici (prova) -->
-                                    <a>2016-04-05 13:30:00</a>
-                                </div>
-                                <div class='descripcioProva'>
-                                    <!-- descripcio (prova) -->
-                                    <a>SDIASJDA LALALALASD</a>
-                                </div>
-                                <a></a>
-                                <div class='grid_1 fRight'>
-                                    <!-- SIDA Max Members, desnivellPositiu, Distancia -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                echo "<div class='panel'>asdasd
                 </div>";
             }
             ?>
