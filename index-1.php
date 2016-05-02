@@ -4,6 +4,19 @@
     include_once 'head.html';
     ?>
     <title>GAMO: Event List</title>
+    <script>
+        $(".accordion").on("click", function()
+        {
+            var id = $(this).attr('eventid');
+            $.ajax({
+                dataType: "json",
+                url: "http://localhost/GAMO_WEB/api/events/getProves.php?eventId="+id,
+                success: function(data) {
+                    console.log((data));
+                }
+            });
+        });
+    </script>
 </head>
 <body class="" id="top">
 <div class="main">
