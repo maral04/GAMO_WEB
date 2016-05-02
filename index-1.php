@@ -4,7 +4,7 @@
     include_once 'head.html';
     ?>
     <title>GAMO: Event List</title>
-    <script>
+    <!--<script>
         $(document).ready(function() {
             $(".accordion").on("click", function () {
                 //console.log("asd");
@@ -23,13 +23,10 @@
                  complete: function(xhr, status){
                      alert(xhr+status);
                  }
-                 /*default: function(){
-                    console.log("tumamanofunka!");
-                 }*/
                  });
             });
         });
-    </script>
+    </script>-->
 </head>
 <body class="" id="top">
 <div class="main">
@@ -124,8 +121,12 @@
                                     <a>2016-04-05 13:30:00</a>
                                 </div>
                                 <div class='descripcioProva'>
-                                    <!--  -->
-                                    <a>SDIASJDA</a>
+                                    <!-- descripcio (prova) -->
+                                    <a>SDIASJDA LALALALASD</a>
+                                </div>
+                                <a></a>
+                                <div class='grid_1 fRight'>
+                                    <!-- SIDA Max Members, desnivellPositiu, Distancia -->
                                 </div>
                             </div>
                         </div>
