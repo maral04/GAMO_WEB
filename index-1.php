@@ -37,7 +37,7 @@
                     echo "<div class='block3'>";
                 } else {
                 //Si l'event té més d'una prova, es preparen events desplegables.
-                echo "<div class='block3 accordion click'>";
+                echo "<div class='block3 accordion click' eventid='".$event['Id']."'>";
                 }
                 ?>
                 <div class="block2">
@@ -61,9 +61,9 @@
                     <!-- Data Inicial (event) -->
                     <a><?php echo date("Y-m-d", strtotime($event['dataInici'])) ?></a>
                 </div>
-                <div class="descripcio">
+                <div class="descripcioEvent">
                     <!-- Descripció (event) -->
-                    <p><?php echo $event['descripcio'] ?></p>
+                    <a><?php echo $event['descripcio'] ?></a>
                 </div>
                 <?php
                 //Si l'event només té una prova, mostra més informació d'aquesta.
@@ -77,16 +77,32 @@
                 ?>
             </div>
         </div>
-
     </div>
             <?php
             if($numProves['COUNT(*)'] > 1){
                 echo "<div class='panel'>
                     <div class='block3'>
-                        <div class='grid_2'>
-                            <img class='' src='images/page1_img6.jpg' alt=''>
+                        <div class='block2'>
+                            <div class='grid_2'>
+                                <!-- Imatges (prova) -->
+                                <img class='' src='images/page1_img6.jpg' alt=''>
+                            </div>
+                            <div class='grid_4'>
+                                <!-- nom (prova) -->
+                                <h4>Ultra Second TrailRaceMasterPum</h4>
+
+                                <!-- FK_Id_Localitzacio (prova) poblacio (localitzacio) -->
+                                <a>Barcelinonino</a>
+                                <div class='fRight'>
+                                    <!-- data_hora_inici (prova) -->
+                                    <a>2016-04-05 13:30:00</a>
+                                </div>
+                                <div class='descripcioProva'>
+                                    <!--  -->
+                                    <a>SDIASJDA</a>
+                                </div>
+                            </div>
                         </div>
-                        <a>a</a>
                     </div>
                 </div>";
             }
@@ -120,7 +136,6 @@
     include_once 'footer.html';
     ?>
 </footer>
-<!-- parida, esborrar.-->
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
