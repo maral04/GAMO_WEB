@@ -6,26 +6,25 @@
     <title>GAMO: Event List</title>
     <script>
         $(document).ready(function(){
-            $(".accordion").on("click", function()
-            {
+            $(".accordion").on("click", function() {
                 var id = $(this).attr('eventid');
                 $.ajax({
                     // la URL para la petición
-                    url : 'http://localhost/GAMO_WEB/api/events/getProves.php',
+                    url: 'http://localhost/GAMO_WEB/api/events/getProves.php',
 
                     // la información a enviar
                     // (también es posible utilizar una cadena de datos)
-                    data : { eventId : id },
+                    data: {eventId: id},
 
                     // especifica si será una petición POST o GET
-                    type : 'GET',
+                    type: 'GET',
 
                     // el tipo de información que se espera de respuesta
-                    dataType : 'json',
+                    dataType: 'json',
 
                     // código a ejecutar si la petición es satisfactoria;
                     // la respuesta es pasada como argumento a la función
-                    success : function(json) {
+                    success: function (json) {
                         console.log(json);
                     },
 
@@ -38,13 +37,11 @@
                     },
 
                     // código a ejecutar sin importar si la petición falló o no
-                    complete : function(xhr, status) {
-                        alert('Petición realizada');
+                    complete: function (xhr, status) {
                     }
                 });
             });
         });
-
     </script>
 </head>
 <body class="" id="top">
