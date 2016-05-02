@@ -4,28 +4,6 @@
     include_once 'head.html';
     ?>
     <title>GAMO: Event List</title>
-<<<<<<< HEAD
-    <!--<script>
-        $(document).ready(function() {
-            $(".accordion").on("click", function () {
-                //console.log("asd");
-
-                 var id = $(this).attr('eventid');
-                 $.ajax({
-                 dataType: "json",
-                 type: "GET",
-                 url: "http://localhost/GAMO_WEB/api/events/getProves.php?eventId="+id,
-                 success: function(data) {
-                 console.log(data);
-                 },
-                 error: function(xhr, status){
-                     alert(xhr+status);
-                 },
-                 complete: function(xhr, status){
-                     alert(xhr+status);
-                 }
-                 });
-=======
     <script>
         $(document).ready(function(){
             $(".accordion").on("click", function() {
@@ -62,10 +40,9 @@
                     complete: function (xhr, status) {
                     }
                 });
->>>>>>> 72ebd73713323f18adf1ba0985f05575c1128ce1
             });
         });
-    </script>-->
+    </script>
 </head>
 <body class="" id="top">
 <div class="main">
