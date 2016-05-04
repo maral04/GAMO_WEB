@@ -9,7 +9,7 @@
 	bottom: 0;
 	left: 50%;
 	margin-left: -382px;
-	background-color: #86c8b4;
+	background-color: #88c886;
 	height: 10px;
 	width: 765px;
 	content: '';
@@ -61,7 +61,7 @@ nav{ position:relative;padding: 0px 0 0 0;}
 	height: 0px;
 	border-style: solid;
 	border-width: 0 9px 9px 9px;
-	border-color: transparent transparent #86c8b4 transparent;
+	border-color: transparent transparent #88c886 transparent;
 	bottom: -30px;
 	position: absolute;
 	content: '';

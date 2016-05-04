@@ -21,7 +21,7 @@
 
                                 <label class="col-md-4 control-label" for="tbEmail">Email</label>
                                 <div class="col-md-6">
-                                    <input id="tbEmail" name="tbEmail" type="email" placeholder="" class="form-control input-md" required="">
+                                    <input id="tbEmail" name="tbEmail" type="email" placeholder="" class="form-control input-md" required="" tabindex="0" autofocus>
 
                                 </div>
                             </div>
@@ -30,14 +30,14 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="tbPassword">Password</label>
                                 <div class="col-md-6">
-                                    <input id="tbPassword" name="tbPassword" type="password" placeholder="" class="form-control input-md" required="">
+                                    <input id="tbPassword" name="tbPassword" type="password" placeholder="" class="form-control input-md" required="" tabindex="1">
 
                                 </div>
                             </div>
 
 
                             <div class="btns">
-                                <input type="submit" name="submitLogin" class="btn" value="Submit"/>
+                                <input type="submit" name="submitLogin" class="btn btnM" value="Submit" tabindex="2"/>
                             </div>
 
                             <?php

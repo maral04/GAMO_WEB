@@ -15,23 +15,23 @@ $(function(){
 $(window).bind("resize", height_handler).bind("load", height_handler)
 function height_handler(){
 	if($(window).width()>767){
-		$(".maxheight").equalHeights();
+		//$(".maxheight").equalHeights();
 	}else{
 		$(".maxheight").css({'height':'auto'});
 	}
 	if($(window).width()>767){
-		$(".maxheight1").equalHeights();
+		//$(".maxheight1").equalHeights();
 	}else{
 		$(".maxheight1").css({'height':'auto'});
 	}
 	if($(window).width()>767){
-		$(".maxheight2").equalHeights();
+		//$(".maxheight2").equalHeights();
 	}else{
 		$(".maxheight2").css({'height':'auto'});
 	}
 }
-/*glob function*/
-(function($){
+//glob function
+/*(function($){
 	$.fn.equalHeights=function(minHeight,maxHeight){
 		tallest=(minHeight)?minHeight:0;
 		this.each(function(){
@@ -42,4 +42,4 @@ function height_handler(){
 		if((maxHeight)&&tallest>maxHeight) tallest=maxHeight;
 		return this.each(function(){$(this).height(tallest)})
 	}
-})(jQuery)
+})*/(jQuery)

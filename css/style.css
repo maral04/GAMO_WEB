@@ -190,8 +190,13 @@ a:hover {
     font: bold 18px/24px 'Open Sans Condensed', sans-serif;
 }
 
+.btnM{
+    margin-top:6% !important;
+}
+
 .btn:hover {
-    background-color: #555;
+    background-color: #7DAF7E;
+    /*Back per defecte era 555*/
     color: #fff;
 }
 
@@ -273,7 +278,7 @@ a:hover {
 
 header {
 	display: block;
-    padding-top: 47px;
+    padding-top: 1%;
     text-align: center;
 }
 
@@ -455,7 +460,7 @@ header h1 a img {
 /**Gallery**/
 /*
 a.gal {
-    background: url(../images/magnifier.png) center center no-repeat #86c8b4;
+    background: url(../images/magnifier.png) center center no-repeat #88c886;
     display: block;
 }*/
 
@@ -950,7 +955,7 @@ div.panel.show {
 
 .formRegistre{
     text-align: center;
-    width:57%;
+    width:33%;
     margin: 0 auto;
     margin-top: 25px;
     background: rgb(238, 246, 244);
@@ -961,8 +966,8 @@ div.panel.show {
 .formRegistre input{
     margin-bottom: 7px;
     margin-top: 7px;
-    //border: 0px solid;
-    width: 50%;
+    /*border: 0px solid;*/
+    width: 85%;
 }
 
 .formRegistre .registre{
@@ -991,6 +996,8 @@ div.panel.show {
 #registerContent{
     background-image: url("../images/backgrounds/trail.jpg") ;
     background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover !important;
     background-size: 100%;
 }
 .formUser{
@@ -1015,6 +1022,14 @@ h4{
     height:45px;
 }
 
+.menuUser{
+    font-size:1.6em;
+    margin-bottom:2%;
+}
+
+.menuUser:hover{
+    /*background-color:#F3F3F3;*/
+}
 #sports{
     height: 120px;
 }

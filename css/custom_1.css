@@ -30,7 +30,7 @@
 	width: 100%;
 	display: block;
 	font-size: 14px;
-	color: #86c8b4;
+	color: #88c886;
 	line-height: 20px;
 	margin-bottom: 10px;
 }
@@ -94,7 +94,7 @@
 
 .custom-month-year .custom-prev:hover:after,
 .custom-month-year .custom-next:hover:after {
-	color: #86c8b4;
+	color: #88c886;
 }
 
 .custom-month-year .custom-next img{
