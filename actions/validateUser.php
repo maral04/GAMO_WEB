@@ -21,7 +21,7 @@ if(isset($_POST['submitUser'])){
     else header("Location: ../register.php?error=".$res);
     /*Validar registre d'usuari*/
 
-}else if ($_POST['submitLogin']){
+}else if (isset($_POST['submitLogin'])){
     var_dump($_POST);
     $user = new User();
     if(isset($_POST['tbEmail']) && isset($_POST['tbPassword'])) {
@@ -33,4 +33,6 @@ if(isset($_POST['submitUser'])){
     }else{
         header("Location: ../login.php?error=Login incorrect");
     }
+}else if(isset($_POST['submitProfile'])){
+    var_dump($_POST);
 }

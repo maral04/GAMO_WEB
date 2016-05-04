@@ -1002,8 +1002,8 @@ div.panel.show {
     width:100%;
 }
 
-.formUser input{
-    width:35%;
+#profile input, select{
+    width:65%;
 }
 
 h4{
@@ -1013,4 +1013,34 @@ h4{
 .descripcioProva{
     overflow-wrap:break-word;
     height:45px;
+}
+
+#sports{
+    height: 120px;
+}
+#sports div{
+    width: 50px;
+    float:left;
+    text-align: center;
+
+}
+#sports img{
+    opacity: 0.5;
+    width:40px;
+    border-radius: 25%;
+    float: left;
+    cursor: pointer;
+}
+#sports input{
+    visibility: hidden;
+    position:absolute;
+
+}
+
+#sports .icon-selected{
+    opacity: 1;
+}
+
+.profile-img{
+    margin-top: 80px;
 }

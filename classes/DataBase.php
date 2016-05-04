@@ -50,6 +50,31 @@ class DataBase
         }
     }
 
+    public function recuperarPaisos (){
+
+        $sql = "SELECT * FROM apps_countries;";
+
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function recuperarClubs (){
+        $sql = "SELECT * FROM club;";
+
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function recuperarProves ($idEvent){
 
         $sql = "SELECT * FROM prova WHERE FK_Id_event = ".$idEvent;

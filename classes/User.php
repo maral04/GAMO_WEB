@@ -13,6 +13,16 @@ class User
     private $lastname;
     private $email;
     private $password;
+    private $phone1;
+    private $phone2;
+    private $birth;
+    private $tshirt;
+    private $club;
+    private $country;
+    private $region;
+    private $city;
+    private $address;
+    private $postalCode;
     private $db;
 
 
@@ -34,6 +44,36 @@ class User
 
         if(trim($error) == "")return true;
         else return $error;
+    }
+
+    public function load($id = null){
+        echo "hola";
+        if($this->db == null){
+            $this->db = new DataBase();
+        }
+
+        $conn = $this->db->connect();
+
+        if($id != null){
+            $sql = "SELECT * FROM usuari INNER JOIN localitzacio
+                    ON FK_Id_Localitzacio = localitzacio.id
+                    INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.id = ".trim($id);
+            echo $sql;
+            $result = $conn->query($sql);
+        }
+
+
+        if ($result->num_rows > 0) {
+            $arrayUser = mysqli_fetch_assoc($result);
+            $this->setEmail($arrayUser['email']);
+            $this->setName($arrayUser['nom']);
+            $this->setLastname($arrayUser['cNom']);
+            $this->setPassword($arrayUser['contrasenya']);
+
+            return $arrayUser;
+        } else {
+            return false;
+        }
     }
 
     public function validate ($email = null, $password = null){

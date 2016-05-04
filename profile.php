@@ -1,5 +1,11 @@
 <head>
     <?php include_once "head.html";
+    include_once "classes/DataBase.php";
+    include_once "classes/User.php";
+    $db = new DataBase();
+    $usuari = new User();
+    $arrayUser = $usuari->load('2');
+    var_dump($arrayUser);
     ?>
 </head>
 
@@ -7,83 +13,272 @@
 
 <div class="main">
     <?php include_once "header.html"; ?>
-    <div class="content" >
-
-        <div class="container_12">
-            <div class="formUser block3">
-                <!-- Text input-->
-                <div class="container_4">
-                    <div class="col-md-6">
+    <div class="content container_12" >
+        <div class="grid_12 block3 form-user" id="profile" >
+            <form class="form-horizontal" method="post" action="actions/validateUser.php">
+                <div class="grid_2">
+                    <div class="profile-img">
                         <img src="images/page2_img6.jpg" alt="Submit" width="150" >
                     </div>
                 </div>
-                <div id="profile" class="container_8">
-                    <form class="form-horizontal" method="post" action="actions/validateUser.php">
-                        <fieldset>
-                            <!-- Form Name -->
-                            <h3 class="registre">My profile</h3>
+                <div class="grid_4">
+                    <!-- Form Name -->
+                    <h3 class="registre">My profile</h3>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="tbName">Name</label>
-                                <div class="col-md-6">
-                                    <input id="tbNom" name="tbName" type="text" placeholder="" class="form-control input-md" required="">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbName">Name</label>
+                        <div class="col-md-6">
+                            <input id="tbNom" name="tbName" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayUser != false) echo $arrayUser['nom'] ?>" required="">
 
-                                </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbLastName">Last name</label>
+                        <div class="col-md-6">
+                            <input id="tbCognoms" name="tbLastName" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayUser != false) echo $arrayUser['cNom'] ?>" >
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbEmail">Email</label>
+                        <div class="col-md-6">
+                            <input id="tbEmail" name="tbEmail" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" required="">
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbBirth">Birth date</label>
+                        <div class="col-md-6">
+                            <input id="tbBirth" name="tbBirth" type="date" placeholder="" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbAddress">Shirt size</label>
+                        <div>
+                            <select id="idTshirt" name="tbTshirt" class="form-control input-md" >
+                                <option></option>
+                                <option <?php if($arrayUser['talla'] == 'XS') echo 'selected'?>>XS</option>
+                                <option <?php if($arrayUser['talla'] == 'S') echo 'selected'?>>S</option>
+                                <option <?php if($arrayUser['talla'] == 'M') echo 'selected'?>>M</option>
+                                <option <?php if($arrayUser['talla'] == 'L') echo 'selected'?>>L</option>
+                                <option <?php if($arrayUser['talla'] == 'XL') echo 'selected'?>>XL</option>
+                                <option <?php if($arrayUser['talla'] == 'XXL') echo 'selected'?>>XXL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbClub">Club</label>
+                        <div class="col-md-6">
+                            <select id="tbClub" name="tbClub" type="text" placeholder="" class="form-control input-md" >
+                                <option></option>
+                                <?php
+                                $resultClubs = $db->recuperarClubs();
+
+                                while ($clubs = mysqli_fetch_assoc($resultClubs)) {
+                                    //var_dump($clubs);
+                                    if(trim($clubs['Nom']) == trim($arrayUser['Nom'])){
+                                        echo "<option value='".$clubs['Nom']."' selected>".$clubs['Nom']."</option>";
+                                    }else{
+                                        echo "<option value='" . $clubs['Nom'] . "' >" . $clubs['Nom'] . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbLastName">Favorite sport</label>
+                        <div id="sports">
+                            <div>
+                                <?php
+                                if(trim($arrayUser['esport']) == 'Bike') {
+                                    echo "<img id='img-bike'  class='icon-selected' src=\"images/icons/bike.png\"/>";
+                                    echo "<span>MTB</span>";
+                                    echo "<input id='s-bike' selected type='radio' name='sport' value='bike'>";
+                                }else{
+                                    echo "<img id='img-bike'  src=\"images/icons/bike.png\"/>";
+                                    echo "<span>MTB</span>";
+                                    echo "<input id='s-bike' type='radio' name='sport' value='bike'>";
+                                }
+                                ?>
                             </div>
+                            <div>
+                                <?php
+                                if(trim($arrayUser['esport']) == 'Hiking') {
+                                    echo "<img id='img-hike'  class='icon-selected' src=\"images/icons/hike.png\"/>";
+                                    echo "<span>Hiking</span>";
+                                    echo "<input id='s-hike' selected type='radio' name='sport' value='hike'>";
+                                }else{
+                                    echo "<img id='img-hike'  src=\"images/icons/hike.png\"/>";
+                                    echo "<span>Hiking</span>";
+                                    echo "<input id='s-hike' type='radio' name='sport' value='hike'>";
+                                }
+                                ?>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="tbLastName">Last name</label>
-                                <div class="col-md-6">
-                                    <input id="tbCognoms" name="tbLastName" type="text" placeholder="" class="form-control input-md" required="">
-
-                                </div>
                             </div>
+                            <div>
+                                <?php
+                                if(trim($arrayUser['esport']) == 'Ski') {
+                                    echo "<img id='img-ski'  class='icon-selected' src=\"images/icons/ski.png\"/>";
+                                    echo "<span>Skiyng</span>";
+                                    echo "<input id='s-ski' selected type='radio' name='sport' value='ski'>";
+                                }else{
+                                    echo "<img id='img-ski'  src=\"images/icons/ski.png\"/>";
+                                    echo "<span>Skiyng</span>";
+                                    echo "<input id='s-ski' type='radio' name='sport' value='ski'>";
+                                }
+                                ?>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="tbEmail">Email</label>
-                                <div class="col-md-6">
-                                    <input id="tbEmail" name="tbEmail" type="email" placeholder="" class="form-control input-md" required="">
-
-                                </div>
                             </div>
+                            <div>
+                                <?php
+                                if(trim($arrayUser['esport']) == 'Trail') {
+                                    echo "<img id='img-trail' class='icon-selected' src=\"images/icons/trail.png\"/>";
+                                    echo "<span>Trail</span>";
+                                    echo "<input id='s-trail' selected type=\"radio\" name=\"sport\" value=\"trail\">";
+                                }else{
+                                    echo "<img id='img-trail' src=\"images/icons/trail.png\"/>";
+                                    echo "<span>Trail</span>";
+                                    echo "<input id='s-trail' type=\"radio\" name=\"sport\" value=\"trail\">";
+                                }
+                                ?>
 
-                            <!-- Password input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="tbPassword">Password</label>
-                                <div class="col-md-6">
-                                    <input id="tbPassword" name="tbPassword" type="password" placeholder="" class="form-control input-md" required="">
-
-                                </div>
                             </div>
+                            <div>
+                                <?php
+                                if(trim($arrayUser['esport']) == 'Climbing') {
+                                    echo " <img id='img-climb' class='icon-selected' src=\"images/icons/wall.png\"/>";
+                                    echo "<span>Climbing</span>";
+                                    echo "<input id='s-climb' selected type='radio' name='sport' value='climb'>";
+                                }else{
+                                    echo "<img id='img-ski'  src=\"images/icons/ski.png\"/>";
+                                    echo "<span>Climbing</span>";
+                                    echo "<input id='s-climb' type=\"radio\" name=\"sport\" value=\"climb\">";
+                                }
+                                ?>
 
-                            <!-- Password input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="tbPasswordConfirm">Password confirmation</label>
-                                <div class="col-md-6">
-                                    <input id="tbPasswordConfirm" name="tbPasswordConfirm" type="password" placeholder="" class="form-control input-md" required="">
-
-                                </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="btns">
-                                <input type="submit" name="submitUser" class="btn" value="Submit"/>
-                            </div>
+                    <script>
+                        /**/
+                        $('#sports img').on('click',function(){
+                            id = $(this).attr('id').replace('img','s');
 
-                            <?php
-                            if(isset($_GET['error'])){
-                                echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                            if($(this).hasClass('icon-selected')){
+                                $('#'+id).prop( "checked", false );
+
+                                $(this).removeClass('icon-selected');
+                            }else{
+                                $('#sports input').prop( "checked", false );
+                                $('#sports img').removeClass('icon-selected');
+
+                                $('#'+id).prop( "checked", true );
+                                $(this).addClass('icon-selected');
+
                             }
-                            ?>
-                        </fieldset>
-                    </form>
+                        });
+
+                    </script>
                 </div>
-            </div>
-            <div class="clear"></div>
+                <div class="grid_3"  style="margin-top: 60px;">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbCountry">Country</label>
+                        <div class="col-md-6">
+                            <select id="tbCountry" name="tbCountry" type="text" value="<?php if($arrayUser != false) echo $arrayUser['pais'] ?>" >
+                                <option></option>
+                                <?php
+                                $result = $db->recuperarPaisos();
+
+                                while ($pais = mysqli_fetch_assoc($result)) {
+                                    if(trim($pais['country_name']) == trim($arrayUser['estat'])){
+                                        echo "<option value='".$pais['country_name']."' selected>".$pais['country_name']."</option>";
+                                    }else{
+                                        echo "<option value='".$pais['country_name']."'>".$pais['country_name']."</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbRegion">Region</label>
+                        <div class="col-md-6">
+                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayUser != false) echo $arrayUser['regio'] ?>" >
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbCity">City</label>
+                        <div class="col-md-6">
+                            <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayUser != false) echo $arrayUser['poblacio'] ?>" >
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbAddress">Address</label>
+                        <div class="col-md-6">
+                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayUser != false) echo $arrayUser['direccio'] ?>" >
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbPostalCode">Postal code</label>
+                        <div class="col-md-6">
+                            <input id="tbPostalCode" name="tbPostalCode" value="<?php if($arrayUser != false) echo $arrayUser['cp'] ?>">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbPhone">Phone number</label>
+                        <div class="col-md-6">
+                            <input id="tbPhone" name="tbPhone" type="text" value="<?php if($arrayUser != false) echo $arrayUser['tel1'] ?>">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbPhone">Emergenci phone number</label>
+                        <div class="col-md-6">
+                            <input id="tbPhone2" name="tbPhone2" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['tel2'] ?>">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="btns">
+                        <input type="submit" name="submitProfile" class="btn" value="Submit"/>
+                    </div>
+
+                    <?php
+                    if(isset($_GET['error'])){
+                        echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                    }
+                    ?>
+                </div>
+            </form>
         </div>
     </div>
+    <div class="clear"></div>
+</div>
+</div>
 </div>
 </body>
 <footer><?php include_once "footer.html"; ?></footer>
