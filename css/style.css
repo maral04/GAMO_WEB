@@ -1044,7 +1044,7 @@ h4{
     float: left;
     cursor: pointer;
 }
-#sports input{
+#sports input, #idUser{
     visibility: hidden;
     position:absolute;
 

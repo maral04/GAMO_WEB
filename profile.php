@@ -1,11 +1,20 @@
 <head>
+    <?php session_start();?>
     <?php include_once "head.html";
     include_once "classes/DataBase.php";
     include_once "classes/User.php";
+
     $db = new DataBase();
     $usuari = new User();
-    $arrayUser = $usuari->load('2');
-    var_dump($arrayUser);
+
+    var_dump($_SESSION);
+
+    if(isset($_SESSION['idUser'])) {
+        $arrayUser = $usuari->load($_SESSION['idUser']);
+        var_dump($arrayUser);
+    }else{
+        //header("Location: login.php");
+    }
     ?>
 </head>
 
@@ -25,6 +34,9 @@
     <div class="content container_12" >
         <div class="grid_12 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" action="actions/validateUser.php">
+                <input type="text" name="id" class="ids" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
+                <input type="text" name="idLocal" class="ids" value="<?php if($arrayUser != false) echo $arrayUser['FK_Id_Localitzacio']?>">
+
                 <div class="grid_2">
                     <div class="profile-img">
                         <img src="images/page2_img6.jpg" alt="Submit" width="150" >
@@ -38,7 +50,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbName">Name</label>
                         <div class="col-md-6">
-                            <input id="tbNom" name="tbName" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayUser != false) echo $arrayUser['nom'] ?>" required="">
+                            <input id="tbNom" name="tbName" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['nom'] ?>" required="">
 
                         </div>
                     </div>
@@ -56,7 +68,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbEmail">Email</label>
                         <div class="col-md-6">
-                            <input id="tbEmail" name="tbEmail" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" required="">
+                            <input id="tbEmail" name="tbEmail" type="email"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" required="">
 
                         </div>
                     </div>
@@ -96,9 +108,9 @@
                                 while ($clubs = mysqli_fetch_assoc($resultClubs)) {
                                     //var_dump($clubs);
                                     if(trim($clubs['Nom']) == trim($arrayUser['Nom'])){
-                                        echo "<option value='".$clubs['Nom']."' selected>".$clubs['Nom']."</option>";
+                                        echo "<option value='".$clubs['Id']."' selected>".$clubs['Nom']."</option>";
                                     }else{
-                                        echo "<option value='" . $clubs['Nom'] . "' >" . $clubs['Nom'] . "</option>";
+                                        echo "<option value='" . $clubs['Id'] . "' >" . $clubs['Nom'] . "</option>";
                                     }
                                 }
                                 ?>
