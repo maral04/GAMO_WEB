@@ -13,6 +13,15 @@
 
 <div class="main">
     <?php include_once "header.html"; ?>
+    <!--Funció canvi Color depenent CurrentL-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Remou current de tots i inclou a l'actual.
+            $(".l1").attr("class", "l1 link link--kukuri currentL");
+            $(".l2").attr("class", "l2 link link--kukuri");
+            $(".l3").attr("class", "l3 link link--kukuri");
+        });
+    </script>
     <div class="content container_12" >
         <div class="grid_12 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" action="actions/validateUser.php">

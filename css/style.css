@@ -87,7 +87,7 @@ h3 {
     color: #908b8b;
     font-size: 42px;
     line-height: 42px;
-    padding-top: 70px;
+    padding-top: 22px;
     margin-bottom: 21px;
 }
 
@@ -235,8 +235,6 @@ a:hover {
 	margin-top: 3px;
 }
 
-
-
 .oh {
 	overflow: hidden;
 }
@@ -348,7 +346,7 @@ header h1 a img {
 /**Content**/
 
 .content {
-    padding-bottom: 60px;
+    padding-bottom: 20px;
     padding-top: 30px;
 }
 .page1  .content {
@@ -957,7 +955,7 @@ div.panel.show {
     text-align: center;
     width:33%;
     margin: 0 auto;
-    margin-top: 25px;
+    /*margin-top: 25px;*/
     background: rgb(238, 246, 244);
     background: rgba(238, 246, 244, 0.8);
     font-weight: bold;
@@ -1058,4 +1056,67 @@ h4{
 
 .profile-img{
     margin-top: 80px;
+}
+
+.link {
+    outline: none;
+    text-decoration: none;
+    position: relative;
+    font-size: 100%;
+    line-height: 1;
+    color: #908b8b;
+    display: inline-block;
+}
+
+.link--kukuri {
+    text-transform: uppercase;
+    font-weight: 900;
+    overflow: hidden;
+    /*line-height: 0.75;*/
+    color: #908b8b;
+}
+
+.link--kukuri:hover {
+    color: #908b8b;
+}
+
+.link--kukuri::after {
+    content: '';
+    position: absolute;
+    height: 16px;
+    width: 100%;
+    top: 50%;
+    margin-top: -8px;
+    right: 0;
+    background: #F9F9F9;
+    transform: translate3d(-100%,0,0);
+    transition: transform 0.4s;
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.link--kukuri:hover::after {
+    transform: translate3d(100%,0,0);
+}
+
+.link--kukuri::before {
+    content: attr(data-letters);
+    position: absolute;
+    z-index: 2;
+    overflow: hidden;
+    color: #88c886;
+    white-space: nowrap;
+    width: 0%;
+    transition: width 0.4s 0.3s;
+}
+
+.link--kukuri:hover::before {
+    width: 100%;
+}
+
+.currentL{
+    color:#88c886;
+}
+
+.noTop{
+    padding-top:0px;
 }
