@@ -1,6 +1,6 @@
 <head>
 	<?php
-	include_once 'head.html';
+	include_once 'head.php';
 	?>
 	<title>SEGONA</title>
 </head>

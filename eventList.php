@@ -1,7 +1,7 @@
 <!--==============================head=================================-->
 <head>
     <?php
-    include_once 'head.html';
+    include_once 'head.php';
     ?>
     <title>GAMO: Event List</title>
     <script>
@@ -88,7 +88,7 @@
 <div class="main">
 	<!--==============================header=================================-->
     <?php
-    include_once 'header.html';
+    include_once 'header.php';
     ?>
     <!--Funció canvi Current-->
     <script type="text/javascript">

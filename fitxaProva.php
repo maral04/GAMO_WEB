@@ -1,12 +1,12 @@
 <head>
-<?php include_once "head.html";
+<?php include_once "head.php";
 ?>
 </head>
 
 <body class="" id="top">
 
 <div class="main">
-    <?php include_once "header.html"; ?>
+    <?php include_once "header.php"; ?>
     <div class="content">
         <div class="container_12">
             <h3 class="h3__head1">Fitxa Prova</h3>
