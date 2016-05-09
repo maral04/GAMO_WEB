@@ -1044,7 +1044,7 @@ h4{
     float: left;
     cursor: pointer;
 }
-#sports input, #idUser{
+#sports input, #ids{
     visibility: hidden;
     position:absolute;
 
@@ -1119,4 +1119,8 @@ h4{
 
 .noTop{
     padding-top:0px;
+}
+#input-upload, .idUser, .idLocal{
+    visibility: hidden;
+    position:absolute;
 }

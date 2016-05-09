@@ -1,3 +1,4 @@
+<?php session_start();?>
 <meta charset="UTF-8">
 <script src="js/jquery-1.12.3.min.js"></script>
 <!--<script src="https://www.google.com/jsapi"></script>-->

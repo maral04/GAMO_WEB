@@ -1,19 +1,16 @@
 <head>
-    <?php session_start();?>
-    <?php include_once "head.html";
+    <?php include_once "head.php";
     include_once "classes/DataBase.php";
     include_once "classes/User.php";
 
     $db = new DataBase();
     $usuari = new User();
 
-    var_dump($_SESSION);
-
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
-        var_dump($arrayUser);
+        //var_dump($arrayUser);
     }else{
-        //header("Location: login.php");
+        header("Location: login.php");
     }
     ?>
 </head>
@@ -21,7 +18,7 @@
 <body class="" id="top">
 
 <div class="main">
-    <?php include_once "header.html"; ?>
+    <?php include_once "header.php"; ?>
     <!--Funció canvi Color depenent CurrentL-->
     <script type="text/javascript">
         $(document).ready(function () {
@@ -33,13 +30,16 @@
     </script>
     <div class="content container_12" >
         <div class="grid_12 block3 form-user" id="profile" >
-            <form class="form-horizontal" method="post" action="actions/validateUser.php">
-                <input type="text" name="id" class="ids" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
-                <input type="text" name="idLocal" class="ids" value="<?php if($arrayUser != false) echo $arrayUser['FK_Id_Localitzacio']?>">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">
+                <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
+                <input type="text" name="idLocal" class="idLocal" value="<?php if($arrayUser != false) echo $arrayUser['FK_Id_Localitzacio']?>">
 
                 <div class="grid_2">
                     <div class="profile-img">
+
                         <img src="images/page2_img6.jpg" alt="Submit" width="150" >
+                        <div id="upload" class="btn">Upload</div>
+                        <input id="input-upload" type="file" name="img"/>
                     </div>
                 </div>
                 <div class="grid_4">
@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbBirth">Birth date</label>
                         <div class="col-md-6">
-                            <input id="tbBirth" name="tbBirth" type="date" placeholder="" class="form-control input-md">
+                            <input id="tbBirth" name="tbBirth" type="date" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
 
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                         <div id="sports">
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'Bike') {
+                                if(trim($arrayUser['esport']) == 'bike') {
                                     echo "<img id='img-bike'  class='icon-selected' src=\"images/icons/bike.png\"/>";
                                     echo "<span>MTB</span>";
                                     echo "<input id='s-bike' selected type='radio' name='sport' value='bike'>";
@@ -136,35 +136,35 @@
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'Hiking') {
+                                if(trim($arrayUser['esport']) == 'hiking') {
                                     echo "<img id='img-hike'  class='icon-selected' src=\"images/icons/hike.png\"/>";
                                     echo "<span>Hiking</span>";
-                                    echo "<input id='s-hike' selected type='radio' name='sport' value='hike'>";
+                                    echo "<input id='s-hike' selected type='radio' name='sport' value='hiking'>";
                                 }else{
                                     echo "<img id='img-hike'  src=\"images/icons/hike.png\"/>";
                                     echo "<span>Hiking</span>";
-                                    echo "<input id='s-hike' type='radio' name='sport' value='hike'>";
+                                    echo "<input id='s-hike' type='radio' name='sport' value='hiking'>";
                                 }
                                 ?>
 
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'Ski') {
+                                if(trim($arrayUser['esport']) == 'skiing') {
                                     echo "<img id='img-ski'  class='icon-selected' src=\"images/icons/ski.png\"/>";
-                                    echo "<span>Skiyng</span>";
-                                    echo "<input id='s-ski' selected type='radio' name='sport' value='ski'>";
+                                    echo "<span>Skiing</span>";
+                                    echo "<input id='s-ski' selected type='radio' name='sport' value='skiing'>";
                                 }else{
                                     echo "<img id='img-ski'  src=\"images/icons/ski.png\"/>";
-                                    echo "<span>Skiyng</span>";
-                                    echo "<input id='s-ski' type='radio' name='sport' value='ski'>";
+                                    echo "<span>Skiing</span>";
+                                    echo "<input id='s-ski' type='radio' name='sport' value='skiing'>";
                                 }
                                 ?>
 
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'Trail') {
+                                if(trim($arrayUser['esport']) == 'trail') {
                                     echo "<img id='img-trail' class='icon-selected' src=\"images/icons/trail.png\"/>";
                                     echo "<span>Trail</span>";
                                     echo "<input id='s-trail' selected type=\"radio\" name=\"sport\" value=\"trail\">";
@@ -178,14 +178,14 @@
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'Climbing') {
+                                if(trim($arrayUser['esport']) == 'climbing') {
                                     echo " <img id='img-climb' class='icon-selected' src=\"images/icons/wall.png\"/>";
                                     echo "<span>Climbing</span>";
-                                    echo "<input id='s-climb' selected type='radio' name='sport' value='climb'>";
+                                    echo "<input id='s-climb' selected type='radio' name='sport' value='climbing'>";
                                 }else{
-                                    echo "<img id='img-ski'  src=\"images/icons/ski.png\"/>";
+                                    echo "<img id='img-climb'  src=\"images/icons/wall.png\"/>";
                                     echo "<span>Climbing</span>";
-                                    echo "<input id='s-climb' type=\"radio\" name=\"sport\" value=\"climb\">";
+                                    echo "<input id='s-climb' type=\"radio\" name=\"sport\" value=\"climbing\">";
                                 }
                                 ?>
 
@@ -218,7 +218,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
-                            <select id="tbCountry" name="tbCountry" type="text" value="<?php if($arrayUser != false) echo $arrayUser['pais'] ?>" >
+                            <select id="tbCountry" name="tbCountry" >
                                 <option></option>
                                 <?php
                                 $result = $db->recuperarPaisos();
@@ -238,7 +238,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbRegion">Region</label>
                         <div class="col-md-6">
-                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayUser != false) echo $arrayUser['regio'] ?>" >
+                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if(isset($arrayUser['regio']) && $arrayUser != false) echo $arrayUser['regio'] ?>" >
 
                         </div>
                     </div>
@@ -246,7 +246,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCity">City</label>
                         <div class="col-md-6">
-                            <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayUser != false) echo $arrayUser['poblacio'] ?>" >
+                            <input id="tbCity" name="tbCity" type="text" value="<?php if(isset($arrayUser['poblacio']) && $arrayUser != false) echo $arrayUser['poblacio'] ?>" >
 
                         </div>
                     </div>
@@ -254,7 +254,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbAddress">Address</label>
                         <div class="col-md-6">
-                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayUser != false) echo $arrayUser['direccio'] ?>" >
+                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if(isset($arrayUser['direccio']) && $arrayUser != false) echo $arrayUser['direccio'] ?>" >
 
                         </div>
                     </div>
@@ -262,7 +262,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPostalCode">Postal code</label>
                         <div class="col-md-6">
-                            <input id="tbPostalCode" name="tbPostalCode" value="<?php if($arrayUser != false) echo $arrayUser['cp'] ?>">
+                            <input id="tbPostalCode" name="tbPostalCode" value="<?php if(isset($arrayUser['cp']) && $arrayUser != false) echo $arrayUser['cp'] ?>">
 
                         </div>
                     </div>
@@ -270,7 +270,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPhone">Phone number</label>
                         <div class="col-md-6">
-                            <input id="tbPhone" name="tbPhone" type="text" value="<?php if($arrayUser != false) echo $arrayUser['tel1'] ?>">
+                            <input id="tbPhone" name="tbPhone" type="text" value="<?php if(isset($arrayUser['tel1']) && $arrayUser != false) echo $arrayUser['tel1'] ?>">
 
                         </div>
                     </div>
@@ -278,7 +278,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPhone">Emergenci phone number</label>
                         <div class="col-md-6">
-                            <input id="tbPhone2" name="tbPhone2" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['tel2'] ?>">
+                            <input id="tbPhone2" name="tbPhone2" type="text"  value="<?php if(isset($arrayUser['tel2']) && $arrayUser != false) echo $arrayUser['tel2'] ?>">
 
                         </div>
                     </div>

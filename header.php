@@ -1,9 +1,10 @@
 <header>
+    <?php if (isset($_SESSION['idUser']))echo $_SESSION['idUser'];?>
     <div class="container_12">
         <div class="grid_12">
-            <div class="grid_2 menuUser"><a class="link link--kukuri l1" data-letters="Profile" href="profile.php">Profile</a></div>
-            <div class="grid_2 menuUser fRight"><a class="link link--kukuri l2" data-letters="Log In" href="login.php">Log In</a></div>
-            <div class="grid_2 menuUser fRight"><a class="link link--kukuri l3" data-letters="Join" href="register.php">Join</a></div>
+            <div class="grid_2 menuUser"><a class="link link--kukuri l1" data-letters="Profile" href="profile.php"><?php if(isset($_SESSION['idUser'])) echo "Profile";?></a></div>
+            <div class="grid_2 menuUser fRight"><a class="link link--kukuri l2" data-letters="Log In" <?php if(!isset($_SESSION['idUser'])) echo "href=\"login.php\"" ;else echo "href=\"logout.php\"" ?>><?php if(!isset($_SESSION['idUser'])) echo "Log in" ;else echo "Log out" ?></a></div>
+            <div class="grid_2 menuUser fRight"><a class="link link--kukuri l3" data-letters="Join" href="register.php"><?php if(!isset($_SESSION['idUser'])) echo "Join";?></a></div>
         </div>
         <div class="grid_12">
             <h1>

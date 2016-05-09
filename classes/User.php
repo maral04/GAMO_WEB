@@ -60,35 +60,6 @@ class User
             $sql = "SELECT * FROM usuari INNER JOIN localitzacio
                     ON FK_Id_Localitzacio = localitzacio.id
                     INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.id = ".trim($id);
-            echo $sql;
-            $result = $conn->query($sql);
-        }
-
-        if ($result->num_rows > 0) {
-            $arrayUser = mysqli_fetch_assoc($result);
-            $this->setEmail($arrayUser['email']);
-            $this->setName($arrayUser['nom']);
-            $this->setLastname($arrayUser['cNom']);
-            $this->setPassword($arrayUser['contrasenya']);
-
-            return $arrayUser;
-        } else {
-            return false;
-        }
-    }
-
-    public function loadByEmail($email){
-        if($this->db == null){
-            $this->db = new DataBase();
-        }
-
-        $conn = $this->db->connect();
-
-        if($email != null){
-            $sql = "SELECT * FROM usuari INNER JOIN localitzacio
-                    ON FK_Id_Localitzacio = localitzacio.id
-                    INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.email = '".trim($email)."'";
-            echo $sql;
             $result = $conn->query($sql);
         }
 
@@ -101,7 +72,59 @@ class User
             $this->setPassword($arrayUser['contrasenya']);
             return $arrayUser;
         } else {
-            return false;
+            $sql = "SELECT * FROM usuari WHERE id = '".trim($id)."'";
+            $result2 = $conn->query($sql);
+
+            if ($result2->num_rows > 0) {
+                $arrayUser = mysqli_fetch_assoc($result2);
+                $this->setId($arrayUser['Id']);
+                $this->setEmail($arrayUser['email']);
+                $this->setName($arrayUser['nom']);
+                $this->setLastname($arrayUser['cNom']);
+                $this->setPassword($arrayUser['contrasenya']);
+                return $arrayUser;
+            }else return false;
+        }
+    }
+
+    public function loadByEmail($email){
+        if($this->db == null){
+            $this->db = new DataBase();
+        }
+        echo $email;
+        $conn = $this->db->connect();
+
+        if($email != null){
+            $sql = "SELECT usuari.*, club.Nom, localitzacio.cp, localitzacio.estat, localitzacio.regio,
+                    localitzacio.poblacio, localitzacio.direccio, localitzacio.coordenades
+                    FROM usuari INNER JOIN localitzacio ON FK_Id_Localitzacio = localitzacio.id
+                    INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.email = '".trim($email)."'";
+            echo $sql;
+            $result = $conn->query($sql);
+        }
+
+        if ($result->num_rows > 0) {
+            $arrayUser = mysqli_fetch_assoc($result);
+            var_dump($arrayUser);
+            $this->setId($arrayUser['Id']);
+            $this->setEmail($arrayUser['email']);
+            $this->setName($arrayUser['nom']);
+            $this->setLastname($arrayUser['cNom']);
+            $this->setPassword($arrayUser['contrasenya']);
+            return $arrayUser;
+        } else {
+            $sql = "SELECT * FROM usuari WHERE email = '".trim($email)."'";
+            $result2 = $conn->query($sql);
+
+            if ($result2->num_rows > 0) {
+                $arrayUser = mysqli_fetch_assoc($result2);
+                $this->setId($arrayUser['Id']);
+                $this->setEmail($arrayUser['email']);
+                $this->setName($arrayUser['nom']);
+                $this->setLastname($arrayUser['cNom']);
+                $this->setPassword($arrayUser['contrasenya']);
+                return $arrayUser;
+            }else return false;
         }
     }
 
@@ -132,9 +155,10 @@ class User
     public function save($update = false){
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
+        $error = "";
 
         if(!$update) {
-            $error = "";
+
             if (!$this->exist()) {
                 if ($conn != null) {
 
@@ -151,34 +175,38 @@ class User
                 $error = "Email already registered";
             }
         }else{
-            if($this->idLocalitzacio != null){
+
+            if($this->idLocalitzacio != null || trim($this->idLocalitzacio) != ""){
                 $mysql = mysqli_prepare($conn, "UPDATE localitzacio SET estat=?, regio=?, poblacio=?, direccio=?, cp=? WHERE Id = ".$this->idLocalitzacio)or die(mysqli_error($conn));
                 //var_dump($mysql);
                 echo $this->country ." ". $this->region ." ". $this->city ." ". $this->address ." ". $this->postalCode;
                 mysqli_stmt_bind_param($mysql, "ssssi", $this->country , $this->region, $this->city, $this->address, $this->postalCode );
 
-                if (mysqli_stmt_execute($mysql)) echo "Insert local" ;
-                else echo mysqli_stmt_error($mysql);
+                if (mysqli_stmt_execute($mysql)) echo "Update local" ;
+                else $error = mysqli_stmt_error($mysql);
             }else{
+                var_dump($this);
                 $mysql = mysqli_prepare($conn, "INSERT INTO localitzacio (estat, regio, poblacio, direccio, cp)  VALUES (?,?,?,?,?)");
 
                 mysqli_stmt_bind_param($mysql, "ssssi", $this->country , $this->region, $this->city, $this->address, $this->postalCode );
 
-                if (mysqli_stmt_execute($mysql)) echo "Update local" ;
-                else echo mysqli_stmt_error($mysql);
+                if (mysqli_stmt_execute($mysql)) {
+                    $this->idLocalitzacio = mysqli_insert_id($conn);
+                    echo "Insert local";
+                }
+                else $error = mysqli_stmt_error($mysql);
             }
-            echo "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, FK_id_club =?, FK_Id_Localitzacio=? WHERE Id = ".$this->id;
-            $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, FK_id_club =?, FK_Id_Localitzacio=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
+            $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, FK_Id_Localitzacio=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
 
             echo $this->phone1." ".$this->phone2;
 
-            mysqli_stmt_bind_param($mysql, "sssssiiii", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->club, $this->idLocalitzacio);
+            mysqli_stmt_bind_param($mysql, "sssssiisii", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->idLocalitzacio);
 
             if (mysqli_stmt_execute($mysql)) echo "Usuari actualitzat correctament";
-            else echo mysqli_stmt_error($mysql);
+            else $error = mysqli_stmt_error($mysql);
         }
 
-        //return $error;
+        return $error;
     }
 
     private function exist(){
@@ -198,9 +226,6 @@ class User
         }
     }
 
-    /**
-     * @param mixed $id
-     */
     public function setId($id)
     {
         $this->id = $id;
@@ -223,9 +248,6 @@ class User
         }
     }
 
-    /**
-     * @param mixed $lastname
-     */
     public function setLastname($lastname)
     {
         if($lastname != null && $lastname != "") {
@@ -236,9 +258,6 @@ class User
         }
     }
 
-    /**
-     * @param mixed $email
-     */
     public function setEmail($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -271,82 +290,55 @@ class User
 
     }
 
-    /**
-     * @param mixed $phone1
-     */
     public function setPhone1($phone1)
     {
         $this->phone1 = $phone1;
     }
 
-    /**
-     * @param mixed $phone2
-     */
     public function setPhone2($phone2)
     {
         $this->phone2 = $phone2;
     }
 
-    /**
-     * @param mixed $birth
-     */
     public function setBirth($birth)
     {
+
         if( strtotime($birth) < strtotime('now') )$this->birth = $birth;
         else return false;
     }
 
-    /**
-     * @param mixed $tshirt
-     */
     public function setTshirt($tshirt)
     {
         $this->tshirt = $tshirt;
     }
 
-    /**
-     * @param mixed $club
-     */
     public function setClub($club)
     {
         $this->club = $club;
     }
 
-    /**
-     * @param mixed $country
-     */
     public function setCountry($country)
     {
         $this->country = $country;
     }
 
-    /**
-     * @param mixed $region
-     */
     public function setRegion($region)
     {
         $this->region = $region;
     }
 
-    /**
-     * @param mixed $city
-     */
     public function setCity($city)
     {
         $this->city = $city;
     }
 
-    /**
-     * @param mixed $address
-     */
+
     public function setAddress($address)
     {
         $this->address = $address;
     }
 
-    /**
-     * @param mixed $postalCode
-     */
+
     public function setPostalCode($postalCode)
     {
         if(is_numeric ($postalCode))
@@ -354,9 +346,7 @@ class User
         else return false;
     }
 
-    /**
-     * @param mixed $idLocalitzacio
-     */
+
     public function setIdLocalitzacio($idLocalitzacio)
     {
         $this->idLocalitzacio = $idLocalitzacio;
