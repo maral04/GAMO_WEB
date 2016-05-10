@@ -1120,7 +1120,7 @@ h4{
 .noTop{
     padding-top:0px;
 }
-#input-upload, .idUser, .idLocal{
+.idUser, .idLocal{
     visibility: hidden;
     position:absolute;
 }

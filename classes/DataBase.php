@@ -39,7 +39,7 @@ class DataBase
 
     public function recuperarEvent (){
 
-        $sql = "SELECT event.*, localitzacio.poblacio FROM event INNER JOIN localitzacio ON event.FK_id_localitzacio = localitzacio.Id";
+        $sql = "SELECT event.*, poblacio FROM event";
 
         $result = $this->conn->query($sql);
 

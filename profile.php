@@ -8,7 +8,8 @@
 
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
-        //var_dump($arrayUser);
+        var_dump($arrayUser);
+
     }else{
         header("Location: login.php");
     }
@@ -32,15 +33,11 @@
         <div class="grid_12 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
-                <input type="text" name="idLocal" class="idLocal" value="<?php if($arrayUser != false) echo $arrayUser['FK_Id_Localitzacio']?>">
 
                 <div class="grid_2">
-                    <div class="profile-img">
 
-                        <img src="images/page2_img6.jpg" alt="Submit" width="150" >
-                        <div id="upload" class="btn">Upload</div>
+                        <img src="<?php if($arrayUser != false) echo "images/profile/".$arrayUser['Id']."/".$arrayUser['img']?>" alt="Submit" width="150" >
                         <input id="input-upload" type="file" name="img"/>
-                    </div>
                 </div>
                 <div class="grid_4">
                     <!-- Form Name -->
@@ -126,7 +123,7 @@
                                 if(trim($arrayUser['esport']) == 'bike') {
                                     echo "<img id='img-bike'  class='icon-selected' src=\"images/icons/bike.png\"/>";
                                     echo "<span>MTB</span>";
-                                    echo "<input id='s-bike' selected type='radio' name='sport' value='bike'>";
+                                    echo "<input id='s-bike' checked type='radio' name='sport' value='bike'>";
                                 }else{
                                     echo "<img id='img-bike'  src=\"images/icons/bike.png\"/>";
                                     echo "<span>MTB</span>";
@@ -139,7 +136,7 @@
                                 if(trim($arrayUser['esport']) == 'hiking') {
                                     echo "<img id='img-hike'  class='icon-selected' src=\"images/icons/hike.png\"/>";
                                     echo "<span>Hiking</span>";
-                                    echo "<input id='s-hike' selected type='radio' name='sport' value='hiking'>";
+                                    echo "<input id='s-hike' checked type='radio' name='sport' value='hiking'>";
                                 }else{
                                     echo "<img id='img-hike'  src=\"images/icons/hike.png\"/>";
                                     echo "<span>Hiking</span>";
@@ -153,7 +150,7 @@
                                 if(trim($arrayUser['esport']) == 'skiing') {
                                     echo "<img id='img-ski'  class='icon-selected' src=\"images/icons/ski.png\"/>";
                                     echo "<span>Skiing</span>";
-                                    echo "<input id='s-ski' selected type='radio' name='sport' value='skiing'>";
+                                    echo "<input id='s-ski' checked type='radio' name='sport' value='skiing'>";
                                 }else{
                                     echo "<img id='img-ski'  src=\"images/icons/ski.png\"/>";
                                     echo "<span>Skiing</span>";
@@ -167,7 +164,7 @@
                                 if(trim($arrayUser['esport']) == 'trail') {
                                     echo "<img id='img-trail' class='icon-selected' src=\"images/icons/trail.png\"/>";
                                     echo "<span>Trail</span>";
-                                    echo "<input id='s-trail' selected type=\"radio\" name=\"sport\" value=\"trail\">";
+                                    echo "<input id='s-trail' checked type=\"radio\" name=\"sport\" value=\"trail\">";
                                 }else{
                                     echo "<img id='img-trail' src=\"images/icons/trail.png\"/>";
                                     echo "<span>Trail</span>";
@@ -181,7 +178,7 @@
                                 if(trim($arrayUser['esport']) == 'climbing') {
                                     echo " <img id='img-climb' class='icon-selected' src=\"images/icons/wall.png\"/>";
                                     echo "<span>Climbing</span>";
-                                    echo "<input id='s-climb' selected type='radio' name='sport' value='climbing'>";
+                                    echo "<input id='s-climb' checked type='radio' name='sport' value='climbing'>";
                                 }else{
                                     echo "<img id='img-climb'  src=\"images/icons/wall.png\"/>";
                                     echo "<span>Climbing</span>";

@@ -8,8 +8,8 @@
 
 include_once "../classes/User.php";
 $user = new User();
+var_dump($_POST);
 if(isset($_POST['submitUser'])){
-    var_dump($_POST);
 
     $res = $user->init($_POST['tbName'],$_POST['tbLastName'], $_POST['tbEmail'],$_POST['tbPassword'],$_POST['tbPasswordConfirm']);
     var_dump($res);
@@ -26,7 +26,6 @@ if(isset($_POST['submitUser'])){
     /*Validar registre d'usuari*/
 
 }else if (isset($_POST['submitLogin'])){
-    var_dump($_POST);
 
     if(isset($_POST['tbEmail']) && isset($_POST['tbPassword'])) {
         if ($user->validate($_POST['tbEmail'], $_POST['tbPassword'])) {
@@ -43,15 +42,24 @@ if(isset($_POST['submitUser'])){
     }
 }else if(isset($_POST['submitProfile'])){
     var_dump($_POST);
-    $user->load($_POST['id']);
-    $user->setId($_POST['id']);
+    var_dump($_FILES);
+
+    if(trim($_FILES['img']['name']) != ""){
+        $file = carregarFitxer($_FILES['img'],$_POST['idUser']);
+        if(trim($file) != "") $user->setImg(carregarFitxer($_FILES['img'],$_POST['idUser']));
+        else $user->setImg(null);
+    }else{
+        $user->setImg(null);
+    }
+
+    $user->load($_POST['idUser']);
+    $user->setId($_POST['idUser']);
     $user->setEmail($_POST['tbEmail']);
     $user->setName(($_POST['tbName']));
     $user->setLastname($_POST['tbLastName']);
-    $user->setBirth($_POST['tbBirth']);
+    if(!$user->setBirth($_POST['tbBirth'])) $error = "Date of birth is future";
     $user->setTshirt($_POST['tbTshirt']);
     $user->setClub($_POST['tbClub']);
-    $user->setIdLocalitzacio($_POST['idLocal']);
     $user->setCountry($_POST['tbCountry']);
     $user->setRegion($_POST['tbRegion']);
     $user->setCity($_POST['tbCity']);
@@ -61,5 +69,28 @@ if(isset($_POST['submitUser'])){
     $user->setPhone2($_POST['tbPhone2']);
     if(isset($_POST['sport']))$user->setSport($_POST['sport']);
 
-    $user->save(true);
+    $error = $user->save(true);
+    echo $error;
+}
+
+function carregarFitxer($f, $id) {
+    $nomFitxer = "";
+    var_dump($f);
+
+    if ($f['error'] == 0) {
+        if (!file_exists('../images/profile/'.$id)) {
+            mkdir('../images/profile/'.$id, 0777, true);
+        }
+        echo '../images/profile/'.$id. "/" . $f['name'];
+        if (move_uploaded_file($f['tmp_name'], '../images/profile/'.$id. "/" . $f['name'])) {
+            $nomFitxer = $f['name'];
+        } else {
+            $nomFitxer = $f['name'];
+            echo "Error en guardar el fitxer al servidor";
+        }
+    } else {
+        echo "Error en carregar l'imatge";
+    }
+
+    return $nomFitxer;
 }

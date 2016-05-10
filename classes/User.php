@@ -20,12 +20,12 @@ class User
     private $birth;
     private $tshirt;
     private $club;
-    private $idLocalitzacio;
     private $country;
     private $region;
     private $city;
     private $address;
     private $postalCode;
+    private $img;
     private $db;
 
 
@@ -57,9 +57,7 @@ class User
         $conn = $this->db->connect();
 
         if($id != null){
-            $sql = "SELECT * FROM usuari INNER JOIN localitzacio
-                    ON FK_Id_Localitzacio = localitzacio.id
-                    INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.id = ".trim($id);
+            $sql = "SELECT usuari.*, club.Nom FROM usuari INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.id = ".trim($id);
             $result = $conn->query($sql);
         }
 
@@ -95,9 +93,7 @@ class User
         $conn = $this->db->connect();
 
         if($email != null){
-            $sql = "SELECT usuari.*, club.Nom, localitzacio.cp, localitzacio.estat, localitzacio.regio,
-                    localitzacio.poblacio, localitzacio.direccio, localitzacio.coordenades
-                    FROM usuari INNER JOIN localitzacio ON FK_Id_Localitzacio = localitzacio.id
+            $sql = "SELECT usuari.*, club.Nom FROM usuari
                     INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.email = '".trim($email)."'";
             echo $sql;
             $result = $conn->query($sql);
@@ -171,49 +167,34 @@ class User
                 }
                 $error = "Error with register ";
             } else {
-
                 $error = "Email already registered";
             }
         }else{
-
-            if($this->idLocalitzacio != null || trim($this->idLocalitzacio) != ""){
-                $mysql = mysqli_prepare($conn, "UPDATE localitzacio SET estat=?, regio=?, poblacio=?, direccio=?, cp=? WHERE Id = ".$this->idLocalitzacio)or die(mysqli_error($conn));
-                //var_dump($mysql);
-                echo $this->country ." ". $this->region ." ". $this->city ." ". $this->address ." ". $this->postalCode;
-                mysqli_stmt_bind_param($mysql, "ssssi", $this->country , $this->region, $this->city, $this->address, $this->postalCode );
-
-                if (mysqli_stmt_execute($mysql)) echo "Update local" ;
-                else $error = mysqli_stmt_error($mysql);
-            }else{
-                var_dump($this);
-                $mysql = mysqli_prepare($conn, "INSERT INTO localitzacio (estat, regio, poblacio, direccio, cp)  VALUES (?,?,?,?,?)");
-
-                mysqli_stmt_bind_param($mysql, "ssssi", $this->country , $this->region, $this->city, $this->address, $this->postalCode );
-
-                if (mysqli_stmt_execute($mysql)) {
-                    $this->idLocalitzacio = mysqli_insert_id($conn);
-                    echo "Insert local";
+            if (!$this->exist(true)) {
+                if($this->img == null){
+                    $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
+                    mysqli_stmt_bind_param($mysql, "sssssiisisssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode);
+                }else{
+                    $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=?, img=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
+                    mysqli_stmt_bind_param($mysql, "sssssiisissssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode, $this->img);
                 }
+
+                if (mysqli_stmt_execute($mysql)) echo "Usuari actualitzat correctament";
                 else $error = mysqli_stmt_error($mysql);
+            } else {
+                $error = "Email already registered";
             }
-            $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, FK_Id_Localitzacio=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
-
-            echo $this->phone1." ".$this->phone2;
-
-            mysqli_stmt_bind_param($mysql, "sssssiisii", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->idLocalitzacio);
-
-            if (mysqli_stmt_execute($mysql)) echo "Usuari actualitzat correctament";
-            else $error = mysqli_stmt_error($mysql);
         }
 
         return $error;
     }
 
-    private function exist(){
+    private function exist($update = false){
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
 
-        $sql = "SELECT email FROM usuari WHERE email ='".trim($this->email)."'";
+        if(!$update) $sql = "SELECT email FROM usuari WHERE email ='".trim($this->email)."'";
+        else $sql = "SELECT email FROM usuari WHERE email ='".trim($this->email)."' AND Id != ".$this->id;
 
         $result = $conn->query($sql);
 
@@ -314,7 +295,8 @@ class User
 
     public function setClub($club)
     {
-        $this->club = $club;
+        if(trim($club)!= "") $this->club = $club;
+        else $this->club = null;
     }
 
     public function setCountry($country)
@@ -347,9 +329,9 @@ class User
     }
 
 
-    public function setIdLocalitzacio($idLocalitzacio)
+    public function setImg($img)
     {
-        $this->idLocalitzacio = $idLocalitzacio;
+        $this->img = $img;
     }
 
     /**
