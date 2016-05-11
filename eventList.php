@@ -143,6 +143,8 @@
                 include_once 'classes\DataBase.php';
                 $db = new DataBase();
                 $result = $db->recuperarEvent();
+
+                if($result){
                 while ($event = mysqli_fetch_assoc($result)) {
                 $numProves = $db->recuperarNumProves($event['Id']);
 
@@ -150,7 +152,7 @@
                     echo "<div class='block3'>";
                 } else {
                     //Si l'event té més d'una prova, es preparen events desplegables.
-                    echo "<div class='block3 accordion click' eventid='".$event['Id']."'>";
+                    echo "<div class='block3 accordion click' eventid='" . $event['Id'] . "'>";
                 }
                 echo "
                 <div class='block2'>
@@ -196,11 +198,15 @@
         </div>
     </div>
 <?php
-    if ($numProves['COUNT(*)'] > 1) {
-        echo"<div class='panel'></div>";
-    }
+if ($numProves['COUNT(*)'] > 1) {
+    echo "<div class='panel'></div>";
+}
 ?>
-<?php } ?>
+<?php }
+
+}else{
+    /*No hi ha cap event!!*/
+}?>
 </div>
 <div class="grid_4">
     <h3 class="h3__head1">Something</h3>
