@@ -48,21 +48,22 @@
                                     "</div>"+
                                     "<div class='grid_4'>"+
                                     <!-- nom (prova) -->
-                                    "<h4>Ultra Second TrailRaceMasterPum</h4>"+
+                                    "<h4>"+json[i].nom+"</h4>"+
                                     <!-- FK_Id_Localitzacio (prova) poblacio (localitzacio) -->
-                                    "<a>Barcelinonino</a>"+
+                                    "<a>"+json[i].poblacio+"</a>"+
                                     "<div class='fRight'>"+
                                         <!-- data_hora_inici (prova) -->
-                                        "<a>2016-04-05 13:30:00</a>"+
+                                        "<a>"+json[i].data_hora_inici+"</a>"+
                                     "</div>"+
                                     "<div class='descripcioProva'>"+
                                         <!-- descripcio (prova) -->
-                                        "<a>SDIASJDA LALALALASD</a>"+
+                                        "<a>"+json[i].descripcio+"</a>"+
                                     "</div>"+
                                     "<a></a>"+
                                     "<div class='grid_1 fRight'>"+
                                         <!-- SIDA Max Members, desnivellPositiu, Distancia -->
-                                    "</div>"+
+                                        json[i].descripcio
+                                    +"</div>"+
                                     "</div>"+
                                     "</div>" +
                                     "</div>" +

@@ -173,11 +173,11 @@ class User
             if (!$this->exist(true)) {
                 var_dump($this->phone2);
                 if($this->img == null){
-                    $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
-                    mysqli_stmt_bind_param($mysql, "sssssiisisssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode);
+                    $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=?, img=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
+                    mysqli_stmt_bind_param($mysql, "ssssssssissssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode, $this->img);
                 }else{
                     $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=?, img=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
-                    mysqli_stmt_bind_param($mysql, "sssssiisissssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode, $this->img);
+                    mysqli_stmt_bind_param($mysql, "ssssssssissssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode, $this->img);
                 }
 
                 if (mysqli_stmt_execute($mysql)) echo "Usuari actualitzat correctament";
@@ -331,7 +331,7 @@ class User
     public function setPostalCode($postalCode)
     {
         if(is_numeric ($postalCode)) {
-            $this->postalCode = intval($postalCode);
+            $this->postalCode = $postalCode;
             return true;
         }
         else return false;
