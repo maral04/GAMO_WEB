@@ -100,5 +100,17 @@ class DataBase
             return false;
         }
     }
+
+    public function recuperarProva ($idProva){
+        $sql = "SELECT * FROM prova WHERE Id = ".$idProva;
+
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return mysqli_fetch_assoc($result);
+        } else {
+            return false;
+        }
+    }
 }
 ?>

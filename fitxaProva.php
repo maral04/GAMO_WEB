@@ -1,6 +1,12 @@
 <head>
-<?php include_once "head.php";
-?>
+    <?php include_once "head.php";
+    include_once "classes/DataBase.php";
+
+    $db = new DataBase();
+
+    $prova = $db->recuperarProva(2);
+
+    ?>
 </head>
 
 <body class="" id="top">
@@ -9,25 +15,34 @@
     <?php include_once "header.php"; ?>
     <div class="content">
         <div class="container_12">
-            <h3 class="h3__head1">Fitxa Prova</h3>
+            <div class="grid_8">
+                <h3 class="h3__head1">Fitxa Prova</h3>
+            </div>
             <div class="grid_12">
                 <div class="block3">
                     <div class="block2">
-                        <div class="grid_5"><img class="" src="images/page1_img8.jpg" alt=""></div>
-                        <div class="grid_7">
-                            <!-- nom (prova) -->
-                            <h1 class="eventTitle">MASTER RACE FO_FOP_2.0</h1>
-                            <!-- Població (localitzacio)) -->
-                            <a>ConchaLaLora</a>
-                            <div class="fRight">
-                                <!-- data_hora_inici (prova) -->
-                                <a>2016-04-05 13:13:00</a>
+                        <?php
+                            echo "<div class='grid_4'><img class='' src='images/page1_img8.jpg' alt=''></div>";
+                            echo "
+                            <div class='grid_7'>
+                                <!-- nom (prova) -->
+                                <h1 class='eventTitle'>
+                                    ".$prova['nom']."
+                                </h1>
+
+                                <!-- Població (localitzacio)) -->
+                                <a>ConchaLaLora</a>
+                                <div class='fRight'>
+                                    <!-- data_hora_inici (prova) -->
+                                    <a>2016-04-05 13:13:00</a>
+                                </div>
+                                <div>
+                                    <!-- Descripció (prova) -->
+                                    <a>JKSDHFJKXDGXFDKVXRCNHKDXFTHCLKDSFXNHCXDGI6NFD FD</a>
+                                </div>
                             </div>
-                            <div>
-                                <!-- Descripció (prova) -->
-                                <a>JKSDHFJKXDGXFDKVXRCNHKDXFTHCLKDSFXNHCXDGI6NFD FD</a>
-                            </div>
-                        </div>
+                            ";
+                        ?>
                     </div>
                 </div>
             </div>

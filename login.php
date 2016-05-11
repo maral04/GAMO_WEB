@@ -39,14 +39,14 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="tbPassword">Password</label>
                                 <div class="col-md-6">
-                                    <input id="tbPassword" name="tbPassword" type="password" placeholder="" class="form-control input-md" required="" tabindex="1">
+                                    <input id="tbPassword" name="tbPassword" type="password" placeholder="" class="form-control input-md" required="" tabindex="0">
 
                                 </div>
                             </div>
 
 
                             <div class="btns">
-                                <input type="submit" name="submitLogin" class="btn btnM" value="Submit" tabindex="2"/>
+                                <input type="submit" name="submitLogin" class="btn btnM" value="Submit" tabindex="0"/>
                             </div>
 
                             <?php

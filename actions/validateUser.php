@@ -58,16 +58,16 @@ if(isset($_POST['submitUser'])){
     $user->setEmail($_POST['tbEmail']);
     $user->setName(($_POST['tbName']));
     $user->setLastname($_POST['tbLastName']);
-    if(!$user->setBirth($_POST['tbBirth'])) $error = "Date of birth is future";
+    if(!$user->setBirth($_POST['tbBirth'])) $error = "Invalid Date of Birth (Yet to be born)";
     $user->setTshirt($_POST['tbTshirt']);
     $user->setClub($_POST['tbClub']);
     $user->setCountry($_POST['tbCountry']);
     $user->setRegion($_POST['tbRegion']);
     $user->setCity($_POST['tbCity']);
     $user->setAddress($_POST['tbAddress']);
-    if(!$user->setPostalCode($_POST['tbPostalCode'])) $error = "Postal code no valid" ;
-    if(!$user->setPhone1($_POST['tbPhone'])) $error = "Phone number no valid";
-    if(!$user->setPhone2($_POST['tbPhone2']))$error = "Phone number no valid";
+    if(!$user->setPostalCode($_POST['tbPostalCode'])) $error = "Invalid Postal Code" ;
+    if(!$user->setPhone1($_POST['tbPhone'])) $error = "Invalid Phone Number";
+    if(!$user->setPhone2($_POST['tbPhone2']))$error = "Invalid Phone Number";
     if(isset($_POST['sport']))$user->setSport($_POST['sport']);
 
     if($error == "") {

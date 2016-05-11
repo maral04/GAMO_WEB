@@ -973,15 +973,17 @@ div.panel.show {
 }
 
 .error{
-    width:50%;
+    width:70%;
     max-width: 100%;
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
     margin: 0 auto;
     height: 35px;
-    padding-top: 12px;
-    margin-top: 15px;
+    padding-top: 15px;
+    margin-top: 12px;
+    margin-bottom:4px;
+    text-align:center;
 }
 .error img{
     margin-right: 8px;
@@ -1008,7 +1010,7 @@ div.panel.show {
 }
 
 #profile input, select{
-    width:65%;
+
 }
 
 h4{
@@ -1028,9 +1030,7 @@ h4{
 .menuUser:hover{
     /*background-color:#F3F3F3;*/
 }
-#sports{
-    height: 120px;
-}
+
 #sports div{
     width: 50px;
     float:left;
@@ -1040,6 +1040,7 @@ h4{
 #sports img{
     opacity: 0.5;
     width:40px;
+    margin-right:2%;
     border-radius: 25%;
     float: left;
     cursor: pointer;
@@ -1127,4 +1128,26 @@ h4{
 
 .eventDiv{/*#eef6f4*/
     background-color:#DFFBDE /*#dcf5f3*/;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    margin-left:15%;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.form-group{
+    margin-bottom:4%;
 }

@@ -9,7 +9,6 @@
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
         //var_dump($arrayUser);
-
     }else{
         header("Location: login.php");
     }
@@ -29,8 +28,11 @@
             $(".l3").attr("class", "l3 link link--kukuri");
         });
     </script>
-    <div class="content container_12" >
-        <div class="grid_12 block3 form-user" id="profile" >
+    <div class="container_12" >
+        <div class="grid_10">
+            <h3 class="registre">My profile</h3>
+        </div>
+        <div class="grid_8 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
 
@@ -44,12 +46,12 @@
                             echo "<img src='images/icons/hike.png' alt='Submit' width='150' >";
                         }
                     ?>
-                        <input id="input-upload" type="file" name="img"/>
+                    <div class="fileUpload btn btn-primary">
+                        <span>Upload</span>
+                        <input type="file" class="upload" name="img"/>
+                    </div>
                 </div>
-                <div class="grid_4">
-                    <!-- Form Name -->
-                    <h3 class="registre">My profile</h3>
-
+                <div class="grid_3">
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbName">Name</label>
@@ -77,7 +79,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbBirth">Birth date</label>
                         <div class="col-md-6">
@@ -87,7 +88,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbAddress">Shirt size</label>
+                        <label class="col-md-4 control-label" for="tbAddress">T-Shirt size</label>
                         <div>
                             <select id="idTshirt" name="tbTshirt" class="form-control input-md" >
                                 <option></option>
@@ -123,7 +124,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbLastName">Favorite sport</label>
+                        <label class="col-md-4 control-label" for="tbLastName">Favourite sport</label>
                         <div id="sports">
                             <div>
                                 <?php
@@ -192,11 +193,9 @@
                                     echo "<input id='s-climb' type=\"radio\" name=\"sport\" value=\"climbing\">";
                                 }
                                 ?>
-
                             </div>
                         </div>
                     </div>
-
                     <script>
                         /**/
                         $('#sports img').on('click',function(){
@@ -218,7 +217,7 @@
 
                     </script>
                 </div>
-                <div class="grid_3"  style="margin-top: 60px;">
+                <div class="grid_2">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
@@ -272,33 +271,44 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbPhone">Phone number</label>
+                        <label class="col-md-4 control-label" for="tbPhone">Personal Phone</label>
                         <div class="col-md-6">
                             <input id="tbPhone" name="tbPhone" type="text" value="<?php if(isset($arrayUser['tel1']) && $arrayUser != false) echo $arrayUser['tel1'] ?>">
-
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbPhone">Emergency phone number</label>
+                        <label class="col-md-4 control-label" for="tbPhone">Emergency Phone</label>
                         <div class="col-md-6">
-                            <input id="tbPhone2" name="tbPhone2" type="text"  value="<?php if(isset($arrayUser['tel2']) && $arrayUser != false) echo $arrayUser['tel2'] ?>">
-
+                            <input id="tbPhone2" name="tbPhone2" type="text" value="<?php if(isset($arrayUser['tel2']) && $arrayUser != false) echo $arrayUser['tel2'] ?>">
                         </div>
                     </div>
                 </div>
-                <div class="grid_12">
-                    <div class="btns">
-                        <input type="submit" name="submitProfile" class="btn" value="Submit"/>
-                    </div>
-
-                    <?php
-                    if(isset($_GET['error'])){
-                        echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
-                    }
-                    ?>
+                <div class="">
+                    <input type="submit" name="submitProfile" class="grid_6 btn fRight" value="Submit"/>
                 </div>
+                <?php
+                if(isset($_GET['error'])){
+                    echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                }
+                ?>
             </form>
+        </div>
+        <div class="grid_3">
+            <h3 class="h3__head1">Something</h3>
+            <ul class="list">
+                <li>
+                    <div class="list_count">1</div>
+                    <div class="extra_wrapper">
+                        Bla, bla, bla.
+                    </div>
+                </li>
+                <li>
+                    <div class="list_count">2</div>
+                    <div class="extra_wrapper">
+                        BLA2 BLA.
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="clear"></div>

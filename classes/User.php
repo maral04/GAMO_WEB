@@ -256,10 +256,10 @@ class User
                     $this->password = $password1;
                     return true;
                 }else{
-                    return "Passwords doesn't match";
+                    return "Password Match Error";
                 }
             } else {
-                return "Passwords incorrects";
+                return "Password Format Error";
             }
         }else{
             if (strlen($password2) > 6) {
