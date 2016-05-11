@@ -142,10 +142,8 @@
                 $db = new DataBase();
                 $result = $db->recuperarEvent();
 
-<<<<<<< HEAD
-=======
                 if($result){
->>>>>>> origin/master
+
                 while ($event = mysqli_fetch_assoc($result)) {
                 $numProves = $db->recuperarNumProves($event['Id']);
 
