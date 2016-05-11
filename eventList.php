@@ -31,71 +31,44 @@
                         success: function (json) {
 
                             //Recupero la primera prova per saber a quin event pertanyen totes les proves.
+                            console.log(json);
                             idDiv = json[0].FK_Id_event;
 
-                            //Afegeixo l'ID de l'event al panel obert amb un atribut "especial".
-                            $(".panel.show").attr("eventpanelid"+idDiv, idDiv);
-
                             //Eliminem el contingut del panel.
-                            $("[eventpanelid"+idDiv+"='"+idDiv+"']").empty();
+                            $("[eventpanelid='"+idDiv+"']").empty();
 
                             for(var i = 0; i < json.length;i++){
 
-                                $("[eventpanelid"+idDiv+"='"+idDiv+"']").append("<div>AH</div>");
+                                $("[eventpanelid='"+idDiv+"']").append("" +
+                                    "<div class='block3'>" +
+                                    "<div class='block2'>" +
+                                    "<div class='grid_2'>" +
+                                    <!-- Imatges (prova) -->
+                                    "<img class='' src='images/page1_img6.jpg' alt=''>"+
+                                    "</div>"+
+                                    "<div class='grid_4'>"+
+                                    <!-- nom (prova) -->
+                                    "<h4>Ultra Second TrailRaceMasterPum</h4>"+
+                                    <!-- FK_Id_Localitzacio (prova) poblacio (localitzacio) -->
+                                    "<a>Barcelinonino</a>"+
+                                    "<div class='fRight'>"+
+                                        <!-- data_hora_inici (prova) -->
+                                        "<a>2016-04-05 13:30:00</a>"+
+                                    "</div>"+
+                                    "<div class='descripcioProva'>"+
+                                        <!-- descripcio (prova) -->
+                                        "<a>SDIASJDA LALALALASD</a>"+
+                                    "</div>"+
+                                    "<a></a>"+
+                                    "<div class='grid_1 fRight'>"+
+                                        <!-- SIDA Max Members, desnivellPositiu, Distancia -->
+                                    "</div>"+
+                                    "</div>"+
+                                    "</div>" +
+                                    "</div>" +
+                                    "");
 
                                 console.log(json[i].Id);
-
-
-                                //$("[eventid='"+idDiv+"']").append("<div class='panel'>Cosa</div>");
-
-                                //$(this).getElementsByClassName('panel');
-
-
-                                //<div class='panel'>asdasd</div>
-
-
-                                //console.log(json[i]);
-
-
-                                //console.log(idDiv);
-
-
-                                //console.log($("[eventid=idDiv]"));
-
-                                //$("[eventid='"+idDiv+"']").append("<div>AH</div>");
-                                //$("[eventid='"+idDiv+"']").find('panel').append("<div>AH</div>");
-                                //$("[eventid=2]").append("<div>AH</div>");
-
-
-                                //$('')
-                                    /*
-                                <div class='block3'>
-                                    <div class='block2'>
-                                        <div class='grid_2'>
-                                            <!-- Imatges (prova) -->
-                                            <img class='' src='images/page1_img6.jpg' alt=''>
-                                        </div>
-                                        <div class='grid_4'>
-                                        <!-- nom (prova) -->
-                                            <h4>Ultra Second TrailRaceMasterPum</h4>
-
-                                            <!-- FK_Id_Localitzacio (prova) poblacio (localitzacio) -->
-                                            <a>Barcelinonino</a>
-                                            <div class='fRight'>
-                                                <!-- data_hora_inici (prova) -->
-                                                <a>2016-04-05 13:30:00</a>
-                                            </div>
-                                            <div class='descripcioProva'>
-                                                <!-- descripcio (prova) -->
-                                                <a>SDIASJDA LALALALASD</a>
-                                            </div>
-                                            <a></a>
-                                            <div class='grid_1 fRight'>
-                                                <!-- SIDA Max Members, desnivellPositiu, Distancia -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*/
                             }
                         },
 
@@ -151,7 +124,7 @@
                     echo "<div class='block3'>";
                 } else {
                     //Si l'event té més d'una prova, es preparen events desplegables.
-                    echo "<div class='block3 accordion click' eventid='" . $event['Id'] . "'>";
+                    echo "<div class='block3 accordion click eventDiv' eventid='" . $event['Id'] . "'>";
                 }
                 echo "
                 <div class='block2'>
@@ -198,7 +171,7 @@
     </div>
 <?php
 if ($numProves['COUNT(*)'] > 1) {
-    echo "<div class='panel'></div>";
+    echo "<div class='panel' eventpanelid='" . $event['Id'] . "'></div>";
 }
 ?>
 <?php }

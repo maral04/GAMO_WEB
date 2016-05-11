@@ -1088,7 +1088,7 @@ h4{
     top: 50%;
     margin-top: -8px;
     right: 0;
-    background: #F9F9F9;
+    background: #B4DEB2 /*#F9F9F9*/;
     transform: translate3d(-100%,0,0);
     transition: transform 0.4s;
     transition-timing-function: cubic-bezier(0.7,0,0.3,1);
@@ -1123,4 +1123,8 @@ h4{
 .idUser, .idLocal{
     visibility: hidden;
     position:absolute;
+}
+
+.eventDiv{/*#eef6f4*/
+    background-color:#DFFBDE /*#dcf5f3*/;
 }
