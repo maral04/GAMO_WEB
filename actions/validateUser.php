@@ -8,15 +8,15 @@
 
 include_once "../classes/User.php";
 $user = new User();
-var_dump($_POST);
+//var_dump($_POST);
 if(isset($_POST['submitUser'])){
 
     $res = $user->init($_POST['tbName'],$_POST['tbLastName'], $_POST['tbEmail'],$_POST['tbPassword'],$_POST['tbPasswordConfirm']);
-    var_dump($res);
+    //var_dump($res);
 
     if($res === true) {
         $error = $user->save();
-        var_dump($error);
+        //var_dump($error);
         if($error !== true) header("Location: ../register.php?error=".$error);
         else {
             header("Location: ../eventList.php");
@@ -32,7 +32,7 @@ if(isset($_POST['submitUser'])){
             $user->loadByEmail($_POST['tbEmail']);
 
             $_SESSION['idUser'] = $user->getId();
-            var_dump($user->getId());
+            //var_dump($user->getId());
             header("Location: ../eventList.php");
         } else {
             header("Location: ../login.php?error=Login incorrect");
@@ -41,8 +41,9 @@ if(isset($_POST['submitUser'])){
         header("Location: ../login.php?error=Login incorrect");
     }
 }else if(isset($_POST['submitProfile'])){
-    var_dump($_POST);
-    var_dump($_FILES);
+    //var_dump($_POST);
+    //var_dump($_FILES);
+    $error = "";
 
     if(trim($_FILES['img']['name']) != ""){
         $file = carregarFitxer($_FILES['img'],$_POST['idUser']);
@@ -64,18 +65,23 @@ if(isset($_POST['submitUser'])){
     $user->setRegion($_POST['tbRegion']);
     $user->setCity($_POST['tbCity']);
     $user->setAddress($_POST['tbAddress']);
-    $user->setPostalCode($_POST['tbPostalCode']);
-    $user->setPhone1($_POST['tbPhone']);
-    $user->setPhone2($_POST['tbPhone2']);
+    if(!$user->setPostalCode($_POST['tbPostalCode'])) $error = "Postal code no valid" ;
+    if(!$user->setPhone1($_POST['tbPhone'])) $error = "Phone number no valid";
+    if(!$user->setPhone2($_POST['tbPhone2']))$error = "Phone number no valid";
     if(isset($_POST['sport']))$user->setSport($_POST['sport']);
 
-    $error = $user->save(true);
-    echo $error;
+    if($error == "") {
+        $error = $user->save(true);
+
+        if($error == "") header("Location: ../profile.php");
+        else header("Location: ../profile.php?error=".$error);
+    }else header("Location: ../profile.php?error=".$error);
+
 }
 
 function carregarFitxer($f, $id) {
     $nomFitxer = "";
-    var_dump($f);
+    //var_dump($f);
 
     if ($f['error'] == 0) {
         if (!file_exists('../images/profile/'.$id)) {

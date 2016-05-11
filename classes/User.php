@@ -171,6 +171,7 @@ class User
             }
         }else{
             if (!$this->exist(true)) {
+                var_dump($this->phone2);
                 if($this->img == null){
                     $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
                     mysqli_stmt_bind_param($mysql, "sssssiisisssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode);
@@ -273,18 +274,24 @@ class User
 
     public function setPhone1($phone1)
     {
-        $this->phone1 = $phone1;
+        if(is_numeric ($phone1)) {
+            $this->phone1 = $phone1;
+            return true;
+        }else return false;
     }
 
     public function setPhone2($phone2)
     {
-        $this->phone2 = $phone2;
+        if(is_numeric ($phone2)) {
+            $this->phone2 = $phone2;
+            return true;
+        }else return false;
     }
 
     public function setBirth($birth)
     {
 
-        if( strtotime($birth) < strtotime('now') )$this->birth = $birth;
+        if( strtotime($birth) < strtotime('now') ){$this->birth = $birth;return true;}
         else return false;
     }
 
@@ -323,8 +330,10 @@ class User
 
     public function setPostalCode($postalCode)
     {
-        if(is_numeric ($postalCode))
-        $this->postalCode = intval($postalCode);
+        if(is_numeric ($postalCode)) {
+            $this->postalCode = intval($postalCode);
+            return true;
+        }
         else return false;
     }
 

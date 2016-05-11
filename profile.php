@@ -8,7 +8,7 @@
 
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
-        var_dump($arrayUser);
+        //var_dump($arrayUser);
 
     }else{
         header("Location: login.php");
@@ -35,8 +35,15 @@
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
 
                 <div class="grid_2">
-
-                        <img src="<?php if($arrayUser != false) echo "images/profile/".$arrayUser['Id']."/".$arrayUser['img']?>" alt="Submit" width="150" >
+                    <?php
+                        if($arrayUser != false){
+                            if(trim($arrayUser['img']) != "") echo "<img src='images/profile/".$arrayUser['Id']."/".$arrayUser['img']."' alt='Submit' width='150' >";
+                            else  if(trim ($arrayUser['esport']) != "")echo"<img src='images/icons/".$arrayUser['esport'].".png' alt='Submit' width='150' >";
+                            else echo "<img src='images/icons/hike.png' alt='Submit' width='150' >";
+                        }else{
+                            echo "<img src='images/icons/hike.png' alt='Submit' width='150' >";
+                        }
+                    ?>
                         <input id="input-upload" type="file" name="img"/>
                 </div>
                 <div class="grid_4">
@@ -273,7 +280,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbPhone">Emergenci phone number</label>
+                        <label class="col-md-4 control-label" for="tbPhone">Emergency phone number</label>
                         <div class="col-md-6">
                             <input id="tbPhone2" name="tbPhone2" type="text"  value="<?php if(isset($arrayUser['tel2']) && $arrayUser != false) echo $arrayUser['tel2'] ?>">
 
