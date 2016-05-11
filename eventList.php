@@ -10,10 +10,8 @@
                 //Si troba la class "active", no fa la funció.
                 if($(this).hasClass("active")){
 
-                    //Netejar Panel.
-                    //S'ha de fer.
-
                     var id = $(this).attr('eventid');
+
                     $.ajax({
                         // la URL para la petición
                         url: 'http://localhost/GAMO_WEB/api/events/getProves.php',
@@ -143,6 +141,7 @@
                 include_once 'classes\DataBase.php';
                 $db = new DataBase();
                 $result = $db->recuperarEvent();
+
                 while ($event = mysqli_fetch_assoc($result)) {
                 $numProves = $db->recuperarNumProves($event['Id']);
 
