@@ -29,16 +29,15 @@
                                 <h1 class='eventTitle'>
                                     ".$prova['nom']."
                                 </h1>
-
                                 <!-- Població (localitzacio)) -->
-                                <a>ConchaLaLora</a>
+                                <a>NOOOOOOOOOOFUNCIONA</a>
                                 <div class='fRight'>
                                     <!-- data_hora_inici (prova) -->
-                                    <a>2016-04-05 13:13:00</a>
+                                    <a>".$prova['data_hora_inici']."</a>
                                 </div>
                                 <div>
                                     <!-- Descripció (prova) -->
-                                    <a>JKSDHFJKXDGXFDKVXRCNHKDXFTHCLKDSFXNHCXDGI6NFD FD</a>
+                                    <a>".$prova['descripcio']." FD</a>
                                 </div>
                             </div>
                             ";
@@ -48,22 +47,6 @@
             </div>
             <div class="clear"></div>
         </div>
-
-        <!--<div class="container_12">
-            <h3 class="h3__head1">Fitxa Prova</h3>
-            <div class="block3">
-                <div class="">
-                    <div class="">
-                        <img class="" src="images/page1_img6.jpg" alt="">
-                        <h2 class="noTop">Title Prova</h2>
-                    </div>
-                    <div class="">
-
-
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
 </div>
 </body>
