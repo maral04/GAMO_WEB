@@ -65,9 +65,15 @@ if(isset($_POST['submitUser'])){
     $user->setRegion($_POST['tbRegion']);
     $user->setCity($_POST['tbCity']);
     $user->setAddress($_POST['tbAddress']);
-    if(!$user->setPostalCode($_POST['tbPostalCode'])) $error = "Invalid Postal Code" ;
-    if(!$user->setPhone1($_POST['tbPhone'])) $error = "Invalid Phone Number";
-    if(!$user->setPhone2($_POST['tbPhone2']))$error = "Invalid Phone Number";
+    if(trim($_POST['tbPostalCode']) != "") {
+        if (!$user->setPostalCode($_POST['tbPostalCode'])) $error = "Invalid Postal Code";
+    }
+    if(trim($_POST['tbPhone']) != ""){
+        if(!$user->setPhone1($_POST['tbPhone'])) $error = "Invalid Phone Number";
+    }
+    if(trim($_POST['tbPhone2']) != "") {
+        if (!$user->setPhone2($_POST['tbPhone2'])) $error = "Invalid Phone Number";
+    }
     if(isset($_POST['sport']))$user->setSport($_POST['sport']);
 
     if($error == "") {
