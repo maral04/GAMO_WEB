@@ -1,4 +1,3 @@
-
 <head>
     <?php include_once "head.php";
     include_once "classes/DataBase.php";
@@ -31,14 +30,14 @@
         });
     </script>
     <div class="content container_12" >
-        <div class="grid_12 block3 form-user" id="profile" >
+        <div class="grid_10">
+            <h3 class="registre">New prova</h3>
+        </div>
+        <div class="grid_10 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
 
-                <div class="grid_5">
-                    <!-- Form Name -->
-                    <h3 class="registre">New prova</h3>
-
+                <div class="grid_3">
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbName">Name</label>
@@ -74,7 +73,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDistance">Distance</label>
                         <div class="col-md-6">
@@ -95,7 +93,6 @@
                         <label class="col-md-4 control-label" for="tbNegtive">Negative slope (m-)</label>
                         <div class="col-md-6">
                             <input id="tbNegtive" name="tbNegtive" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -210,7 +207,7 @@
                     });
 
                 </script>
-                <div class="grid_5">
+                <div class="grid_3">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
@@ -244,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid_5">
+                <div class="grid_3">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbImages">Images</label>
                         <div class="col-md-6">
