@@ -15,7 +15,7 @@
 			<script type="text/javascript">
 				$(document).ready(function() {
 					//Remou current de tots i inclou a l'actual.
-					$(".li1").attr("class","li1");
+					/*$(".li1").attr("class","li1");*/
 					$(".li2").attr("class","li2");
 					$(".li3").attr("class","li3 current");
 				});

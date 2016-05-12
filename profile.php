@@ -284,14 +284,14 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                if(isset($_GET['error'])){
+                    echo "<div class='grid_3 error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                }
+                ?>
                 <div class="">
                     <input type="submit" name="submitProfile" class="grid_6 btn fRight" value="Submit"/>
                 </div>
-                <?php
-                if(isset($_GET['error'])){
-                    echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
-                }
-                ?>
             </form>
         </div>
         <div class="grid_3">

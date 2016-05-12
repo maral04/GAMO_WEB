@@ -1,10 +1,12 @@
+<?php
+if(!isset($_GET['id']))header("Location: index.php");
+?>
 <head>
     <?php include_once "head.php";
     include_once "classes/DataBase.php";
 
     $db = new DataBase();
-
-    $prova = $db->recuperarProva(2);
+    $prova = $db->recuperarProva($_GET['id']);
 
     ?>
 </head>
@@ -22,7 +24,16 @@
                 <div class="block3">
                     <div class="block2">
                         <?php
-                            echo "<div class='grid_4'><img class='' src='images/page1_img8.jpg' alt=''></div>";
+                            echo "<div class='grid_4'><img class='imgFitxa' src='images/page1_img8.jpg' alt=''>
+                            <div class='grid_4 desFitxa'>
+                                <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'> Positive Slope: ".$prova['desnivellPositiu']."mts</div>
+                                <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'> Negative Slope: ".$prova['desnivellNegatiu']."mts</div>
+                                <div class='grid_3 campsFitxa'>Accumulated Slope: ".$prova['desnivellAcumulat']."mts</div>
+                                <div class='grid_2 campsFitxa'>Max. Participants: ".$prova['limit_inscrits']."</div>
+                                <div class='grid_1 gran campsFitxa'>".$prova['distancia']."Km</div>
+                            </div>
+                            </div>";
+                            // , tipus sport, club
                             echo "
                             <div class='grid_7'>
                                 <!-- nom (prova) -->
@@ -30,15 +41,16 @@
                                     ".$prova['nom']."
                                 </h1>
                                 <!-- Població (localitzacio)) -->
-                                <a>NOOOOOOOOOOFUNCIONA</a>
+                                <a>".$prova['poblacio'].", ".$prova['regio']." (".$prova['estat'].")</a>
                                 <div class='fRight'>
                                     <!-- data_hora_inici (prova) -->
-                                    <a>".$prova['data_hora_inici']."</a>
+                                    <a>Start: ".$prova['data_hora_inici']."</a>
                                 </div>
-                                <div>
+                                <div class='descripcioFitxaProva'>
                                     <!-- Descripció (prova) -->
                                     <a>".$prova['descripcio']." FD</a>
                                 </div>
+                                <a>asd</a>
                             </div>
                             ";
                         ?>

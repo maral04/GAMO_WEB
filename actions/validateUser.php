@@ -19,7 +19,7 @@ if(isset($_POST['submitUser'])){
         //var_dump($error);
         if($error !== true) header("Location: ../register.php?error=".$error);
         else {
-            header("Location: ../eventList.php");
+            header("Location: ../index.php");
         }
     }
     else header("Location: ../register.php?error=".$res);
@@ -33,7 +33,7 @@ if(isset($_POST['submitUser'])){
 
             $_SESSION['idUser'] = $user->getId();
             //var_dump($user->getId());
-            header("Location: ../eventList.php");
+            header("Location: ../index.php");
         } else {
             header("Location: ../login.php?error=Login incorrect");
         }

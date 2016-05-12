@@ -280,10 +280,9 @@ header {
     text-align: center;
 }
 
-
 header h1 {
 	position: relative;
-    margin-bottom: 57px;
+    margin-bottom: 30px;
 }
 
 header h1 a {
@@ -347,7 +346,7 @@ header h1 a img {
 
 .content {
     padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: 15px;
 }
 .page1  .content {
     padding-bottom: 57px;
@@ -1018,7 +1017,7 @@ h4{
 }
 
 .descripcioProva{
-    overflow-wrap:break-word;
+    overflow-y:scroll;
     height:45px;
 }
 
@@ -1154,4 +1153,41 @@ h4{
 
 .subImg{
     margin-top:2%;
+}
+
+.desFitxa{
+    margin-top:2%;
+    margin-left:-2%;
+}
+
+.campsFitxa{
+    margin-top:1%;
+}
+
+.imgFitxa{
+    width:365px;
+}
+
+.icoFitxa{
+    width:36px;
+}
+
+.descripcioFitxaProva{
+    margin-top:1%;
+    height:160px;
+    overflow-y:scroll;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #EEF6F4;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #88c886;
+}
+
+.g4Gran{
+    width:455px!important;
 }

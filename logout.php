@@ -9,4 +9,4 @@
 session_start();
 session_destroy();
 setcookie(session_name(), false, time() - 3600);
-header("Location: eventList.php");
+header("Location: index.php");
