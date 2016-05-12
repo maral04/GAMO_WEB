@@ -10,6 +10,13 @@
                 //Si troba la class "active", no fa la funció.
                 if($(this).hasClass("active")){
 
+                    //Apunta fletxes amunt.
+                    $('.cte',this).rotate({
+                        duration:1,
+                        angle: 0,
+                        animateTo:180
+                    })
+
                     var id = $(this).attr('eventid');
 
                     $.ajax({
@@ -87,6 +94,13 @@
                         complete: function (xhr, status) {
                         }
                     });
+                }else{
+                    //Apunta fletxes abaix.
+                    $('.cte',this).rotate({
+                        duration:1,
+                        angle: 0,
+                        animateTo:0
+                    })
                 }
             });
         });
@@ -164,9 +178,18 @@
                 if ($numProves['COUNT(*)'] == 1) {
                     $prova = $db->recuperarProves($event['Id']);
                     echo "<a>Màx. Participants " . $prova['limit_inscrits'] . "</a>
-                            <div class='grid_1 fRight'>
-                                <a class='gran fRight'>" . $prova['distancia'] . "Km</a>
-                            </div>";
+                        <div class='grid_1 fRight'>
+                            <a class='gran fRight'>" . $prova['distancia'] . "Km</a>
+                        </div>";
+                }else{
+                    //Mostra que es pot expandir si té proves.
+                    echo"<div class='cte''>
+                    <img class='cteImg' src='images/icons/downArrow.png' alt=''>
+                    <a>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  </a>
+                    <img class='cteImg' src='images/icons/downArrow.png' alt=''>
+                    <a>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  </a>
+                    <img class='cteImg' src='images/icons/downArrow.png' alt=''>
+                    </div>";
                 }
                 ?>
             </div>

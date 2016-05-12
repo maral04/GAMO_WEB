@@ -416,7 +416,7 @@ header h1 a img {
 }
 
 .block2 img {
-    border: 1px solid #efeeee;
+    /*border: 1px solid #efeeee;*/
 }
 
 .block2+.block2 {
@@ -895,6 +895,7 @@ header h1 a {
 }
 .descripcioEvent{
     overflow-wrap:break-word;
+    overflow-y:scroll;
     height:95px;
 }
 
@@ -1017,6 +1018,7 @@ h4{
 }
 
 .descripcioProva{
+    overflow-wrap:break-word;
     overflow-y:scroll;
     height:45px;
 }
@@ -1190,4 +1192,14 @@ h4{
 
 .g4Gran{
     width:455px!important;
+}
+
+.cte{
+    margin-top:1%;
+    margin-bottom:-1%;
+    text-align:center;
+}
+
+.cteImg{
+    width:16px;
 }

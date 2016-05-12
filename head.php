@@ -18,6 +18,7 @@
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/camera.js"></script>
+<script src="js/rotate.js"></script>
 <script src="js/jquery.mobile.customized.min.js"></script>
 <script>
     //Reventa coses, fer de nou.
