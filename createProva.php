@@ -252,7 +252,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbImages">Images</label>
                         <div class="col-md-6">
-                            <input id="tbImages" name="tbImages" type="file"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" >
+                            <input id="tbImages" name="tbImages" type="file"  accept="image/*" value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" >
 
                         </div>
                     </div>

@@ -27,7 +27,7 @@ if(isset($_POST['submitProva'])){
             else $prova->setTrack(null);
         }else{
             echo "Null";
-            $prova->setImg(null);
+            $prova->setTrack(null);
         }
         $prova->updateImg();
         $prova->updateGpx();

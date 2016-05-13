@@ -24,7 +24,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                 <div class="block3">
                     <div class="block2">
                         <?php
-                            echo "<div class='grid_4'><img class='imgFitxa' src='images/page1_img8.jpg' alt=''>
+                            echo "<div class='grid_4'><img class='imgFitxa' src='images/events/".$prova['Id']."/".$prova['Imatges']."' alt=''>
                             <div class='grid_4 desFitxa'>
                                 <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'> Positive Slope: ".$prova['desnivellPositiu']."mts</div>
                                 <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'> Negative Slope: ".$prova['desnivellNegatiu']."mts</div>

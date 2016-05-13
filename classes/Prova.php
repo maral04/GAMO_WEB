@@ -114,7 +114,7 @@ class Prova
     public function updateImg(){
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
-
+        echo "Update img ".$this->img;
         $mysql = mysqli_prepare($conn, "UPDATE prova SET Imatges=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
         mysqli_stmt_bind_param($mysql, "s", $this->img);
 
@@ -125,6 +125,7 @@ class Prova
     public function updateGpx(){
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
+        echo "Update track ".$this->track;
 
         $mysql = mysqli_prepare($conn, "UPDATE prova SET recorregut=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
         mysqli_stmt_bind_param($mysql, "s", $this->track);
