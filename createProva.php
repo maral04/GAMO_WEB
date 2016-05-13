@@ -34,7 +34,7 @@
             <h3 class="registre">New prova</h3>
         </div>
         <div class="grid_10 block3 form-user" id="profile" >
-            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
 
                 <div class="grid_3">
@@ -240,12 +240,19 @@
 
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tbCp">Postal code</label>
+                        <div class="col-md-6">
+                            <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
+
+                        </div>
+                    </div>
                 </div>
                 <div class="grid_3">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbImages">Images</label>
                         <div class="col-md-6">
-                            <input id="tbImages" name="tbImages" type="file"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" required="">
+                            <input id="tbImages" name="tbImages" type="file"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" >
 
                         </div>
                     </div>
@@ -278,9 +285,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbInscripcionsIni">Limit enrollments</label>
+                        <label class="col-md-4 control-label" for="tbLimitInscrits">Limit enrollments</label>
                         <div class="col-md-6">
-                            <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
+                            <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
 
                         </div>
                     </div>
@@ -304,7 +311,7 @@
                 </div>
                 <div class="grid_12">
                     <div class="btns">
-                        <input type="submit" name="submitProfile" class="btn" value="Submit"/>
+                        <input type="submit" name="submitProva" class="btn" value="Submit"/>
                     </div>
 
                     <?php

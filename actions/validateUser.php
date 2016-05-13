@@ -47,7 +47,7 @@ if(isset($_POST['submitUser'])){
 
     if(trim($_FILES['img']['name']) != ""){
         $file = carregarFitxer($_FILES['img'],$_POST['idUser']);
-        if(trim($file) != "") $user->setImg(carregarFitxer($_FILES['img'],$_POST['idUser']));
+        if(trim($file) != "") $user->setImg($file);
         else $user->setImg(null);
     }else{
         $user->setImg(null);
