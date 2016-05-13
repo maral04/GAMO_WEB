@@ -101,8 +101,7 @@ class Prova
                 if (mysqli_stmt_execute($mysql2)){
                     $this->id = mysqli_insert_id($conn);
 
-                    echo "error ".$error." id ".$id;
-                    if(trim($error) == "") return $id;
+                    if(trim($error) == "") return $this->id;
                 }
                 else echo mysqli_stmt_error($mysql2);
             }
@@ -120,6 +119,17 @@ class Prova
         mysqli_stmt_bind_param($mysql, "s", $this->img);
 
         if (mysqli_stmt_execute($mysql)) echo "IMG actualitzat correctament";
+        else $error = mysqli_stmt_error($mysql);
+    }
+
+    public function updateGpx(){
+        if($this->db == null)$this->db = new DataBase();
+        $conn = $this->db->connect();
+
+        $mysql = mysqli_prepare($conn, "UPDATE prova SET recorregut=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
+        mysqli_stmt_bind_param($mysql, "s", $this->track);
+
+        if (mysqli_stmt_execute($mysql)) echo "Track actualitzat correctament";
         else $error = mysqli_stmt_error($mysql);
     }
 

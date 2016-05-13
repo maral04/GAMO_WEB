@@ -13,14 +13,24 @@ if(isset($_POST['submitProva'])){
         echo "Numeric";
         if(trim($_FILES['tbImages']['name']) != ""){
            // echo "name ".$_FILES['tbImages'];
-            $file = carregarFitxer($_FILES['tbImages'],$_POST['idUser']);
+            $file = carregarFitxer($_FILES['tbImages'],$result,1);
             if(trim($file) != "") $prova->setImg($file);
             else $prova->setImg(null);
         }else{
             echo "Null";
             $prova->setImg(null);
         }
+        if(trim($_FILES['tbTrack']['name']) != ""){
+            // echo "name ".$_FILES['tbImages'];
+            $file2 = carregarFitxer($_FILES['tbTrack'],$result,2);
+            if(trim($file2) != "") $prova->setTrack($file2);
+            else $prova->setTrack(null);
+        }else{
+            echo "Null";
+            $prova->setImg(null);
+        }
         $prova->updateImg();
+        $prova->updateGpx();
     }else{
         echo $result;
     }
@@ -28,16 +38,18 @@ if(isset($_POST['submitProva'])){
     var_dump($prova);
 }
 
-function carregarFitxer($f, $id) {
+function carregarFitxer($f, $id, $type) {
     $nomFitxer = "";
     //var_dump($f);
+    if ($type == 1) $root = '../images/events/';
+    else $root = '../track/';
 
     if ($f['error'] == 0) {
-        if (!file_exists('../images/events/'.$id)) {
-            mkdir('../images/events/'.$id, 0777, true);
+        if (!file_exists($root.$id)) {
+            mkdir($root.$id, 0777, true);
         }
-        echo '../images/events/'.$id. "/" . $f['name'];
-        if (move_uploaded_file($f['tmp_name'], '../images/events/'.$id. "/" . $f['name'])) {
+        echo $root.$id. "/" . $f['name'];
+        if (move_uploaded_file($f['tmp_name'], $root.$id. "/" . $f['name'])) {
             $nomFitxer = $f['name'];
         } else {
             $nomFitxer = $f['name'];
