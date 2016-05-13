@@ -31,9 +31,12 @@ if(!isset($_GET['id']))header("Location: index.php");
                                 <div class='grid_3 campsFitxa'>Accumulated Slope: ".$prova['desnivellAcumulat']."mts</div>
                                 <div class='grid_2 campsFitxa'>Max. Participants: ".$prova['limit_inscrits']."</div>
                                 <div class='grid_1 gran campsFitxa'>".$prova['distancia']."Km</div>
+                                <div class='grid_3'>
+                                    <a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a>
+                                </div>
+
                             </div>
                             </div>";
-                            // , tipus sport, club
                             echo "
                             <div class='grid_7'>
                                 <!-- nom (prova) -->
@@ -48,10 +51,13 @@ if(!isset($_GET['id']))header("Location: index.php");
                                 </div>
                                 <div class='descripcioFitxaProva'>
                                     <!-- Descripció (prova) -->
-                                    <a>".$prova['descripcio']." FD</a>
+                                    <a>".$prova['descripcio']." </a>
                                 </div>
-                                <a>asd</a>
                             </div>
+                            <div class='grid_6'>";
+                                //Mapa amb la ruta de la prova.
+                                //include_once 'track/attempt.html';
+                            echo "</div>
                             ";
                         ?>
                     </div>

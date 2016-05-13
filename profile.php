@@ -49,7 +49,7 @@
                     ?>
                     <div class="fileUpload btn btn-primary">
                         <span>Upload</span>
-                        <input type="file" class="upload" name="img"/>
+                        <input type="file" class="upload" name="img" accept="image/*"/>
                     </div>
                 </div>
                 <div class="grid_3">
@@ -58,7 +58,6 @@
                         <label class="col-md-4 control-label" for="tbName">Name</label>
                         <div class="col-md-6">
                             <input id="tbNom" name="tbName" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['nom'] ?>" required="">
-
                         </div>
                     </div>
 

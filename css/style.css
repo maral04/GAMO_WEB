@@ -912,6 +912,7 @@ header h1 a {
 }
 
 .gran{
+    line-height:1.4em;
     font-size:1.4em;
     font-weight: bold;
     color: #8BC886;
