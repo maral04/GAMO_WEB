@@ -38,7 +38,6 @@
                         success: function (json) {
 
                             //Recupero la primera prova per saber a quin event pertanyen totes les proves.
-                            console.log(json);
                             idDiv = json[0].FK_Id_event;
 
                             //Eliminem el contingut del panel.
@@ -70,15 +69,13 @@
                                     "</div>"+
                                     "<a>Max. Participants: "+json[i].limit_inscrits+"</a>"+
                                     "<div class='gran grid_1 fRight'>"+
-                                        <!-- SIDA Max Members, desnivellPositiu, Distancia -->
+                                        <!-- Max Members, desnivellPositiu, Distancia -->
                                         json[i].distancia
                                     +"Km</div>"+
                                     "</div>"+
                                     "</div>" +
                                     "</div>" +
                                     "");
-
-                                console.log(json[i].Id);
                             }
                         },
 
@@ -87,7 +84,6 @@
                         // el objeto de la petición en crudo y código de estatus de la petición
                         error: function (request, status, error) {
                             alert(request.responseText);
-                            console.log(error);
                         },
 
                         // código a ejecutar sin importar si la petición falló o no
@@ -138,7 +134,18 @@
                 $numProves = $db->recuperarNumProves($event['Id']);
 
                 if ($numProves['COUNT(*)'] <= 1) {
-                    echo "<div class='block3'>";
+
+                    $conn = $db->connect();
+
+                    $sql2 = "SELECT * FROM prova WHERE FK_Id_event = ".$event['Id'];
+                    $idProva = "";
+
+                    $result2 = $conn->query($sql2);
+                    if ($result2->num_rows > 0) {
+                        $proves = mysqli_fetch_assoc($result2);
+                        $idProva = $proves['Id'];
+                        echo "<div class='block3 click' onclick='location.href=\"fitxaProva.php?id=".$idProva."\"'>";
+                    }
                 } else {
                     //Si l'event té més d'una prova, es preparen events desplegables.
                     echo "<div class='block3 accordion click eventDiv' eventid='" . $event['Id'] . "'>";

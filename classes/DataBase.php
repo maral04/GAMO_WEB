@@ -41,6 +41,8 @@ class DataBase
 
         $sql = "SELECT event.*, poblacio FROM event";
 
+        //$sql = "SELECT event.*, event.poblacio, prova.Id as provaId FROM event INNER JOIN prova ON prova.FK_Id_event = event.Id";
+
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {
