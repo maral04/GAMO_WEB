@@ -1133,10 +1133,10 @@ h4{
 }
 
 .fileUpload {
+    padding-left:8%;
     position: relative;
     overflow: hidden;
-    margin: 10px;
-    margin-left:15%;
+    float:left;
 }
 .fileUpload input.upload {
     position: absolute;
@@ -1203,4 +1203,18 @@ h4{
 
 .cteImg{
     width:16px;
+}
+
+.cpImg{
+    width:32px;
+}
+
+.prImg{
+    width:155px;
+
+}
+
+.spanUpload{
+    vertical-align:middle;
+    margin-left:6%;
 }

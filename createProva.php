@@ -8,8 +8,6 @@
 
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
-        //var_dump($arrayUser);
-
     }else{
         header("Location: login.php");
     }
@@ -43,7 +41,6 @@
                         <label class="col-md-4 control-label" for="tbName">Name</label>
                         <div class="col-md-6">
                             <input id="tbName" name="tbName" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['nom'] ?>" required="">
-
                         </div>
                     </div>
 
@@ -52,16 +49,13 @@
                         <label class="col-md-4 control-label" for="tbDescription">Description</label>
                         <div class="col-md-6">
                             <input id="tbDescription" name="tbDescription" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayUser != false) echo $arrayUser['cNom'] ?>" >
-
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniDate">Initial date</label>
                         <div class="col-md-6">
                             <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -69,7 +63,6 @@
                         <label class="col-md-4 control-label" for="tbIniTime">Start time</label>
                         <div class="col-md-6">
                             <input id="tbIniTime" name="tbIniTime" type="time" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -77,7 +70,6 @@
                         <label class="col-md-4 control-label" for="tbDistance">Distance</label>
                         <div class="col-md-6">
                             <input id="tbDistance" name="tbDistance" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -85,7 +77,6 @@
                         <label class="col-md-4 control-label" for="tbPositive">Positive slope (m+)</label>
                         <div class="col-md-6">
                             <input id="tbPositive" name="tbPositive" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -100,7 +91,6 @@
                         <label class="col-md-4 control-label" for="tbCheckpoints">Checkpoints</label>
                         <div class="col-md-6">
                             <input id="tbCheckpoints" name="tbCheckpoints" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -108,7 +98,6 @@
                         <label class="col-md-4 control-label" for="tbTimeLimit">Time limit</label>
                         <div class="col-md-6">
                             <input id="tbTimeLimit" name="tbTimeLimit" type="time" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -140,7 +129,6 @@
                                     echo "<input id='s-hike' type='radio' name='sport' value='hiking'>";
                                 }
                                 ?>
-
                             </div>
                             <div>
                                 <?php
@@ -154,7 +142,6 @@
                                     echo "<input id='s-ski' type='radio' name='sport' value='skiing'>";
                                 }
                                 ?>
-
                             </div>
                             <div>
                                 <?php
@@ -168,7 +155,6 @@
                                     echo "<input id='s-trail' type=\"radio\" name=\"sport\" value=\"trail\">";
                                 }
                                 ?>
-
                             </div>
                             <div>
                                 <?php
@@ -212,7 +198,6 @@
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
                             <input id="tbCountry" name="tbCountry" type="text"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" required="">
-
                         </div>
                     </div>
 
@@ -221,7 +206,6 @@
                         <label class="col-md-4 control-label" for="tbRegion">Region</label>
                         <div class="col-md-6">
                             <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -229,7 +213,6 @@
                         <label class="col-md-4 control-label" for="tbCity">City</label>
                         <div class="col-md-6">
                             <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -237,32 +220,28 @@
                         <label class="col-md-4 control-label" for="tbAddress">Address</label>
                         <div class="col-md-6">
                             <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCp">Postal code</label>
                         <div class="col-md-6">
                             <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
                 </div>
                 <div class="grid_3">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbImages">Images</label>
-                        <div class="col-md-6">
-                            <input id="tbImages" name="tbImages" type="file"  accept="image/*" value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" >
-
+                        <div class="fileUpload btn btn-primary prImg">
+                            <img class="cpImg" src='images/icons/picture.png'/>
+                            <span class="spanUpload">Upload Images</span>
+                            <input type="file" id="tbImages" name="tbImages" class="upload" accept="image/*" value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" />
                         </div>
                     </div>
-
-
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbTrack">Track</label>
-                        <div class="col-md-6">
-                            <input id="tbTrack" name="tbTrack" type="file" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
+                        <div class="fileUpload btn btn-primary prImg">
+                            <img class="cpImg" src='images/icons/trackMap.png'/>
+                            <span class="spanUpload">Upload Tracks</span>
+                            <input id="tbTrack" class="upload" name="tbTrack" type="file" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>"/>
                         </div>
                     </div>
 
@@ -272,7 +251,6 @@
                         <label class="col-md-4 control-label" for="tbManager">Manager web site</label>
                         <div class="col-md-6">
                             <input id="tbManager" name="tbManager" type="text" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -280,7 +258,6 @@
                         <label class="col-md-4 control-label" for="tbPrice">Price</label>
                         <div class="col-md-6">
                             <input id="tbPrice" name="tbPrice" type="number"  value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" required="">
-
                         </div>
                     </div>
 
@@ -288,7 +265,6 @@
                         <label class="col-md-4 control-label" for="tbLimitInscrits">Limit enrollments</label>
                         <div class="col-md-6">
                             <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -296,7 +272,6 @@
                         <label class="col-md-4 control-label" for="tbInscripcionsIni">Open registration date</label>
                         <div class="col-md-6">
                             <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
@@ -304,7 +279,6 @@
                         <label class="col-md-4 control-label" for="tbInscripcionsFin">Final registration date</label>
                         <div class="col-md-6">
                             <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
-
                         </div>
                     </div>
 
