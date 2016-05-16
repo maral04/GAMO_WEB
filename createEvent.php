@@ -20,15 +20,6 @@
 
 <div class="main">
     <?php include_once "header.php"; ?>
-    <!--Funció canvi Color depenent CurrentL-->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //Remou current de tots i inclou a l'actual.
-            $(".l1").attr("class", "l1 link link--kukuri currentL");
-            $(".l2").attr("class", "l2 link link--kukuri");
-            $(".l3").attr("class", "l3 link link--kukuri");
-        });
-    </script>
     <div class="content container_12" >
         <div class="grid_10">
             <h3 class="registre">New event</h3>
@@ -56,7 +47,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniDate">Initial date</label>
                         <div class="col-md-6">
@@ -72,8 +62,6 @@
 
                         </div>
                     </div>
-
-
 
                 </div>
                 <script>
@@ -138,20 +126,21 @@
                 </div>
                 <div class="grid_3">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbImages">Images</label>
-                        <div class="col-md-6">
-                            <input id="tbImages" name="tbImages" type="file"  accept="image/*" value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" >
-
+                        <label class="col-md-4 control-label" for="tbImages">Images</label></br>
+                        <div class="fileUpload btn btn-primary">
+                            <span class="spanUpload2">Upload Image</span>
+                            <input id="tbImages" name="tbImages" type="file" class="upload" accept="image/*" value="<?php if($arrayUser != false) echo $arrayUser['email'] ?>" >
+                        </div>
+                        <div class="grid_3">
+                            <img id="prevImg" src="#" alt="" />
                         </div>
                     </div>
-
-
                 </div>
                 <div class="grid_12">
-                    <div class="btns">
-                        <input type="submit" name="submitEvent" class="btn" value="Submit"/>
+                    <div class="fileUpload btn btn-primary grid_2">
+                        <span class="spanSubmit">Submit</span>
+                        <input  type="submit" name="submitEvent" class="btn upload" class="upload" value="Submit"/>
                     </div>
-
                     <?php
                     if(isset($_GET['error'])){
                         echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
@@ -166,5 +155,24 @@
 </div>
 </div>
 </body>
+<!--Previsualitzar l'Imatge a pujar.-->
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#prevImg').attr('src', e.target.result);
+                $('#prevImg').show();
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#tbImages").change(function(){
+        readURL(this);
+    });
+</script>
 <footer><?php include_once "footer.html"; ?></footer>
 <!-- Text input-->

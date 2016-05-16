@@ -48,7 +48,7 @@
                         }
                     ?>
                     <div class="fileUpload btn btn-primary">
-                        <span>Upload</span>
+                        <span class="spanUpload2">Upload Image</span>
                         <input type="file" class="upload" name="img" accept="image/*"/>
                     </div>
                 </div>
@@ -288,8 +288,9 @@
                     echo "<div class='grid_3 error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
                 }
                 ?>
-                <div class="">
-                    <input type="submit" name="submitProfile" class="grid_6 btn fRight" value="Submit"/>
+                <div class="fileUpload btn btn-primary grid_2">
+                    <span class="spanSubmit">Submit</span>
+                    <input type="submit" name="submitProfile" class="btn upload" value="Submit"/>
                 </div>
             </form>
         </div>

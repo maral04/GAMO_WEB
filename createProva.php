@@ -318,12 +318,10 @@
                 </div>
                 <div class="grid_3">
                     <div class="form-group">
-
                         <div class="fileUpload btn btn-primary prImg">
                             <img class="cpImg" src='images/icons/picture.png'/>
                             <span class="spanUpload">Upload Images</span>
                             <input type="file" id="tbImages" name="tbImages" class="upload" accept="image/*"  />
-
                         </div>
                     </div>
                     <div class="form-group">

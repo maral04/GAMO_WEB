@@ -182,7 +182,7 @@ a:hover {
 
 .btn {
     border-radius: 3px;
-    margin-top: 18px;
+    margin-top: 2%;
     display: inline-block;
     background-color: #8BC886;
     padding: 6px 23px 7px;
@@ -1139,7 +1139,9 @@ h4{
     overflow: hidden;
     float:left;
 }
+
 .fileUpload input.upload {
+
     position: absolute;
     top: 0;
     right: 0;
@@ -1149,6 +1151,8 @@ h4{
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+    display:table-cell;
+    width:100%;
 }
 
 .form-group{
@@ -1215,11 +1219,24 @@ h4{
 
 }
 
-.spanUpload{
+.spanUpload, .spanUpload2{
     vertical-align:middle;
     margin-left:6%;
 }
 
+.spanUpload2{
+    padding-right:8%;
+}
+
 .fuv2{
     padding-right:0%;
+}
+
+#prevImg{
+    margin-top:2%;
+    display:none;
+}
+
+.spanSubmit{
+    margin-left:30%;
 }
