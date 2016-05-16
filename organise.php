@@ -34,14 +34,10 @@
         </div>
         <div class="grid_10 block3">
             <div class="btn btn-primary click">
-                <span>Create Cosa</span>
-
-
+                <a href="create.php" class="click">Create Event</a>
             </div>
             <div class="btn btn-primary click">
-                <span>Create Asdasd</span>
-
-
+                <a href="createProva.php" class="click">Create Prova</a>
             </div>
 
             <?php
