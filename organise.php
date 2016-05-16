@@ -32,12 +32,26 @@
         <div class="grid_10">
             <h3 class="registre">Organise</h3>
         </div>
-        <div class="grid_10 block3">
-            <div class="btn btn-primary click">
-                <a href="create.php" class="click">Create Event</a>
+        <div class="grid_11 block3">
+            <div class="grid_3">
+                <div class="form-group">
+                    <a href="createEvent.php" class="spanUpload">
+                        <div class="fileUpload fuv2 btn btn-primary prImg" >
+                            <img class="cpImg" href="createEvent.php" src="images/icons/eventCalendar.png"/>
+                                Create Event
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="btn btn-primary click">
-                <a href="createProva.php" class="click">Create Prova</a>
+            <div class="grid_3">
+                <div class="form-group">
+                    <a href="createEvent.php" class="spanUpload">
+                        <div class="fileUpload fuv2 btn btn-primary prImg" >
+                            <img class="cpImg" href="createProva.php" src="images/icons/provaDud.png"/>
+                            Create Prova
+                        </div>
+                    </a>
+                </div>
             </div>
 
             <?php

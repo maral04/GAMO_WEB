@@ -1134,6 +1134,7 @@ h4{
 
 .fileUpload {
     padding-left:8%;
+    padding-right:6%;
     position: relative;
     overflow: hidden;
     float:left;
@@ -1217,4 +1218,8 @@ h4{
 .spanUpload{
     vertical-align:middle;
     margin-left:6%;
+}
+
+.fuv2{
+    padding-right:0%;
 }
