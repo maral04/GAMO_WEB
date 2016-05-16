@@ -39,7 +39,7 @@ if(isset($_POST['submitProva'])){
         $prova->updateImg();
         $prova->updateGpx();
 
-        header("Location: ../   createProva.php");
+        header("Location: ../createProva.php#profile");
     }else{
         echo $result;
     }

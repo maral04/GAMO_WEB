@@ -25,7 +25,10 @@ if(!isset($_GET['id']))header("Location: index.php");
                     <div class="block2">
                         <?php
                             $desnivellAcumulat = $prova['desnivellPositiu']+$prova['desnivellNegatiu'];
-                            echo "<div class='grid_4'><img class='imgFitxa' src='images/events/".$prova['Id']."/".$prova['Imatges']."' alt=''>
+                        if(file_exists("images/proves/".$prova['Id']."/".$prova['Imatges'])) $img = "images/proves/".$prova['Id']."/".$prova['Imatges'];
+                        else $img = "images/proves/Captura.png";
+                            echo "<div class='grid_4'>
+                                <img class='imgFitxa' src='".$img."' alt=''>
                             <div class='grid_4 desFitxa'>
                                 <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'> Positive Slope: ".$prova['desnivellPositiu']."mts</div>
                                 <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'> Negative Slope: ".$prova['desnivellNegatiu']."mts</div>
