@@ -40,9 +40,7 @@ class DataBase
     public function recuperarEvent ($id = false){
 
         if($id == false) {
-            $sql = "SELECT * FROM event";
-
-            //$sql = "SELECT event.*, event.poblacio, prova.Id as provaId FROM event INNER JOIN prova ON prova.FK_Id_event = event.Id";
+            $sql = "SELECT * FROM event ORDER BY dataInici DESC";
 
             $result = $this->conn->query($sql);
 
