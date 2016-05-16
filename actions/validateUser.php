@@ -46,8 +46,11 @@ if(isset($_POST['submitUser'])){
     $error = "";
 
     if(trim($_FILES['img']['name']) != ""){
-        $file = carregarFitxer($_FILES['img'],$_POST['idUser']);
-        if(trim($file) != "") $user->setImg($file);
+        $imatge = carregarFitxer($_FILES['img'],$_POST['idUser']);
+        if(trim($imatge) != "") {
+
+            $user->setImg($imatge);
+        }
         else $user->setImg(null);
     }else{
         $user->setImg(null);
@@ -79,7 +82,15 @@ if(isset($_POST['submitUser'])){
     if($error == "") {
         $error = $user->save(true);
 
-        if($error == "") header("Location: ../profile.php");
+        if($error == "") {
+            $files = glob('../images/profile/'.$_POST['idUser'].'/*'); // get all file names
+            foreach($files as $file){ // iterate files
+                if(is_file($file) && $file != "../images/profile/".$_POST['idUser'].'/'.$imatge ) {
+                   unlink($file); // delete file
+                }
+            }
+            header("Location: ../profile.php");
+        }
         else header("Location: ../profile.php?error=".$error);
     }else header("Location: ../profile.php?error=".$error);
 

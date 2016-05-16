@@ -37,18 +37,30 @@ class DataBase
     }
 
 
-    public function recuperarEvent (){
+    public function recuperarEvent ($id = false){
 
-        $sql = "SELECT event.*, poblacio FROM event";
+        if($id == false) {
+            $sql = "SELECT * FROM event";
 
-        //$sql = "SELECT event.*, event.poblacio, prova.Id as provaId FROM event INNER JOIN prova ON prova.FK_Id_event = event.Id";
+            //$sql = "SELECT event.*, event.poblacio, prova.Id as provaId FROM event INNER JOIN prova ON prova.FK_Id_event = event.Id";
 
-        $result = $this->conn->query($sql);
+            $result = $this->conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            return $result;
-        } else {
-            return false;
+            if ($result->num_rows > 0) {
+                return $result;
+            } else {
+                return false;
+            }
+        }else{
+            $sql = "SELECT * FROM event WHERE id =".$id;
+
+            $result = $this->conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                return $result;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -77,14 +89,15 @@ class DataBase
         }
     }
 
-    public function recuperarProves ($idEvent){
+    public function recuperarProves ($idEvent, $totes = false){
 
         $sql = "SELECT * FROM prova WHERE FK_Id_event = ".$idEvent;
 
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {
-            return mysqli_fetch_assoc($result);
+            if(!$totes) return mysqli_fetch_assoc($result);
+            else return $result;
         } else {
             return false;
         }

@@ -28,6 +28,7 @@ class Prova
     private $InscripcionsIni;
     private $InscripcionsFin;
     private $InscripcionsLimit;
+    private $idOrganitzador;
     private $img;
     private $track;
     private $db;
@@ -38,8 +39,9 @@ class Prova
         $this->db = new DataBase();
     }
 
-    public function init( $Name, $Description , $IniDate, $IniTime  ,$Distance, $Positive, $Negtive, $Checkpoints, $TimeLimit, $sport, $Country, $Region, $City, $Address,$cp, $Manager, $Price,  $InscripcionsIni, $InscripcionsFin, $limitInscripcions)
+    public function init( $idOrganitzador, $Name, $Description , $IniDate, $IniTime  ,$Distance, $Positive, $Negtive, $Checkpoints, $TimeLimit, $sport, $Country, $Region, $City, $Address,$cp, $Manager, $Price,  $InscripcionsIni, $InscripcionsFin, $limitInscripcions)
     {
+        $this->setIdOrganitzador($idOrganitzador);
         $this->setName($Name);
         $this->setDescription($Description);
         $this->setIniDate($IniDate);
@@ -62,51 +64,49 @@ class Prova
         $this->setInscripcionsLimit($limitInscripcions);
     }
 
-    public function save($update = false){
+    public function save($idEvent = false, $update = false){
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
         $error = "";
 
-        if(!$update) {
-
-            //if (!$this->exist()) {
-            echo "update";
-            if ($conn != null) {
-                echo "hola";
-                $mysql1 = mysqli_prepare($conn, "INSERT INTO event (titol,dataInici,dataFinal,descripcio,cp,
+        if ($conn != null) {
+            if($idEvent == false) {
+                $mysql1 = mysqli_prepare($conn, "INSERT INTO event (idOrganitzador,titol,dataInici,dataFinal,descripcio,cp,
                                                     estat,regio,poblacio,direccio)
-                                                    VALUES (?,?,?,?,?,?,?,?,?)");
+                                                    VALUES (?,?,?,?,?,?,?,?,?,?)");
+                //die(mysqli_error($conn));
 
-                mysqli_stmt_bind_param($mysql1, "sssssssss", $this->Name, $this->IniDate, $this->IniDate, $this->Description,
-                    $this->postalCode, $this->Country, $this->Region, $this->City,$this->Address);
+                mysqli_stmt_bind_param($mysql1, "isssssssss", $this->idOrganitzador, $this->Name, $this->IniDate, $this->IniDate, $this->Description,
+                    $this->postalCode, $this->Country, $this->Region, $this->City, $this->Address);
 
-                if (mysqli_stmt_execute($mysql1));
+                if (mysqli_stmt_execute($mysql1)) ;
                 else echo mysqli_stmt_error($mysql1);
 
                 $id = mysqli_insert_id($conn);
                 $this->setIdEvent($id);
+            }else{
+                $this->setIdEvent($idEvent);
+            }
 
-
-                $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
-                                                    num_avituallaments,nom,pagina_organitzacio,
+            $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
+                                                    num_avituallaments,nom,pagina_organitzacio,esports,
                                                     descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
                                                     temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
-                                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-                mysqli_stmt_bind_param($mysql2, "iddiiisssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
-                    $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->Description,
-                    $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit,$this->InscripcionsLimit, $this->postalCode,
-                    $this->Country, $this->Region, $this->City, $this->Address);
+            //die(mysqli_error($conn));
+            mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
+                $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
+                $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit,$this->InscripcionsLimit, $this->postalCode,
+                $this->Country, $this->Region, $this->City, $this->Address);
 
-                if (mysqli_stmt_execute($mysql2)){
-                    $this->id = mysqli_insert_id($conn);
+            if (mysqli_stmt_execute($mysql2)){
+                $this->id = mysqli_insert_id($conn);
 
-                    if(trim($error) == "") return $this->id;
-                }
-                else echo mysqli_stmt_error($mysql2);
-            }
-            $error = "Error with register ";
+                if(trim($error) == "") return $this->id;
+            } else echo mysqli_stmt_error($mysql2);
         }
+        $error = "Error with register ";
 
         return $error;
     }
@@ -133,6 +133,20 @@ class Prova
         if (mysqli_stmt_execute($mysql)) echo "Track actualitzat correctament";
         else $error = mysqli_stmt_error($mysql);
     }
+
+
+    public function getIdOrganitzador()
+    {
+        return $this->idOrganitzador;
+    }
+
+
+    public function setIdOrganitzador($idOrganitzador)
+    {
+        $this->idOrganitzador = intval($idOrganitzador);
+    }
+
+
 
 
     public function setPostalCode($postalCode)
@@ -203,7 +217,14 @@ class Prova
 
     public function setSport($sport)
     {
-        $this->sport = $sport;
+        if(is_array($sport)){
+            foreach($sport as $s){
+                $this->sport .= $s.",";
+            }
+        }else{
+            $this->sport = $sport;
+        }
+
     }
 
 

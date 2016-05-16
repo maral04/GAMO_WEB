@@ -43,7 +43,33 @@
 
 
             </div>
+
+            <?php
+            $sql = "SELECT event.*, poblacio FROM event WHERE idOrganitzador = ".$_SESSION['idUser'];
+
+            if($db == null)$db = new DataBase();
+            $conn = $db->connect();
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<table>";
+                echo "<tr><th>Name</th><th>Description</th><th>Date</th><th>City</th></tr>";
+                while($event = mysqli_fetch_assoc($result)){
+                    echo "<tr>";
+                    echo "<td>".$event['titol']."</td>";
+                    echo "<td>".$event['descripcio']."</td>";
+                    $data=date_create($event['dataInici']);
+                    echo "<td>".date_format($data, 'd-m-Y')."</td>";
+                    echo "<td>".$event['poblacio']."</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            }
+            ?>
         </div>
+
+
 
     </div>
     <div class="clear"></div>

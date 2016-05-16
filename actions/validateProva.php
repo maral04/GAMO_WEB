@@ -1,13 +1,20 @@
 <?php
+session_start();
 var_dump($_POST);
 include_once "../classes/Prova.php";
+include_once "../classes/Event.php";
 $prova = new Prova();
-
+ var_dump($_SESSION['idUser']);
+if(isset($_SESSION['idUser'])) $idUser = $_SESSION['idUser'];
+else header("location: ../login.php");
 
 if(isset($_POST['submitProva'])){
-    $error = $prova->init($_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
-    $result = $prova->save();
+    var_dump($_POST['sport']);
+    $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
+    if($_POST['submitProva'] == 'New prova') $result = $prova->save($_POST['idEvent']);
+    else $result = $prova->save();
     echo "result ".$result;
+    //var_dump($_POST);
 
     if(is_numeric($result)){
         echo "Numeric";
@@ -31,18 +38,46 @@ if(isset($_POST['submitProva'])){
         }
         $prova->updateImg();
         $prova->updateGpx();
+
+        header("Location: ..createProva.php");
     }else{
         echo $result;
     }
 
     var_dump($prova);
+}else if(isset($_POST['submitEvent'])){
+    $event = new Event();
+    $event->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbFinDate'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp']);
+    $result = $event->save();
+    echo "result ".$result;
+
+    if(is_numeric($result)){
+        echo "Numeric";
+        $_SESSION['idEvent'] = $result;
+        if(trim($_FILES['tbImages']['name']) != ""){
+            // echo "name ".$_FILES['tbImages'];
+            $file = carregarFitxer($_FILES['tbImages'],$result,3);
+            if(trim($file) != "") $event->setImg($file);
+            else $event->setImg(null);
+        }else{
+            echo "Null";
+            $event->setImg(null);
+        }
+        $event->updateImg();
+        header("Location: ../createProva.php");
+    }else{
+        header("Location: ../createEvent.php?error=".$result);
+    }
+
+    var_dump($event);
 }
 
 function carregarFitxer($f, $id, $type) {
     $nomFitxer = "";
     //var_dump($f);
-    if ($type == 1) $root = '../images/events/';
-    else $root = '../track/';
+    if ($type == 1) $root = '../images/proves/';
+    else if($type == 2) $root = '../track/';
+    else $root = '../images/events/';
 
     if ($f['error'] == 0) {
         if (!file_exists($root.$id)) {

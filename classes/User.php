@@ -163,7 +163,7 @@ class User
                     mysqli_stmt_bind_param($mysql, "ssss", $this->name , $this->lastname, $this->email, $this->password );
 
                     if (mysqli_stmt_execute($mysql)) return true;
-                    else echo mysqli_stmt_error($mysql);
+                    else die(mysqli_stmt_error($mysql));
                 }
                 $error = "Error with register ";
             } else {
