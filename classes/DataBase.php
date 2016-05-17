@@ -95,16 +95,15 @@ class DataBase
         $result = $this->conn->query($sql);
 
         // if(!$totes) die(mysqli_error($this->conn));
+        //die(mysqli_error($this->conn));
 
-        die(mysqli_error($this->conn));
-/*
         if ($result->num_rows > 0) {
-            //if(!$totes) return mysqli_fetch_assoc($result);
-            //else return $result;
-            return $result;
+            if(!$totes) return mysqli_fetch_assoc($result);
+            else return $result;
+            //return $result;
         } else {
             return false;
-        }*/
+        }
     }
 
     public function recuperarNumProves ($idEvent){
