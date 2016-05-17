@@ -40,8 +40,8 @@
                     <?php
                         echo "<label class='col-md-4 control-label' >Profile Image</label> ";
                         if($arrayUser != false){
-                            if(trim($arrayUser['img']) != "") echo "<img src='images/profile/".$arrayUser['Id']."/".$arrayUser['img']."' alt='Submit' class='subImg' width='150' >";
-                            else  if(trim ($arrayUser['esport']) != "")echo"<img src='images/icons/".$arrayUser['esport'].".png' alt='Submit' class='subImg' width='150' >";
+                            if(trim($arrayUser['img']) != "") echo "<img src='images/profile/".$arrayUser['Id']."/".$arrayUser['img']."' alt='Submit' class='subImg' id='prevImgP' width='150' >";
+                            else  if(trim ($arrayUser['esport']) != "")echo"<img src='images/icons/".$arrayUser['esport'].".png' alt='Submit' class='subImg' id='prevImgP' width='150' >";
                             else echo "<img src='images/icons/hike.png' alt='Submit' class='subImg' width='150' >";
                         }else{
                             echo "<img src='images/icons/hike.png' alt='Submit' class='subImg' width='150' >";
@@ -49,7 +49,7 @@
                     ?>
                     <div class="fileUpload btn btn-primary">
                         <span class="spanUpload2">Upload Image</span>
-                        <input type="file" class="upload" name="img" accept="image/*"/>
+                        <input id="profileImage" type="file" class="upload" name="img" accept="image/*"/>
                     </div>
                 </div>
                 <div class="grid_3">
@@ -317,4 +317,20 @@
 </div>
 </div>
 </body>
+<!--Previsualitzar l'Imatge a pujar.-->
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#prevImgP').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#profileImage").change(function(){
+        readURL(this);
+    });
+</script>
 <footer><?php include_once "footer.html"; ?></footer>

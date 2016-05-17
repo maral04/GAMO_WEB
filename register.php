@@ -13,7 +13,8 @@
             //Remou current de tots i inclou a l'actual.
             $(".l1").attr("class", "l1 link link--kukuri");
             $(".l2").attr("class", "l2 link link--kukuri");
-            $(".l3").attr("class", "l3 link link--kukuri currentL");
+            $(".l3").attr("class", "l3 link link--kukuri");
+            $(".l4").attr("class", "l3 link link--kukuri currentL");
         });
     </script>
     <div class="content" id="registerContent">

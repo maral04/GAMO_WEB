@@ -43,7 +43,6 @@
                                 <img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt="">
                             </div>
                             <div class="grid_4">
-
                                 <h1 class="eventTitle"><?php echo $arrayEvent['titol'] ?></h1>
                                 <a><?php echo $arrayEvent['poblacio'] ?></a>
                                 <div class="fRight">

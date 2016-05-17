@@ -160,16 +160,13 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 $('#prevImg').attr('src', e.target.result);
                 $('#prevImg').show();
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     $("#tbImages").change(function(){
         readURL(this);
     });

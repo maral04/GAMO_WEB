@@ -92,15 +92,19 @@ class DataBase
     public function recuperarProves ($idEvent, $totes = false){
 
         $sql = "SELECT * FROM prova WHERE FK_Id_event = ".$idEvent;
-
         $result = $this->conn->query($sql);
 
+        // if(!$totes) die(mysqli_error($this->conn));
+
+        die(mysqli_error($this->conn));
+/*
         if ($result->num_rows > 0) {
-            if(!$totes) return mysqli_fetch_assoc($result);
-            else return $result;
+            //if(!$totes) return mysqli_fetch_assoc($result);
+            //else return $result;
+            return $result;
         } else {
             return false;
-        }
+        }*/
     }
 
     public function recuperarNumProves ($idEvent){
