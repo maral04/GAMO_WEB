@@ -62,13 +62,13 @@ if(!isset($_GET['id']))header("Location: index.php");
                                 <div class='grid_7 desFitxa'>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'> Positive Slope: ".$prova['desnivellPositiu']."mts</div>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'> Negative Slope: ".$prova['desnivellNegatiu']."mts</div>
-                                    <div class='grid_3 campsFitxa'>Accumulated Slope: ".$desnivellAcumulat."mts</div>
+                                    <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeSUM.png' alt='Accumulated Slope'>Accumulated Slope: ".$desnivellAcumulat."mts</div>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/mPpl.png' alt='Max. Participants'>Max. Participants: ".$prova['limit_inscrits']."</div>
-                                    <div class='grid_3'>
-                                    <img class='icoFitxa' src='images/icons/www.png' alt='Organization'>
-                                    <a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a>
-                                    </div>
+                                    <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/www.png' alt='Organization'><a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a></div>
+                                    <!-- 8digits+km o queda malament. -->
                                     <div class='grid_2 gran campsFitxa'><img class='icoFitxa' src='images/icons/distance.png' alt='Distance'>".$prova['distancia']."Km</div>
+                                    <!-- Canviar el link per un unir-se amb el token de la prova -->
+                                    <div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'><a href='http://".$prova['pagina_organitzacio']."' class='gran'>JOIN</a></div>
                                 </div>
                             </div>";
                         ?>
