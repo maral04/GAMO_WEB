@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <a href="createEvent.php" class="spanUpload">
                         <div class="fileUpload fuv2 btn btn-primary prImg" >
-                            <img class="cpImg" href="createEvent.php" src="images/icons/eventCalendar.png"/>
+                            <img class="cpImg" src="images/icons/eventCalendar.png"/>
                                 Create Event
                         </div>
                     </a>
@@ -45,9 +45,9 @@
             </div>
             <div class="grid_3">
                 <div class="form-group">
-                    <a href="createEvent.php" class="spanUpload">
+                    <a href="createProva.php" class="spanUpload">
                         <div class="fileUpload fuv2 btn btn-primary prImg" >
-                            <img class="cpImg" href="createProva.php" src="images/icons/provaDud.png"/>
+                            <img class="cpImg" src="images/icons/provaDud.png"/>
                             Create Prova
                         </div>
                     </a>
@@ -62,82 +62,71 @@
                 $result = $db->getConn()->query($sql);
 
                 if ($result->num_rows > 0) {
-                    $arrayEvent = mysqli_fetch_assoc($result);
+                   while( $arrayEvent = mysqli_fetch_assoc($result)){
+
+                        if($arrayEvent != false){?>
+                            <div class="grid_9">
+                                <div class='block3 click eventDiv'>
+                                    <div class='block2'>
+                                        <div class='grid_7'>
+                                            <div class="grid_2">
+                                                <img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt="">
+                                            </div>
+                                            <div class="grid_4">
+                                                <h1 class="eventTitle"><?php echo $arrayEvent['titol'] ?></h1>
+                                                <a><?php echo $arrayEvent['poblacio'] ?></a>
+                                                <div class="fRight">
+                                                    <a><?php echo date("Y-m-d", strtotime($arrayEvent['dataInici'])) ?></a>
+                                                </div>
+                                                <div class="descripcioEvent">
+                                                    <!-- Descripció (event) -->
+                                                    <a><?php echo $arrayEvent['descripcio'] ?></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        $proves = $db->recuperarProves($arrayEvent['Id'], true);
+                        if($proves !== false) {
+                            while ($prova = mysqli_fetch_assoc($proves)) {
+                                ?>
+                                <div class='grid_8'>
+                                    <div class='block3 click'>
+                                        <div class='block2'>
+                                            <div class='grid_2'>
+                                                <img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">
+                                            </div>
+                                            <div class='grid_4 g4Gran'>
+                                                <h4><?php echo $prova['nom'] ?></h4>
+                                                <a><?php echo $prova['poblacio'] ?></a>
+                                                <div class='fRight'>
+                                                    <a><?php echo $prova['data_hora_inici'] ?></a>
+                                                </div>
+
+                                                <div class='descripcioProva'>
+                                                    <a><?php echo $prova['data_hora_inici'] ?></a>
+                                                </div>
+                                                <a>Max. Participants: <?php echo $prova['limit_inscrits'] ?></a>
+                                                <div class='gran grid_1 fRight'>
+                                                    <?php echo $prova['distancia'] . "Km" ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        }
+                   }
                 } else {
                     //nofunka
                 }
             ?>
-
-            <?php if($arrayEvent != false){?>
-                <div class="grid_9">
-                    <div class='block3 click eventDiv'>
-                        <div class='block2'>
-                            <div class='grid_7'>
-                                <div class="grid_2">
-                                    <img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt="">
-                                </div>
-                                <div class="grid_4">
-                                    <h1 class="eventTitle"><?php echo $arrayEvent['titol'] ?></h1>
-                                    <a><?php echo $arrayEvent['poblacio'] ?></a>
-                                    <div class="fRight">
-                                        <a><?php echo date("Y-m-d", strtotime($arrayEvent['dataInici'])) ?></a>
-                                    </div>
-                                    <div class="descripcioEvent">
-                                        <!-- Descripció (event) -->
-                                        <a><?php echo $arrayEvent['descripcio'] ?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <?php
-            }
-            $proves = $db->recuperarProves($arrayEvent['Id'], true);
-            if($proves !== false) {
-                while ($prova = mysqli_fetch_assoc($proves)) {
-                    ?>
-                    <div class='grid_8'>
-                        <div class='block3 click'>
-                            <div class='block2'>
-                                <div class='grid_2'>
-                                    <img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">
-                                </div>
-                                <div class='grid_4 g4Gran'>
-                                    <h4><?php echo $prova['nom'] ?></h4>
-                                    <a><?php echo $prova['poblacio'] ?></a>
-                                    <div class='fRight'>
-                                        <a><?php echo $prova['data_hora_inici'] ?></a>
-                                    </div>
-
-                                    <div class='descripcioProva'>
-                                        <a><?php echo $prova['data_hora_inici'] ?></a>
-                                    </div>
-                                    <a>Max. Participants: <?php echo $prova['limit_inscrits'] ?></a>
-                                    <div class='gran grid_1 fRight'>
-                                        <?php echo $prova['distancia'] . "Km" ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-            }
-            ?>
-
-
-
-
-
-
-
-
-
-
-
-
-            <?php/*
+            <?php
+            /*
             $sql = "SELECT event.*, poblacio FROM event WHERE idOrganitzador = ".$_SESSION['idUser'];
 
             if($db == null)$db = new DataBase();
@@ -158,7 +147,7 @@
                     echo "</tr>";
                 }
                 echo "</table>";
-            }*/
+            }            */
             ?>
 
         </div>
