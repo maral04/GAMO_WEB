@@ -9,6 +9,14 @@ if(!isset($_GET['id']))header("Location: index.php");
     $prova = $db->recuperarProva($_GET['id']);
 
     ?>
+<!--
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js">
+    </script>-->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="js/loadgpx.js" type="text/javascript"></script>
+    <script src="js/loadMap.js" type="text/javascript"></script>
+
 </head>
 
 <body class="" id="top">
@@ -29,16 +37,10 @@ if(!isset($_GET['id']))header("Location: index.php");
                         else $img = "images/proves/Captura.png";
                             echo "<div class='grid_4'>
                                 <img class='imgFitxa' src='".$img."' alt=''>
-                            <div class='grid_4 desFitxa'>
-                                <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'> Positive Slope: ".$prova['desnivellPositiu']."mts</div>
-                                <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'> Negative Slope: ".$prova['desnivellNegatiu']."mts</div>
-                                <div class='grid_3 campsFitxa'>Accumulated Slope: ".$desnivellAcumulat."mts</div>
-                                <div class='grid_2 campsFitxa'>Max. Participants: ".$prova['limit_inscrits']."</div>
-                                <div class='grid_1 gran campsFitxa'>".$prova['distancia']."Km</div>
-                                <div class='grid_3'>
-                                    <a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a>
+                                <div class='grid_11'>
+                                    <!--Mapa amb la ruta de la prova.-->
+                                    <div id='map' idprova='".$prova['Id']."'>
                                 </div>
-
                             </div>
                             </div>";
                             echo "
@@ -57,12 +59,18 @@ if(!isset($_GET['id']))header("Location: index.php");
                                     <!-- Descripció (prova) -->
                                     <a>".$prova['descripcio']." </a>
                                 </div>
-                            </div>
-                            <div class='grid_6'>";
-                                //Mapa amb la ruta de la prova.
-                                //include_once 'track/attempt.html';
-                            echo "</div>
-                            ";
+                                <div class='grid_7 desFitxa'>
+                                    <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'> Positive Slope: ".$prova['desnivellPositiu']."mts</div>
+                                    <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'> Negative Slope: ".$prova['desnivellNegatiu']."mts</div>
+                                    <div class='grid_3 campsFitxa'>Accumulated Slope: ".$desnivellAcumulat."mts</div>
+                                    <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/mPpl.png' alt='Max. Participants'>Max. Participants: ".$prova['limit_inscrits']."</div>
+                                    <div class='grid_3'>
+                                    <img class='icoFitxa' src='images/icons/www.png' alt='Organization'>
+                                    <a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a>
+                                    </div>
+                                    <div class='grid_2 gran campsFitxa'><img class='icoFitxa' src='images/icons/distance.png' alt='Distance'>".$prova['distancia']."Km</div>
+                                </div>
+                            </div>";
                         ?>
                     </div>
                 </div>
