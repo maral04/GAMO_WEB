@@ -1133,15 +1133,13 @@ h4{
 }
 
 .fileUpload {
-    padding-left:8%;
-    padding-right:6%;
     position: relative;
     overflow: hidden;
     float:left;
+    padding-right:10%;
 }
 
 .fileUpload input.upload {
-
     position: absolute;
     top: 0;
     right: 0;
@@ -1242,5 +1240,5 @@ h4{
 }
 
 .spanSubmit{
-    margin-left:30%;
+    margin-left:50%;
 }

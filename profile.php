@@ -288,7 +288,7 @@
                     echo "<div class='grid_3 error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
                 }
                 ?>
-                <div class="fileUpload btn btn-primary grid_2">
+                <div class="fileUpload btn btn-primary grid_1">
                     <span class="spanSubmit">Submit</span>
                     <input type="submit" name="submitProfile" class="btn upload" value="Submit"/>
                 </div>
