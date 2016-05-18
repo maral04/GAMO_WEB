@@ -63,6 +63,36 @@ class Prova
         $this->setPostalCode($cp);
         $this->setInscripcionsLimit($limitInscripcions);
     }
+    public function load($id = null){
+        if($this->db == null){
+            $this->db = new DataBase();
+        }
+
+        $conn = $this->db->connect();
+
+        if($id != null) {
+            $sql = "SELECT * FROM prova WHERE prova.id = " . trim($id);
+            $result = $conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+                $arrayProva = mysqli_fetch_assoc($result);
+                //$this->setId($arrayProva['Id']);
+                $this->setName($arrayProva['nom']);
+                $this->setDescription($arrayProva['descripcio']);
+                //$this->setIniDate($arrayProva['dataInici']);
+                $this->setTimeLimit($arrayProva['temps_limit']);
+                $this->setCountry($arrayProva['estat']);
+                $this->setRegion($arrayProva['regio']);
+                $this->setCity($arrayProva['poblacio']);
+                $this->setAddress($arrayProva['direccio']);
+                $this->setPostalCode($arrayProva['cp']);
+                //$this->setImg($arrayProva['imatges']);
+                return $arrayProva;
+            }
+        }
+        return false;
+    }
 
     public function save($idEvent = false, $update = false){
         if($this->db == null)$this->db = new DataBase();

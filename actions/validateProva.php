@@ -9,7 +9,7 @@ if(isset($_SESSION['idUser'])) $idUser = $_SESSION['idUser'];
 else header("location: ../login.php");
 
 if(isset($_POST['submitProva'])){
-    var_dump($_POST['sport']);
+    //var_dump($_POST['sport']);
     $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
     if($_POST['submitProva'] == 'New prova') $result = $prova->save($_POST['idEvent']);
     else $result = $prova->save();

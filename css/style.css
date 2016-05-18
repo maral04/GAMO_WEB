@@ -1123,7 +1123,7 @@ h4{
 .noTop{
     padding-top:0px;
 }
-.idUser, .idLocal{
+.idUser, .idLocal, .idEvent{
     visibility: hidden;
     position:absolute;
 }
