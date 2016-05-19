@@ -1,15 +1,10 @@
 <?php session_start();?>
 <meta charset="UTF-8">
 <script src="js/jquery-1.12.3.min.js"></script>
-<!--<script src="https://www.google.com/jsapi"></script>-->
-
 <meta name="format-detection" content="telephone=no" />
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="css/countdown.css">
 <link rel="stylesheet" href="css/style_common.css" />
-<link rel="stylesheet" href="css/style4.css" />
-<link rel="stylesheet" href="css/camera.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery-migrate-1.2.1.js"></script>
 <script src="js/script.js"></script>
@@ -23,6 +18,6 @@
     //Navega fins a l'element desitjat.
     $(function() {
         $('html, body').animate({
-            scrollTop: $('.h3__head1').offset().top}, 1000);
+            scrollTop: $('.h3__head1').offset().top}, 445);
     });
 </script>
