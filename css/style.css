@@ -1137,6 +1137,7 @@ h4{
     overflow: hidden;
     float:left;
     padding-right:10%;
+    display:inline-table;
 }
 
 .fileUpload input.upload {
@@ -1215,16 +1216,11 @@ h4{
 
 .prImg{
     width:155px;
-
 }
 
-.spanUpload, .spanUpload2{
-    vertical-align:middle;
-    margin-left:6%;
-}
-
-.spanUpload2{
-    padding-right:8%;
+.spanUpload{
+    margin-right:10%;
+    margin-left:8%;
 }
 
 .fuv2{
@@ -1241,6 +1237,10 @@ h4{
 }
 
 .spanSubmit{
+    margin-left:60%;
+}
+
+.spanSubmit5{
     margin-left:50%;
 }
 

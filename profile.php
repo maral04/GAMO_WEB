@@ -48,7 +48,7 @@
                         }
                     ?>
                     <div class="fileUpload btn btn-primary">
-                        <span class="spanUpload2">Upload Image</span>
+                        <img class='icoFitxa' src='images/icons/upImg.png' alt='Upload Image'><span class="spanUpload">Upload</span>
                         <input id="profileImage" type="file" class="upload" name="img" accept="image/*"/>
                     </div>
                 </div>
@@ -288,7 +288,7 @@
                 }
                 ?>
                 <div class="fileUpload btn btn-primary grid_1">
-                    <span class="spanSubmit">Submit</span>
+                    <span class="spanSubmit5">Submit</span>
                     <input type="submit" name="submitProfile" class="btn upload" value="Submit"/>
                 </div>
             </form>

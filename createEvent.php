@@ -135,7 +135,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbImages">Images</label></br>
                         <div class="fileUpload btn btn-primary">
-                            <span class="spanUpload2">Upload Image</span>
+                            <img class='icoFitxa' src='images/icons/upImg.png' alt='Upload Image'><span class="spanUpload">Upload</span>
                             <input id="tbImages" name="tbImages" type="file" class="upload" accept="image/*" value="<?php if($arrayEvent != false)echo $arrayEvent['imatges']?>">
                         </div>
                         <div class="grid_3">
