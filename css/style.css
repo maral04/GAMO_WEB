@@ -635,30 +635,6 @@ footer:after {
     font: bold 22px/18px 'Economica', sans-serif;
 }
 
-
-#toTop {
-    display: none;
-    text-decoration: none;
-    position: fixed;
-    bottom: 40px;
-    left: 51%;
-    margin-left: 610px;
-    overflow: hidden;
-    width: 61px;
-    height: 75px;
-    border: none;
-    text-indent: -999px;
-    z-index: 20;
-    background: url(../images/totop.png) no-repeat left 0;
-    transition: 0s ease;
-    -o-transition: 0s ease;
-    -webkit-transition: 0s ease;
-}
-#toTop:hover {
-    outline: none;
-    background-position: right 0;
-}
-
 /*==================================RESPONSIVE LAYOUTS===============================================*/
 
 
@@ -1264,7 +1240,7 @@ h4{
 }
 
 .joinBtn:hover{
-    background-color:#e6edeb;
+    background-color:#ffffff;
 }
 
 #tbDescripcio{

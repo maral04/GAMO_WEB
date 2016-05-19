@@ -2,7 +2,7 @@
     <?php
     include_once "head.php";
     include_once "classes/DataBase.php";
-    include_once "classes/club.php";
+    include_once "classes/Club.php";
     $arrayDades;
     $_POST["edit"]=false;
         if(isset($_POST["idclub"])){

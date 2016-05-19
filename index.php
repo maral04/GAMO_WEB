@@ -51,7 +51,7 @@
                                     "<div class='block2'>" +
                                     "<div class='grid_2'>" +
                                         <!-- Imatges (prova) -->
-                                    "<img class='' src='images/page1_img6.jpg' alt=''>" +
+                                    "<img class='' src='images/page1_img7.jpg' alt=''>" +
                                     "</div>" +
                                     "<div class='grid_4 g4Gran'>" +
                                         <!-- nom (prova) -->
@@ -139,7 +139,7 @@
                 echo "
                 <div class='block2'>
                     <div class='grid_3'>";
-                echo '<img class="" src="images/page1_img6.jpg" alt="">';
+                echo '<img class="" src="images/page1_img7.jpg" alt="">';
                 ?>
             </div>
             <div class="grid_4">

@@ -7,7 +7,7 @@
  * Time: 8:51
  */
 include_once "../classes/DataBase.php";
-include_once "../classes/club.php";
+include_once "../classes/Club.php";
 
 if (isset($_POST['submitClub'])) {
     $club= new Club();
