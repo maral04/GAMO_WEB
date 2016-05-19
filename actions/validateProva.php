@@ -3,21 +3,38 @@ session_start();
 var_dump($_POST);
 include_once "../classes/Prova.php";
 include_once "../classes/Event.php";
+
+if(isset($_GET['final'])) {
+    if(isset($_SESSION['idEvent']))$_SESSION['idEvent'] = null;
+    header("location: ../index.php");
+
+}
 $prova = new Prova();
  var_dump($_SESSION['idUser']);
 if(isset($_SESSION['idUser'])) $idUser = $_SESSION['idUser'];
 else header("location: ../login.php");
 
 if(isset($_POST['submitProva'])){
+    $provaAmbEvent = false;
     //var_dump($_POST['sport']);
     $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
-    if($_POST['submitProva'] == 'New prova') $result = $prova->save($_POST['idEvent']);
+    if(isset($_SESSION['idEvent'])){
+        if($_SESSION['idEvent'] != null){
+            $provaAmbEvent = true;
+            $result = $prova->save($_SESSION['idEvent']);
+        }else{
+            $result = $prova->save();
+        }
+    }else{
+        $result = $prova->save();
+    }
+    /*if($_POST['submitProva'] == 'New prova') $result = $prova->save($_POST['idEvent']);
     else {
         $prova->setIdEvent($_POST['idEvent']);
         $result = $prova->save();
     }
     echo "result ".$result;
-    //var_dump($_POST);
+    //var_dump($_POST);*/
 
     if(is_numeric($result)){
         echo "Numeric";
@@ -42,7 +59,8 @@ if(isset($_POST['submitProva'])){
         $prova->updateImg();
         $prova->updateGpx();
 
-        header("Location: ../createProva.php#profile");
+        if($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
+        else header("Location: ../createProva.php?result=unic");
     }else{
         echo $result;
     }
