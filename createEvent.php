@@ -9,8 +9,6 @@
 
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
-        //var_dump($arrayUser);
-
     }else{
         header("Location: login.php");
     }
@@ -66,10 +64,8 @@
                         <label class="col-md-4 control-label" for="tbFinDate">Final date</label>
                         <div class="col-md-6">
                             <input id="tbFinDate" name="tbFinDate" type="date" value="<?php if($arrayEvent != false)echo $arrayEvent['dataFinal']?>">
-
                         </div>
                     </div>
-
                 </div>
                 <script>
                     /**/
@@ -85,49 +81,38 @@
 
                             $('#'+id).prop( "checked", true );
                             $(this).addClass('icon-selected');
-
                         }
                     });
-
                 </script>
                 <div class="grid_3">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
                             <input id="tbCountry" name="tbCountry" type="text" required="" value="<?php if($arrayEvent != false)echo $arrayEvent['estat']?>">
-
                         </div>
                     </div>
-
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbRegion">Region</label>
                         <div class="col-md-6">
                             <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['regio']?>">
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCity">City</label>
                         <div class="col-md-6">
                             <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['poblacio']?>">
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbAddress">Address</label>
                         <div class="col-md-6">
                             <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['direccio']?>">
-
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCp">Postal code</label>
                         <div class="col-md-6">
                             <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['cp']?>">
-
                         </div>
                     </div>
                 </div>
