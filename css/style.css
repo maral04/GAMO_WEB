@@ -1136,7 +1136,8 @@ h4{
     position: relative;
     overflow: hidden;
     float:left;
-    padding-right:10%;
+    padding-right:12%;
+    padding-left:12%;
     display:inline-table;
 }
 
@@ -1246,8 +1247,8 @@ h4{
     margin-left:60%;
 }
 
-.spanSubmit5{
-    margin-left:50%;
+.spanSubmit3{
+    margin-left:34%;
 }
 
 #map{
@@ -1264,4 +1265,17 @@ h4{
 
 .joinBtn:hover{
     background-color:#e6edeb;
+}
+
+#tbDescripcio{
+    width:375px;
+    resize:vertical;
+    min-height:75px;
+    max-height:225px;
+    margin-bottom:4%;
+}
+
+.club{
+    float:left;
+    margin-left:24%;
 }

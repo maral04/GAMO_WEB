@@ -334,35 +334,30 @@
                             <input id="tbManager" name="tbManager" type="text" placeholder="http://olladenuria.cat/" value ="<?php if ($arrayProva != false) echo $arrayProva['pagina_organitzacio']?>">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPrice">Price</label>
                         <div class="col-md-6">
                             <input id="tbPrice" name="tbPrice" type="number"  value ="<?php if ($arrayProva != false) echo $arrayProva['preu']?>" >
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbLimitInscrits">Limit enrollments</label>
                         <div class="col-md-6">
                             <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" value ="<?php if ($arrayProva != false)echo $arrayProva['limit_inscrits']?>" >
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbInscripcionsIni">Open registration date</label>
                         <div class="col-md-6">
                             <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['obertura_inscripcions']?>" >
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbInscripcionsFin">Final registration date</label>
                         <div class="col-md-6">
                             <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['tancament_inscripcionts']?>">
                         </div>
                     </div>
-
                 </div>
                 <div class="grid_12">
                     <div class="btns">

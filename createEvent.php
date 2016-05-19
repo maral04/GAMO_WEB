@@ -145,7 +145,7 @@
                 </div>
                 <div class="grid_12">
                     <div class="fileUpload btn btn-primary grid_2">
-                        <span class="spanSubmit">Submit</span>
+                        <span class="spanSubmit3">Submit</span>
                         <input  type="submit" name="submitEvent" class="btn upload" class="upload" value="Submit"/>
                     </div>
                     <?php
