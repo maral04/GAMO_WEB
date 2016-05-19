@@ -14,35 +14,6 @@
 <script src="js/jquery-migrate-1.2.1.js"></script>
 <script src="js/script.js"></script>
 <script src="js/superfish.js"></script>
-<script src="js/jquery.ui.totop.js"></script>
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
-<script src="js/camera.js"></script>
-<script src="js/rotate.js"></script>
 <script src="js/jquery.mobile.customized.min.js"></script>
-<script>
-    //Navega fins a l'element desitjat.
-    $(function() {
-        $('html, body').animate({
-            scrollTop: $('.h3__head1').offset().top}, 1000);
-    });
-</script>
-
-<script>
-    //Reventa coses, fer de nou.
-    /*
-    $(document).ready(function(){
-        jQuery('#camera_wrap').camera({
-            loader: false,
-            pagination: false ,
-            minHeight: '444',
-            thumbnails: false,
-            height: '27.86458333333333%',
-            caption: true,
-            navigation: true,
-            fx: 'simpleFade'
-        });
-        $().UItoTop({ easingType: 'easeOutQuart' });
-    });
-    */
-</script>
