@@ -21,6 +21,14 @@
 <script src="js/rotate.js"></script>
 <script src="js/jquery.mobile.customized.min.js"></script>
 <script>
+    //Navega fins a l'element desitjat.
+    $(function() {
+        $('html, body').animate({
+            scrollTop: $('.h3__head1').offset().top}, 1000);
+    });
+</script>
+
+<script>
     //Reventa coses, fer de nou.
     /*
     $(document).ready(function(){

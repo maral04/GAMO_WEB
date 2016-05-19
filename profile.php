@@ -30,7 +30,7 @@
     </script>
     <div class="container_12" >
         <div class="grid_10">
-            <h3 class="registre">My profile</h3>
+            <h3 class="registre h3__head1">My profile</h3>
         </div>
         <div class="grid_8 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">

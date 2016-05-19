@@ -30,7 +30,7 @@
     </script>
     <div class="container_12">
         <div class="grid_10">
-            <h3 class="registre">Organise</h3>
+            <h3 class="registre h3__head1">Organise</h3>
         </div>
         <div class="grid_11 block3">
             <div class="grid_3">

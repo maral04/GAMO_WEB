@@ -23,7 +23,7 @@
                 <form class="form-horizontal" method="post" action="actions/validateUser.php">
                     <fieldset>
                         <!-- Form Name -->
-                        <h3 class="registre">Join</h3>
+                        <h3 class="registre h3__head1">Join</h3>
 
                         <!-- Text input-->
                         <div class="form-group">

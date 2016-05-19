@@ -96,7 +96,7 @@
         }
         ?>
         <div class="grid_10">
-            <h3 class="registre">New prova</h3>
+            <h3 class="registre h3__head1">New prova</h3>
         </div>
         <div class="grid_10 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">
