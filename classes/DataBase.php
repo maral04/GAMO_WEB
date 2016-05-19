@@ -79,12 +79,11 @@ class DataBase
 
     public function recuperarClubs (){
         $sql = "SELECT * FROM club;";
-
         $result = $this->conn->query($sql);
-
         if ($result->num_rows > 0) {
             return $result;
         } else {
+
             return false;
         }
     }

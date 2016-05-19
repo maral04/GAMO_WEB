@@ -18,12 +18,15 @@
     if(isset($_SESSION['idEvent']) && !isset($_GET['provaId'])) {
         $arrayEvent = $event->load($_SESSION['idEvent']);
 
-    }else $arrayEvent = false;
-    if(isset($_GET['provaId'])) {
-        $arrayProva = $prova->load($_GET['provaId']);
-        var_dump($arrayProva);
+    }else {
+        $arrayEvent = false;
 
-    }else $arrayProva = false;
+        if(isset($_GET['provaId'])) {
+            $arrayProva = $prova->load($_GET['provaId']);
+            var_dump($arrayProva);
+
+        }else $arrayProva = false;
+    }
     ?>
     </div>
 </head>
@@ -98,7 +101,7 @@
         <div class="grid_10 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
-                <input type="text" name="idEvent" class="idEvent" value="<?php if($arrayProva != false) echo $arrayProva['Id']?>">
+                <input type="text" name="idEvent" class="idEvent" value="<?php if($arrayEvent != false) echo $arrayEvent['Id']; else if ($arrayProva != false ) echo $arrayProva['FK_Id_event']?>">
 
                 <div class="grid_3">
                     <!-- Text input-->

@@ -109,13 +109,12 @@
                                 <option></option>
                                 <?php
                                 $resultClubs = $db->recuperarClubs();
-
                                 while ($clubs = mysqli_fetch_assoc($resultClubs)) {
                                     //var_dump($clubs);
-                                    if(trim($clubs['Nom']) == trim($arrayUser['Nom'])){
-                                        echo "<option value='".$clubs['Id']."' selected>".$clubs['Nom']."</option>";
+                                    if(trim($clubs['nom']) == trim($arrayUser['nom'])){
+                                        echo "<option value='".$clubs['Id']."' selected>".$clubs['nom']."</option>";
                                     }else{
-                                        echo "<option value='" . $clubs['Id'] . "' >" . $clubs['Nom'] . "</option>";
+                                        echo "<option value='" . $clubs['Id'] . "' >" . $clubs['nom'] . "</option>";
                                     }
                                 }
                                 ?>

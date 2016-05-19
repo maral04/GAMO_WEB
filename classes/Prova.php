@@ -135,6 +135,24 @@ class Prova
 
                 if(trim($error) == "") return $this->id;
             } else echo mysqli_stmt_error($mysql2);
+        }else{
+            $mysql2 = mysqli_prepare($conn, "UPDATE INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
+                                                    num_avituallaments,nom,pagina_organitzacio,esports,
+                                                    descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
+                                                    temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
+                                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            //die(mysqli_error($conn));
+            mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
+                $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
+                $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit,$this->InscripcionsLimit, $this->postalCode,
+                $this->Country, $this->Region, $this->City, $this->Address);
+
+            if (mysqli_stmt_execute($mysql2)){
+                $this->id = mysqli_insert_id($conn);
+
+                if(trim($error) == "") return $this->id;
+            } else echo mysqli_stmt_error($mysql2);
         }
         $error = "Error with register ";
 
