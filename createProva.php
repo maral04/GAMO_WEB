@@ -288,58 +288,44 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbRegion">Region</label>
                         <div class="col-md-6">
-
                             <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['regio']; else if ($arrayProva != false) echo $arrayProva['regio'] ?>">
-
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCity">City</label>
                         <div class="col-md-6">
-
                             <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['poblacio']; else if ($arrayProva != false) echo $arrayProva['poblacio'] ?>">
-
-
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbAddress">Address</label>
                         <div class="col-md-6">
-
                             <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['direccio']; else if ($arrayProva != false)echo $arrayProva['direccio'] ?>">
-
-
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCp">Postal code</label>
                         <div class="col-md-6">
-
                             <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['cp']; else if ($arrayProva != false)echo $arrayProva['cp'] ?>">
-
-
                         </div>
                     </div>
                 </div>
                 <div class="grid_3">
                     <div class="form-group">
-                        <div class="fileUpload btn btn-primary prImg">
+                        <div class="fileUpload btn btn-primary prImg grid_2">
                             <img class="cpImg" src='images/icons/picture.png'/>
                             <span class="spanUpload">Upload Images</span>
                             <input type="file" id="tbImages" name="tbImages" class="upload" accept="image/*"  />
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="fileUpload btn btn-primary prImg">
+                        <div class="fileUpload btn btn-primary prImg grid_2">
                             <img class="cpImg" src='images/icons/trackMap.png'/>
                             <span class="spanUpload">Upload Tracks</span>
                             <input id="tbTrack" class="upload" name="tbTrack" type="file" />
                         </div>
                     </div>
-
                 </div>
                 <div class="grid_5">
                     <div class="form-group">

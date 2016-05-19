@@ -2,7 +2,7 @@
     <?php
     include_once "head.php";
     include_once "classes/DataBase.php";
-    include_once  "classes/club.php";
+    include_once "classes/club.php";
     $arrayDades;
     $_POST["edit"]=false;
         if(isset($_POST["idclub"])){
@@ -12,28 +12,18 @@
                $sql = "SELECT * From club WHERE Id =".$_POST["idclub"];
                $result = $conn->query($sql);
 
-
-
-               //var_dump($result);
-
                if(is_object($result)) {
                    if ($result->num_rows > 0) {
                        $arrayDades=mysqli_fetch_assoc($result);
-                     //  var_dump($arrayDades);
-
                    } else {
                        echo "id invalida";
                    }
                }
            }
-
-
     }
     ?>
 </head>
-
-<body class="" id="top">
-
+<body>
 <div class="main">
     <?php include_once "header.php"; ?>
     <div class="content" id="registerContent">
@@ -42,7 +32,7 @@
                 <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateClub.php">
                     <fieldset>
                         <!-- Form Name -->
-                        <h3 class="registre">Club register</h3>
+                        <h3 class="registre h3__head1">Club register</h3>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbName">Name<?php if(isset($_POST["idclub"]))echo ": ".$arrayDades["nom"]; ?></label>
@@ -53,7 +43,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbName">Description</label>
                             <div class="col-md-6">
-                                <textarea id="tbDescripcio" name="tbDescr" class="form-control input-md" required="" tabindex="0" autofocus>
+                                <textarea id="tbDescripcio" name="tbDescr" class="form-control input-md" required="" tabindex="0">
                                     <?php if(isset($_POST["idclub"]))echo $arrayDades["descripcio"]; ?>
                                 </textarea>
                             </div>

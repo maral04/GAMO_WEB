@@ -48,7 +48,7 @@
                         }
                     ?>
                     <div class="fileUpload btn btn-primary">
-                        <img class='icoFitxa' src='images/icons/upImg.png' alt='Upload Image'><span class="spanUpload">Upload</span>
+                        <img class='icoFitxa' src='images/icons/upImg.png' alt='Upload Image'><span class="spanUpload2">Upload</span>
                         <input id="profileImage" type="file" class="upload" name="img" accept="image/*"/>
                     </div>
                 </div>

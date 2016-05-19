@@ -17,3 +17,11 @@
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/jquery.mobile.customized.min.js"></script>
+
+<script>
+    //Navega fins a l'element desitjat.
+    $(function() {
+        $('html, body').animate({
+            scrollTop: $('.h3__head1').offset().top}, 1000);
+    });
+</script>
