@@ -16,7 +16,7 @@ class Club
         $this->db = new DataBase();
 
     }
-    public function validate($nom,$descr)
+    public function validate($nom,$descr, $update=false)
     {
         if($this->db == null){
             $this->db = new DataBase();
@@ -33,6 +33,17 @@ class Club
 
                     $mysql = mysqli_prepare($conn, "INSERT INTO club (nom,descripcio,imatge)  VALUES (?,?,?)");
 
+                    mysqli_stmt_bind_param($mysql, "sss", $nom,$descr,$this->urlImg );
+
+                    if (mysqli_stmt_execute($mysql)) return true;
+                    else echo mysqli_stmt_error($mysql);
+                }
+                $error = "Error with register ";
+            }else if($this->exist() && $update==true){
+                if ($conn != null) {
+
+                    $mysql = mysqli_prepare($conn, "UPDATE club (nom,descripcio,imatge)  VALUES (?,?,?)");
+
                     mysqli_stmt_bind_param($mysql, "sss", $this->nom,$descr,$this->urlImg );
 
                     if (mysqli_stmt_execute($mysql)) return true;
@@ -41,6 +52,7 @@ class Club
                 $error = "Error with register ";
             } else {
                 $error = "Club name already registered";
+
             }
 
         }$error = "The name and the description have to be";

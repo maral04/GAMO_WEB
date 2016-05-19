@@ -28,6 +28,19 @@ if (isset($_POST['submitClub'])) {
             }
             $club->validate($_POST["tbName"],$_POST["tbDescr"]);
             header("Location: ../organise.php");
+        }else if($_POST["edit"]!=false){
+
+            if(trim($_FILES['img']['name']) != ""){
+                $file = $club->carregarFitxer($_FILES["img"],$_POST["tbName"]);
+                if(trim($file) != "") $club->setUrlImg($file);
+                else $club->setUrlImg(null);
+            }else{
+                $club->setUrlImg(null);
+            }
+            $club->validate($_POST["tbName"],$_POST["tbDescr"],$_POST["edit"]);
+            header("Location: ../organise.php");
+
+
         }
 
 }
