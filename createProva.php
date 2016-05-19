@@ -1,5 +1,6 @@
 <head>
     <?php include_once "head.php";
+
     include_once "classes/DataBase.php";
     include_once "classes/User.php";
     include_once "classes/Event.php";
@@ -9,6 +10,8 @@
     $event = new Event();
     $prova = new Prova();
     $usuari = new User();
+    $arrayEvent = false;
+    $arrayProva = false;
 
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
@@ -19,16 +22,18 @@
         $arrayEvent = $event->load($_SESSION['idEvent']);
 
     }else {
-        $arrayEvent = false;
-
         if(isset($_GET['provaId'])) {
             $arrayProva = $prova->load($_GET['provaId']);
             var_dump($arrayProva);
 
         }else $arrayProva = false;
     }
+
+    if(isset($_GET['result'])){
+        if($_GET['result'] == 'multi') echo "<div id='popup'></div>";
+    }
     ?>
-    </div>
+    <script src="js/sweetalert-master/dist/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="js/sweetalert-master/dist/sweetalert.css">
 </head>
 
 <body class="" id="top">
@@ -375,8 +380,15 @@
                 </div>
                 <div class="grid_12">
                     <div class="btns">
-                        <input type="submit" name="submitProva" class="btn" value="Submit"/>
-                        <?php if($arrayEvent != false)echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"New prova\"/>";?>
+                        <?php
+                            if($arrayProva != false) {
+                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"Submit\"/>";
+                            }else if($arrayEvent != false){
+                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"New prova\"/>";
+                            }else{
+                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"Submit\"/>";
+                            }
+                        ?>
                     </div>
 
                     <?php
@@ -393,5 +405,13 @@
 </div>
 </div>
 </body>
+<script>
+    $(document).ready(function(){
+        if($('#popup').length){
+            swal({   title: "Vols crear més proves?",   text: "You will not be able to recover this imaginary file!",   type: "success",   showCancelButton: true,   confirmButtonColor: "#88c886",   confirmButtonText: "Seguir",   cancelButtonText: "Finalize!",   closeOnConfirm: true,   closeOnCancel: false }, function(isConfirm){   if (!isConfirm) {location.href= "actions/validateProva.php?final=true"   } });
+        }
+    });
+
+</script>
 <footer><?php include_once "footer.html"; ?></footer>
 <!-- Text input-->
