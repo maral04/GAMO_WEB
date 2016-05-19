@@ -1,4 +1,5 @@
 <head>
+<<<<<<< HEAD
     <?php
     include_once "head.php";
     include_once "classes/DataBase.php";
@@ -11,6 +12,9 @@
            if( $conn=$db->connect()){
                $sql = "SELECT * From club WHERE Id =".$_POST["idclub"];
                $result = $conn->query($sql);
+=======
+    <?php include_once "head.php";
+>>>>>>> origin/master
 
                //var_dump($result);
 

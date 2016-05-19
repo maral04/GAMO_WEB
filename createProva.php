@@ -3,9 +3,11 @@
     include_once "classes/DataBase.php";
     include_once "classes/User.php";
     include_once "classes/Event.php";
+    include_once "classes/Prova.php";
 
     $db = new DataBase();
     $event = new Event();
+    $prova = new Prova();
     $usuari = new User();
 
     if(isset($_SESSION['idUser'])) {
@@ -13,10 +15,19 @@
     }else{
         header("Location: login.php");
     }
-    if(isset($_SESSION['idEvent'])) {
+    if(isset($_SESSION['idEvent']) && !isset($_GET['provaId'])) {
         $arrayEvent = $event->load($_SESSION['idEvent']);
 
-    }else $arrayEvent = false;?>
+    }else {
+        $arrayEvent = false;
+
+        if(isset($_GET['provaId'])) {
+            $arrayProva = $prova->load($_GET['provaId']);
+            var_dump($arrayProva);
+
+        }else $arrayProva = false;
+    }
+    ?>
     </div>
 </head>
 
@@ -24,19 +35,11 @@
 
 <div class="main">
     <?php include_once "header.php"; ?>
-    <!--Funció canvi Color depenent CurrentL-->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //Remou current de tots i inclou a l'actual.
-            $(".l1").attr("class", "l1 link link--kukuri currentL");
-            $(".l2").attr("class", "l2 link link--kukuri");
-            $(".l3").attr("class", "l3 link link--kukuri");
-        });
-    </script>
+
     <div class="content container_12" >
         <?php if($arrayEvent != false){?>
             <div class="grid_9">
-                <div class='block3 click eventDiv'>
+                <div class='block3 click eventDiv' onclick="location.href='createEvent.php?eventId=<?php echo $arrayEvent['Id'] ?>'">
                     <div class='block2'>
                         <div class='grid_7'>
                             <div class="grid_2">
@@ -59,12 +62,13 @@
             </div>
         <?php
         }
-        $proves = $db->recuperarProves($arrayEvent['Id'], true);
+        if($arrayEvent != false) $proves = $db->recuperarProves($arrayEvent['Id'], true);
+        else $proves = false;
         if($proves !== false) {
             while ($prova = mysqli_fetch_assoc($proves)) {
                 ?>
                 <div class='grid_8'>
-                    <div class='block3 click'>
+                    <div class='block3 click' onclick="location.href='createProva.php?provaId=<?php echo $prova['Id'] ?>#profile'">
                         <div class='block2'>
                             <div class='grid_2'>
                                 <img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">
@@ -92,19 +96,19 @@
         }
         ?>
         <div class="grid_10">
-            <h3 class="registre">New prova</h3>
+            <h3 class="registre h3__head1">New prova</h3>
         </div>
         <div class="grid_10 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
-                <input type="text" name="idEvent" class="idEvent" value="<?php if($arrayEvent != false) echo $arrayEvent['Id']?>">
+                <input type="text" name="idEvent" class="idEvent" value="<?php if($arrayEvent != false) echo $arrayEvent['Id']; else if ($arrayProva != false ) echo $arrayProva['FK_Id_event']?>">
 
                 <div class="grid_3">
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbName">Name</label>
                         <div class="col-md-6">
-                            <input id="tbName" name="tbName" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['titol'] ?>" required="">
+                            <input id="tbName" name="tbName" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['titol']; else if ($arrayProva != false) echo $arrayProva['nom'] ?>" required="">
                         </div>
                     </div>
 
@@ -112,7 +116,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDescription">Description</label>
                         <div class="col-md-6">
-                            <input id="tbDescription" name="tbDescription" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayEvent != false) echo $arrayEvent['descripcio'] ?>" >
+                            <input id="tbDescription" name="tbDescription" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayEvent != false) echo $arrayEvent['descripcio']; else if ($arrayProva != false) echo $arrayProva['descripcio'] ?>" >
 
                         </div>
                     </div>
@@ -120,23 +124,23 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniDate">Initial date</label>
                         <div class="col-md-6">
-                            <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo $arrayEvent['dataInici'] ?>">
+                            <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo $arrayEvent['dataInici']; else if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbIniTime">Start time</label>
+                        <label class="col-md-4 control-label" for="tbIniTime" >Start time</label>
                         <div class="col-md-6">
-                            <input id="tbIniTime" name="tbIniTime" type="time">
+                            <input id="tbIniTime" name="tbIniTime" type="time" value="<?if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbDistance">Distance</label>
+                        <label class="col-md-4 control-label" for="tbDistance" >Distance</label>
                         <div class="col-md-6">
-                            <input id="tbDistance" name="tbDistance" type="number" step="0.1">
+                            <input id="tbDistance" name="tbDistance" type="number" step="0.1" value="<?if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
 
 
                         </div>
@@ -145,21 +149,21 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPositive">Positive slope (m+)</label>
                         <div class="col-md-6">
-                            <input id="tbPositive" name="tbPositive" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
+                            <input id="tbPositive" name="tbPositive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbNegtive">Negative slope (m-)</label>
                         <div class="col-md-6">
-                            <input id="tbNegtive" name="tbNegtive" type="number" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
+                            <input id="tbNegtive" name="tbNegtive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCheckpoints">Checkpoints</label>
                         <div class="col-md-6">
-                            <input id="tbCheckpoints" name="tbCheckpoints" type="number">
+                            <input id="tbCheckpoints" name="tbCheckpoints" type="number" value="<?if ($arrayProva != false) echo $arrayProva['num_avituallaments'] ?>">
 
 
                         </div>
@@ -168,7 +172,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbTimeLimit">Time limit</label>
                         <div class="col-md-6">
-                            <input id="tbTimeLimit" name="tbTimeLimit" type="time" >
+                            <input id="tbTimeLimit" name="tbTimeLimit" type="time" value="<?if ($arrayProva != false) echo $arrayProva['temps_limit'] ?>" >
 
                         </div>
                     </div>
@@ -178,7 +182,7 @@
                         <div id="sports">
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'bike') {
+                                if(strpos($arrayProva['esports'], 'bike') != false) {
                                     echo "<img id='img-bike'  class='icon-selected' src=\"images/icons/bike.png\"/>";
                                     echo "<span>MTB</span>";
                                     echo "<input id='s-bike' checked type='checkbox' name='sport[]' value='bike'>";
@@ -191,7 +195,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'hiking') {
+                                if(strpos($arrayProva['esports'], 'hiking') != false) {
                                     echo "<img id='img-hike'  class='icon-selected' src=\"images/icons/hiking.png\"/>";
                                     echo "<span>Hiking</span>";
                                     echo "<input id='s-hike' checked type='checkbox' name='sport[]' value='hiking'>";
@@ -204,7 +208,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'skiing') {
+                                if(strpos($arrayProva['esports'], 'skiing') != false) {
                                     echo "<img id='img-ski'  class='icon-selected' src=\"images/icons/skiing.png\"/>";
                                     echo "<span>Skiing</span>";
                                     echo "<input id='s-ski' checked type='checkbox' name='sport[]' value='skiing'>";
@@ -217,7 +221,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'trail') {
+                                if(strpos($arrayProva['esports'], 'trail') != false ) {
                                     echo "<img id='img-trail' class='icon-selected' src=\"images/icons/trail.png\"/>";
                                     echo "<span>Trail</span>";
                                     echo "<input id='s-trail' checked type=\"checkbox\" name=\"sport[]\" value=\"trail\">";
@@ -230,7 +234,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(trim($arrayUser['esport']) == 'climbing') {
+                                if(strpos($arrayProva['esports'], 'climbing') != false) {
                                     echo " <img id='img-climb' class='icon-selected' src=\"images/icons/climbing.png\"/>";
                                     echo "<span>Climbing</span>";
                                     echo "<input id='s-climb' checked type='checkbox' name='sport[]' value='climbing'>";
@@ -269,7 +273,7 @@
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
 
-                            <input id="tbCountry" name="tbCountry" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['estat'] ?>" required="">
+                            <input id="tbCountry" name="tbCountry" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['estat']; else if ($arrayProva != false) echo $arrayProva['estat'] ?>" required="">
 
 
                         </div>
@@ -280,7 +284,7 @@
                         <label class="col-md-4 control-label" for="tbRegion">Region</label>
                         <div class="col-md-6">
 
-                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['regio'] ?>">
+                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['regio']; else if ($arrayProva != false) echo $arrayProva['regio'] ?>">
 
 
                         </div>
@@ -290,7 +294,7 @@
                         <label class="col-md-4 control-label" for="tbCity">City</label>
                         <div class="col-md-6">
 
-                            <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['poblacio'] ?>">
+                            <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['poblacio']; else if ($arrayProva != false) echo $arrayProva['poblacio'] ?>">
 
 
                         </div>
@@ -300,7 +304,7 @@
                         <label class="col-md-4 control-label" for="tbAddress">Address</label>
                         <div class="col-md-6">
 
-                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['direccio'] ?>">
+                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['direccio']; else if ($arrayProva != false)echo $arrayProva['direccio'] ?>">
 
 
                         </div>
@@ -309,7 +313,7 @@
                         <label class="col-md-4 control-label" for="tbCp">Postal code</label>
                         <div class="col-md-6">
 
-                            <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['cp'] ?>">
+                            <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['cp']; else if ($arrayProva != false)echo $arrayProva['cp'] ?>">
 
 
                         </div>
@@ -327,7 +331,7 @@
                         <div class="fileUpload btn btn-primary prImg">
                             <img class="cpImg" src='images/icons/trackMap.png'/>
                             <span class="spanUpload">Upload Tracks</span>
-                            <input id="tbTrack" class="upload" name="tbTrack" type="file" value="<?php if($arrayUser != false) echo $arrayUser['dataNaix'] ?>"/>
+                            <input id="tbTrack" class="upload" name="tbTrack" type="file" />
                         </div>
                     </div>
 
@@ -336,35 +340,35 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbManager">Manager web site</label>
                         <div class="col-md-6">
-                            <input id="tbManager" name="tbManager" type="text" placeholder="http://olladenuria.cat/">
+                            <input id="tbManager" name="tbManager" type="text" placeholder="http://olladenuria.cat/" value ="<?php if ($arrayProva != false) echo $arrayProva['pagina_organitzacio']?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPrice">Price</label>
                         <div class="col-md-6">
-                            <input id="tbPrice" name="tbPrice" type="number"   >
+                            <input id="tbPrice" name="tbPrice" type="number"  value ="<?php if ($arrayProva != false) echo $arrayProva['preu']?>" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbLimitInscrits">Limit enrollments</label>
                         <div class="col-md-6">
-                            <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" >
+                            <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" value ="<?php if ($arrayProva != false)echo $arrayProva['limit_inscrits']?>" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbInscripcionsIni">Open registration date</label>
                         <div class="col-md-6">
-                            <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" >
+                            <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['obertura_inscripcions']?>" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbInscripcionsFin">Final registration date</label>
                         <div class="col-md-6">
-                            <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" >
+                            <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['tancament_inscripcionts']?>">
                         </div>
                     </div>
 

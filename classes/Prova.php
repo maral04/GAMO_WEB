@@ -63,6 +63,36 @@ class Prova
         $this->setPostalCode($cp);
         $this->setInscripcionsLimit($limitInscripcions);
     }
+    public function load($id = null){
+        if($this->db == null){
+            $this->db = new DataBase();
+        }
+
+        $conn = $this->db->connect();
+
+        if($id != null) {
+            $sql = "SELECT * FROM prova WHERE prova.id = " . trim($id);
+            $result = $conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+                $arrayProva = mysqli_fetch_assoc($result);
+                //$this->setId($arrayProva['Id']);
+                $this->setName($arrayProva['nom']);
+                $this->setDescription($arrayProva['descripcio']);
+                //$this->setIniDate($arrayProva['dataInici']);
+                $this->setTimeLimit($arrayProva['temps_limit']);
+                $this->setCountry($arrayProva['estat']);
+                $this->setRegion($arrayProva['regio']);
+                $this->setCity($arrayProva['poblacio']);
+                $this->setAddress($arrayProva['direccio']);
+                $this->setPostalCode($arrayProva['cp']);
+                //$this->setImg($arrayProva['imatges']);
+                return $arrayProva;
+            }
+        }
+        return false;
+    }
 
     public function save($idEvent = false, $update = false){
         if($this->db == null)$this->db = new DataBase();
@@ -89,6 +119,24 @@ class Prova
             }
 
             $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
+                                                    num_avituallaments,nom,pagina_organitzacio,esports,
+                                                    descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
+                                                    temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
+                                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            //die(mysqli_error($conn));
+            mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
+                $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
+                $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit,$this->InscripcionsLimit, $this->postalCode,
+                $this->Country, $this->Region, $this->City, $this->Address);
+
+            if (mysqli_stmt_execute($mysql2)){
+                $this->id = mysqli_insert_id($conn);
+
+                if(trim($error) == "") return $this->id;
+            } else echo mysqli_stmt_error($mysql2);
+        }else{
+            $mysql2 = mysqli_prepare($conn, "UPDATE INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
                                                     num_avituallaments,nom,pagina_organitzacio,esports,
                                                     descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
                                                     temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)

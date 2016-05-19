@@ -30,7 +30,7 @@
     </script>
     <div class="container_12">
         <div class="grid_10">
-            <h3 class="registre">Organise</h3>
+            <h3 class="registre h3__head1">Organise</h3>
         </div>
         <div class="grid_11 block3">
             <div class="grid_3">
@@ -66,7 +66,7 @@
 
                         if($arrayEvent != false){?>
                             <div class="grid_9">
-                                <div class='block3 click eventDiv' onclick="location.href='createEvent.php?id=<?php echo $arrayEvent['Id'];?>'">
+                                <div class='block3 click eventDiv' onclick="location.href='createEvent.php?eventId=<?php echo $arrayEvent['Id'];?>'">
                                     <div class='block2'>
                                         <div class='grid_7'>
                                             <div class="grid_2">
@@ -94,7 +94,7 @@
                             while ($prova = mysqli_fetch_assoc($proves)) {
                                 ?>
                                 <div class='grid_8'>
-                                    <div class='block3 click' onclick="location.href='createProva.php?id=<?php echo $prova['Id'];?>'">
+                                    <div class='block3 click' onclick="location.href='createProva.php?provaId=<?php echo $prova['Id'];?>'">
                                         <div class='block2'>
                                             <div class='grid_2'>
                                                 <img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">

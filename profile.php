@@ -30,7 +30,7 @@
     </script>
     <div class="container_12" >
         <div class="grid_10">
-            <h3 class="registre">My profile</h3>
+            <h3 class="registre h3__head1">My profile</h3>
         </div>
         <div class="grid_8 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateUser.php">
@@ -109,13 +109,12 @@
                                 <option></option>
                                 <?php
                                 $resultClubs = $db->recuperarClubs();
-
                                 while ($clubs = mysqli_fetch_assoc($resultClubs)) {
                                     //var_dump($clubs);
-                                    if(trim($clubs['Nom']) == trim($arrayUser['Nom'])){
-                                        echo "<option value='".$clubs['Id']."' selected>".$clubs['Nom']."</option>";
+                                    if(trim($clubs['nom']) == trim($arrayUser['nom'])){
+                                        echo "<option value='".$clubs['Id']."' selected>".$clubs['nom']."</option>";
                                     }else{
-                                        echo "<option value='" . $clubs['Id'] . "' >" . $clubs['Nom'] . "</option>";
+                                        echo "<option value='" . $clubs['Id'] . "' >" . $clubs['nom'] . "</option>";
                                     }
                                 }
                                 ?>
