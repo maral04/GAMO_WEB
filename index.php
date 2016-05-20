@@ -114,7 +114,7 @@
                 <h3 class="h3__head1">Events</h3>
                 <!-- RecuperarEvents -->
                 <?php
-                include_once 'classes\DataBase.php';
+                include_once 'classes/DataBase.php';
                 $db = new DataBase();
                 $result = $db->recuperarEvent();
 

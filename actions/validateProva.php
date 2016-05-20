@@ -23,7 +23,7 @@ if(isset($_POST['submitProva'])){
             $provaAmbEvent = true;
             $result = $prova->save($_SESSION['idEvent']);
         }else{
-            $result = $prova->save();
+
         }
     }else{
         $result = $prova->save();
@@ -91,6 +91,9 @@ if(isset($_POST['submitProva'])){
     }
 
     var_dump($event);
+}else if (isset($_POST['updateProva'])){
+    $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
+
 }
 
 function carregarFitxer($f, $id, $type) {

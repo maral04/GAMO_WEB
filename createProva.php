@@ -363,7 +363,7 @@
                     <div class="btns">
                         <?php
                             if($arrayProva != false) {
-                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"Submit\"/>";
+                                echo "<input type=\"submit\" name=\"updateProva\" class=\"btn\" value=\"Submit\"/>";
                             }else if($arrayEvent != false){
                                 echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"New prova\"/>";
                             }else{

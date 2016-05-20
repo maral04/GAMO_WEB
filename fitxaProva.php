@@ -8,6 +8,10 @@ if(!isset($_GET['id']))header("Location: index.php");
     $db = new DataBase();
     $prova = $db->recuperarProva($_GET['id']);
 
+    if(isset($_SESSION['idUser'])) {
+        $idUser = $_SESSION['idUser'];
+    }
+
     ?>
 <!--
     <script type="text/javascript"
@@ -67,7 +71,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                                     <!-- 8digits+km o queda malament. -->
                                     <div class='grid_2 gran campsFitxa'><img class='icoFitxa' src='images/icons/distance.png' alt='Distance'>".$prova['distancia']."Km</div>
                                     <!-- Canviar el link per un unir-se amb el token de la prova -->
-                                    <div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'><a href='http://".$prova['pagina_organitzacio']."' class='gran'>JOIN</a></div>
+                                    <div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'><a href='actions/validateInscripcio.php?idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'>JOIN</a></div>
                                 </div>
                             </div>";
                         ?>
