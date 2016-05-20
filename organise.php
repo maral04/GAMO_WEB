@@ -33,12 +33,12 @@
             <h3 class="registre h3__head1">Organise</h3>
         </div>
         <div class="grid_11 block3">
-            <div class="grid_3">
-                <div class="form-group">
-                    <a href="createEvent.php" class="spanUpload">
-                        <div class="fileUpload fuv2 btn btn-primary prImg" >
-                            <img class="cpImg" src="images/icons/eventCalendar.png"/>
-                                Create Event
+            <div class='grid_3'>
+                <div class='form-group'>
+                    <a href='createEvent.php' class='spanUpload'>
+                        <div class='fileUpload fuv2 btn btn-primary prImg' >
+                            <img class='cpImg' src='images/icons/eventCalendar.png'/>
+                            Create Event
                         </div>
                     </a>
                 </div>
@@ -66,6 +66,16 @@
 
                         if($arrayEvent != false){?>
                             <div class="grid_9">
+
+
+                                <!-- FES SERVIR QUESTO **** -->
+                                <?php
+                                $numProves = $db->recuperarNumProves($event['Id']);
+                                if ($numProves['COUNT(*)'] > 1) {
+                                echo "
+                                ";?>
+                                    
+
                                 <div class='block3 click eventDiv' onclick="location.href='createEvent.php?eventId=<?php echo $arrayEvent['Id'];?>'">
                                     <div class='block2'>
                                         <div class='grid_7'>
