@@ -131,7 +131,10 @@
                 <div class="grid_12">
                     <div class="fileUpload btn btn-primary grid_2">
                         <span class="spanSubmit3">Submit</span>
-                        <input  type="submit" name="submitEvent" class="btn upload" class="upload" value="Submit"/>
+                        <?php
+                        if(!$arrayEvent) echo "<input  type='submit' name='submitEvent' class='btn upload' class='upload' value='Submit'/>";
+                        else echo "<input  type=\"submit\" name=\"updatetEvent\" class=\"btn upload\" class=\"upload\" value=\"Submit\"/>"
+                        ?>
                     </div>
                     <?php
                     if(isset($_GET['error'])){

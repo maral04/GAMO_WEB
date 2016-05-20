@@ -39,8 +39,10 @@ class Prova
         $this->db = new DataBase();
     }
 
-    public function init( $idOrganitzador, $Name, $Description , $IniDate, $IniTime  ,$Distance, $Positive, $Negtive, $Checkpoints, $TimeLimit, $sport, $Country, $Region, $City, $Address,$cp, $Manager, $Price,  $InscripcionsIni, $InscripcionsFin, $limitInscripcions)
+    public function init( $idOrganitzador, $Name, $Description , $IniDate, $IniTime  ,$Distance, $Positive, $Negtive, $Checkpoints, $TimeLimit, $sport, $Country, $Region, $City, $Address,$cp, $Manager, $Price,  $InscripcionsIni, $InscripcionsFin, $limitInscripcions, $id = null)
     {
+        if($id != null) $this->id = $id;
+
         $this->setIdOrganitzador($idOrganitzador);
         $this->setName($Name);
         $this->setDescription($Description);
@@ -100,59 +102,59 @@ class Prova
         $error = "";
 
         if ($conn != null) {
-            if($idEvent == false) {
-                $mysql1 = mysqli_prepare($conn, "INSERT INTO event (idOrganitzador,titol,dataInici,dataFinal,descripcio,cp,
-                                                    estat,regio,poblacio,direccio)
-                                                    VALUES (?,?,?,?,?,?,?,?,?,?)");
+            if (!$update) {
+                if ($idEvent == false) {
+                    $mysql1 = mysqli_prepare($conn, "INSERT INTO event (idOrganitzador,titol,dataInici,dataFinal,descripcio,cp,
+                                                        estat,regio,poblacio,direccio)
+                                                        VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    //die(mysqli_error($conn));
+
+                    mysqli_stmt_bind_param($mysql1, "isssssssss", $this->idOrganitzador, $this->Name, $this->IniDate, $this->IniDate, $this->Description,
+                        $this->postalCode, $this->Country, $this->Region, $this->City, $this->Address);
+
+                    if (mysqli_stmt_execute($mysql1)) ;
+                    else echo mysqli_stmt_error($mysql1);
+
+                    $id = mysqli_insert_id($conn);
+                    $this->setIdEvent($id);
+                } else {
+                    $this->setIdEvent($idEvent);
+                }
+
+                $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
+                                                        num_avituallaments,nom,pagina_organitzacio,esports,
+                                                        descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
+                                                        temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
+                                                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
                 //die(mysqli_error($conn));
+                mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
+                    $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
+                    $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
+                    $this->Country, $this->Region, $this->City, $this->Address);
 
-                mysqli_stmt_bind_param($mysql1, "isssssssss", $this->idOrganitzador, $this->Name, $this->IniDate, $this->IniDate, $this->Description,
-                    $this->postalCode, $this->Country, $this->Region, $this->City, $this->Address);
+                if (mysqli_stmt_execute($mysql2)) {
+                    $this->id = mysqli_insert_id($conn);
 
-                if (mysqli_stmt_execute($mysql1)) ;
-                else echo mysqli_stmt_error($mysql1);
+                    if (trim($error) == "") return $this->id;
+                } else echo mysqli_stmt_error($mysql2);
+            } else {
 
-                $id = mysqli_insert_id($conn);
-                $this->setIdEvent($id);
-            }else{
-                $this->setIdEvent($idEvent);
+                $mysql2 = mysqli_prepare($conn, "UPDATE prova SET preu=?,distancia=?,desnivellPositiu=?,desnivellNegatiu=?,
+                                                        num_avituallaments=?,nom=?,pagina_organitzacio=?,esports=?,
+                                                        descripcio=?,data_hora_inici=?,obertura_inscripcions=?,tancament_inscripcionts=?,
+                                                        temps_limit=?,limit_inscrits=?,cp=?,estat=?,regio=?,poblacio=?,direccio=? WHERE id = ".$this->id);
+
+                //die(mysqli_error($conn));
+                mysqli_stmt_bind_param($mysql2, "ddiiissssssssisssss",  $this->Price, $this->Distance, $this->Positive,
+                    $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
+                    $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
+                    $this->Country, $this->Region, $this->City, $this->Address);
+
+                if (mysqli_stmt_execute($mysql2)) {
+                    if (trim($error) == "") return $this->id;
+                } else echo mysqli_stmt_error($mysql2);
             }
-
-            $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
-                                                    num_avituallaments,nom,pagina_organitzacio,esports,
-                                                    descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
-                                                    temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
-                                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-            //die(mysqli_error($conn));
-            mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
-                $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
-                $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit,$this->InscripcionsLimit, $this->postalCode,
-                $this->Country, $this->Region, $this->City, $this->Address);
-
-            if (mysqli_stmt_execute($mysql2)){
-                $this->id = mysqli_insert_id($conn);
-
-                if(trim($error) == "") return $this->id;
-            } else echo mysqli_stmt_error($mysql2);
-        }else{
-            $mysql2 = mysqli_prepare($conn, "UPDATE INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
-                                                    num_avituallaments,nom,pagina_organitzacio,esports,
-                                                    descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
-                                                    temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
-                                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-            //die(mysqli_error($conn));
-            mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
-                $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
-                $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit,$this->InscripcionsLimit, $this->postalCode,
-                $this->Country, $this->Region, $this->City, $this->Address);
-
-            if (mysqli_stmt_execute($mysql2)){
-                $this->id = mysqli_insert_id($conn);
-
-                if(trim($error) == "") return $this->id;
-            } else echo mysqli_stmt_error($mysql2);
         }
         $error = "Error with register ";
 

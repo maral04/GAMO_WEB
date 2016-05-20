@@ -107,6 +107,8 @@
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">
                 <input type="text" name="idUser" class="idUser" value="<?php if($arrayUser != false) echo $arrayUser['Id']?>">
                 <input type="text" name="idEvent" class="idEvent" value="<?php if($arrayEvent != false) echo $arrayEvent['Id']; else if ($arrayProva != false ) echo $arrayProva['FK_Id_event']?>">
+                <input type="text" name="idProva" class="idProva" value="<?php if($arrayProva != false) echo $arrayProva['Id'];?>">
+
 
                 <div class="grid_3">
                     <!-- Text input-->

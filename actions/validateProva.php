@@ -16,8 +16,9 @@ else header("location: ../login.php");
 
 if(isset($_POST['submitProva'])){
     $provaAmbEvent = false;
-    //var_dump($_POST['sport']);
-    $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
+    if(isset($_POST['sport'])) $sport = $_POST['sport'];
+    else $sport = "";
+    $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$sport,$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
     if(isset($_SESSION['idEvent'])){
         if($_SESSION['idEvent'] != null){
             $provaAmbEvent = true;
@@ -66,33 +67,42 @@ if(isset($_POST['submitProva'])){
     }
 
     var_dump($prova);
-}else if(isset($_POST['submitEvent'])){
-    $event = new Event();
-    $event->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbFinDate'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp']);
-    $result = $event->save();
-    echo "result ".$result;
+}else if (isset($_POST['updateProva'])){
+    if(isset($_POST['sport'])) $sport = $_POST['sport'];
+    else $sport = "";
+
+
+    $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$sport,$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits'],$_POST['idProva']);
+    $result = $prova->save(false,true);
 
     if(is_numeric($result)){
         echo "Numeric";
-        $_SESSION['idEvent'] = $result;
         if(trim($_FILES['tbImages']['name']) != ""){
             // echo "name ".$_FILES['tbImages'];
-            $file = carregarFitxer($_FILES['tbImages'],$result,3);
-            if(trim($file) != "") $event->setImg($file);
-            else $event->setImg(null);
+            $file = carregarFitxer($_FILES['tbImages'],$result,1);
+            if(trim($file) != "") $prova->setImg($file);
+            else $prova->setImg(null);
         }else{
             echo "Null";
-            $event->setImg(null);
+            $prova->setImg(null);
         }
-        $event->updateImg();
-        header("Location: ../createProva.php");
-    }else{
-        header("Location: ../createEvent.php?error=".$result);
-    }
+        if(trim($_FILES['tbTrack']['name']) != ""){
+            // echo "name ".$_FILES['tbImages'];
+            $file2 = carregarFitxer($_FILES['tbTrack'],$result,2);
+            if(trim($file2) != "") $prova->setTrack($file2);
+            else $prova->setTrack(null);
+        }else{
+            echo "Null";
+            $prova->setTrack(null);
+        }
+        $prova->updateImg();
+        $prova->updateGpx();
 
-    var_dump($event);
-}else if (isset($_POST['updateProva'])){
-    $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$_POST['sport'],$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
+        /*if($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
+        else header("Location: ../createProva.php?result=unic");*/
+    }else{
+        echo $result;
+    }
 
 }
 

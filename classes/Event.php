@@ -66,6 +66,26 @@ class Event
                 return $id;
             }
             $error = "Error with register ";
+        }else{
+            //if (!$this->exist()) {
+            echo "update";
+            if ($conn != null) {
+                $mysql1 = mysqli_prepare($conn, "UPDATE event SET (idOrganitzador=?,titol=?,dataInici=?,dataFinal=?,descripcio=?,cp=?,
+                                                    estat=?,regio=?,poblacio=?,direccio=?)
+                                                    WHERE id = ".$this->id);
+                //die(mysqli_error($conn));
+
+                mysqli_stmt_bind_param($mysql1, "isssssssss", $this->idOrganitzador,$this->Name, $this->IniDate, $this->IniDate, $this->Description,
+                    $this->postalCode, $this->Country, $this->Region, $this->City,$this->Address);
+
+                if (mysqli_stmt_execute($mysql1));
+                else echo mysqli_stmt_error($mysql1);
+
+                $id = mysqli_insert_id($conn);
+                $this->setId($id);
+                return $id;
+            }
+            $error = "Error with register ";
         }
 
         return $error;

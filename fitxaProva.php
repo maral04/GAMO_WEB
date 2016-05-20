@@ -8,6 +8,8 @@ if(!isset($_GET['id']))header("Location: index.php");
     $db = new DataBase();
     $prova = $db->recuperarProva($_GET['id']);
 
+    if(!$prova) header("location: index.php");
+
     if(isset($_SESSION['idUser'])) {
         $idUser = $_SESSION['idUser'];
     }
