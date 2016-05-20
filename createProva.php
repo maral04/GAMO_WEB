@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbIniDate">Initial date</label>
+                        <label class="col-md-4 control-label" for="tbIniDate">Initial Date</label>
                         <div class="col-md-6">
                             <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo $arrayEvent['dataInici']; else if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
 
@@ -152,14 +152,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbPositive">Positive slope (m+)</label>
+                        <label class="col-md-4 control-label" for="tbPositive">Positive Slope (m+)</label>
                         <div class="col-md-6">
                             <input id="tbPositive" name="tbPositive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbNegtive">Negative slope (m-)</label>
+                        <label class="col-md-4 control-label" for="tbNegtive">Negative Slope (m-)</label>
                         <div class="col-md-6">
                             <input id="tbNegtive" name="tbNegtive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
                         </div>
@@ -175,7 +175,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbTimeLimit">Time limit</label>
+                        <label class="col-md-4 control-label" for="tbTimeLimit">Time Limit</label>
                         <div class="col-md-6">
                             <input id="tbTimeLimit" name="tbTimeLimit" type="time" value="<?if ($arrayProva != false) echo $arrayProva['temps_limit'] ?>" >
 
@@ -327,6 +327,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="grid_3">
+                    <img id="prevImg" src="<?php if($arrayEvent != false)echo "imatges/events/".$arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt="" />
+                </div>
                 <div class="grid_5">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbManager">Manager web site</label>
@@ -347,31 +350,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbInscripcionsIni">Open registration date</label>
+                        <label class="col-md-4 control-label" for="tbInscripcionsIni">Open Registration Date</label>
                         <div class="col-md-6">
                             <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['obertura_inscripcions']?>" >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbInscripcionsFin">Final registration date</label>
+                        <label class="col-md-4 control-label" for="tbInscripcionsFin">Final Registration Date</label>
                         <div class="col-md-6">
                             <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['tancament_inscripcionts']?>">
                         </div>
                     </div>
                 </div>
                 <div class="grid_12">
-                    <div class="btns">
+                    <div class="fileUpload btn btn-primary grid_2">
+                        <span class="spanSubmit3">Submit</span>
                         <?php
                             if($arrayProva != false) {
-                                echo "<input type=\"submit\" name=\"updateProva\" class=\"btn\" value=\"Submit\"/>";
+                                echo "<input type=\"submit\" name=\"updateProva\" class=\"btn upload\" value=\"Submit\"/>";
                             }else if($arrayEvent != false){
-                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"New prova\"/>";
+                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn upload\" value=\"New prova\"/>";
                             }else{
-                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn\" value=\"Submit\"/>";
+                                echo "<input type=\"submit\" name=\"submitProva\" class=\"btn upload\" value=\"Submit\"/>";
                             }
                         ?>
                     </div>
-
                     <?php
                     if(isset($_GET['error'])){
                         echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
@@ -392,7 +395,21 @@
             swal({   title: "Vols crear més proves?",   text: "You will not be able to recover this imaginary file!",   type: "success",   showCancelButton: true,   confirmButtonColor: "#88c886",   confirmButtonText: "Seguir",   cancelButtonText: "Finalize!",   closeOnConfirm: true,   closeOnCancel: false }, function(isConfirm){   if (!isConfirm) {location.href= "actions/validateProva.php?final=true"   } });
         }
     });
-
+</script>
+<!--Previsualitzar l'Imatge a pujar.-->
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#prevImg').attr('src', e.target.result);
+                $('#prevImg').show();
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#tbImages").change(function(){
+        readURL(this);
+    });
 </script>
 <footer><?php include_once "footer.html"; ?></footer>
-<!-- Text input-->
