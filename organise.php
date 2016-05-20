@@ -74,7 +74,7 @@
                                 if ($numProves['COUNT(*)'] > 1) {
                                 echo "
                                 ";?>
-                                    
+
 
                                 <div class='block3 click eventDiv' onclick="location.href='createEvent.php?eventId=<?php echo $arrayEvent['Id'];?>'">
                                     <div class='block2'>

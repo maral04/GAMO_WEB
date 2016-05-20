@@ -137,25 +137,25 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDistance" >Distance</label>
                         <div class="col-md-6">
-                            <input id="tbDistance" name="tbDistance" type="number" step="0.1" value="<?if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
+                            <input id="tbDistance" name="tbDistance" type="number" min="0" step="0.1" value="<?if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPositive">Positive Slope (m+)</label>
                         <div class="col-md-6">
-                            <input id="tbPositive" name="tbPositive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
+                            <input id="tbPositive" name="tbPositive" min="0" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbNegtive">Negative Slope (m-)</label>
                         <div class="col-md-6">
-                            <input id="tbNegtive" name="tbNegtive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
+                            <input id="tbNegtive" name="tbNegtive" min="0" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCheckpoints">Checkpoints</label>
                         <div class="col-md-6">
-                            <input id="tbCheckpoints" name="tbCheckpoints" type="number" value="<?if ($arrayProva != false) echo $arrayProva['num_avituallaments'] ?>">
+                            <input id="tbCheckpoints" min="0" name="tbCheckpoints" type="number" value="<?if ($arrayProva != false) echo $arrayProva['num_avituallaments'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -307,6 +307,22 @@
                             <img class="cpImg" src='images/icons/trackMap.png'/>
                             <span class="spanUpload">Upload Tracks</span>
                             <input id="tbTrack" class="upload" name="tbTrack" type="file" />
+                            <script>
+                                //Limit de 10MB
+                                $('#tbImages').bind('change', function() {
+                                    if(this.files[0].size > 10000000){
+                                        alert("Imatge Massa Gran!");
+                                        $('#tbImages').val('');
+                                    }
+                                });
+                                //Limit de 20MB
+                                $('#tbTrack').bind('change', function() {
+                                    if(this.files[0].size > 20000000){
+                                        alert("Track Massa Gran!");
+                                        $('#tbTrack').val('');
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -323,13 +339,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPrice">Price</label>
                         <div class="col-md-6">
-                            <input id="tbPrice" name="tbPrice" type="number"  value ="<?php if ($arrayProva != false) echo $arrayProva['preu']?>" >
+                            <input id="tbPrice" name="tbPrice" type="number" min="0" value ="<?php if ($arrayProva != false) echo $arrayProva['preu']?>" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbLimitInscrits">Limit Enrollments</label>
                         <div class="col-md-6">
-                            <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" value ="<?php if ($arrayProva != false)echo $arrayProva['limit_inscrits']?>" >
+                            <input id="tbLimitInscrits" min="0" name="tbLimitInscrits" type="number" value ="<?php if ($arrayProva != false)echo $arrayProva['limit_inscrits']?>" >
                         </div>
                     </div>
                     <div class="form-group">
