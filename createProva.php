@@ -308,18 +308,27 @@
                             <span class="spanUpload">Upload Tracks</span>
                             <input id="tbTrack" class="upload" name="tbTrack" type="file" />
                             <script>
-                                //Limit de 10MB
                                 $('#tbImages').bind('change', function() {
-                                    if(this.files[0].size > 10000000){
-                                        alert("Imatge Massa Gran!");
-                                        $('#tbImages').val('');
+                                    //Limit de 10MB
+                                    if(this.files[0]){
+                                        if(this.files[0].size > 10000000){
+                                            $('#tbImages').val('');
+                                            alert("Error: Too Big Image! (10MB limit)");
+                                        }
                                     }
                                 });
-                                //Limit de 20MB
                                 $('#tbTrack').bind('change', function() {
-                                    if(this.files[0].size > 20000000){
-                                        alert("Track Massa Gran!");
+                                    //Check de l'extensió.
+                                    nomFile = (this.files[0].name).toLowerCase();
+                                    if(nomFile.indexOf(".gpx") != -1 || nomFile.indexOf(".xml") != -1){
+                                        //Limit de 15MB
+                                        if(this.files[0].size > 15000000){
+                                            $('#tbTrack').val('');
+                                            alert("Error: Too Big Track! (15MB limit)");
+                                        }
+                                    }else{
                                         $('#tbTrack').val('');
+                                        alert("Invalid File Format. Allowed: (.GPX / .XML)");
                                     }
                                 });
                             </script>
