@@ -51,7 +51,7 @@
                                     "<div class='block2'>" +
                                     "<div class='grid_2'>" +
                                         <!-- Imatges (prova) -->
-                                    "<img class='' src='images/page1_img7.jpg' alt=''>" +
+                                    "<img class='' src='images/proves/"+json[i].Id+"/"+json[i].Imatges+"' alt=''>" +
                                     "</div>" +
                                     "<div class='grid_4 g4Gran'>" +
                                         <!-- nom (prova) -->
@@ -139,7 +139,8 @@
                 echo "
                 <div class='block2'>
                     <div class='grid_3'>";
-                echo '<img class="" src="images/page1_img7.jpg" alt="">';
+                if($event['imatges'] == null) echo '<img class="" src="images/events/default.png" alt="">';
+                else echo "<img class='' src='images/events/".$event['Id']."/".$event['imatges']."' alt=''>";
                 ?>
             </div>
             <div class="grid_4">

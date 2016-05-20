@@ -17,6 +17,8 @@ if(isset($_GET['eventId'])){
     if ($result->num_rows > 0) {
         $i = 0;
         while( $proves= mysqli_fetch_assoc($result)){
+            //var_dump($proves['Imatges']);
+            if($proves['Imatges'] == null) $proves['Imatges'] ="../default.png";
             echo json_encode($proves);
             if($i != ($result->num_rows)-1)echo ",";
             $i++;
