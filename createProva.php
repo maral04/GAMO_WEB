@@ -84,7 +84,6 @@
                                 <div class='fRight'>
                                     <a><?php echo $prova['data_hora_inici'] ?></a>
                                 </div>
-
                                 <div class='descripcioProva'>
                                     <a><?php echo $prova['data_hora_inici'] ?></a>
                                 </div>
@@ -109,7 +108,6 @@
                 <input type="text" name="idEvent" class="idEvent" value="<?php if($arrayEvent != false) echo $arrayEvent['Id']; else if ($arrayProva != false ) echo $arrayProva['FK_Id_event']?>">
                 <input type="text" name="idProva" class="idProva" value="<?php if($arrayProva != false) echo $arrayProva['Id'];?>">
 
-
                 <div class="grid_3">
                     <!-- Text input-->
                     <div class="form-group">
@@ -118,69 +116,52 @@
                             <input id="tbName" name="tbName" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['titol']; else if ($arrayProva != false) echo $arrayProva['nom'] ?>" required="">
                         </div>
                     </div>
-
-                    <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDescription">Description</label>
                         <div class="col-md-6">
                             <input id="tbDescription" name="tbDescription" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayEvent != false) echo $arrayEvent['descripcio']; else if ($arrayProva != false) echo $arrayProva['descripcio'] ?>" >
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniDate">Initial Date</label>
                         <div class="col-md-6">
                             <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo $arrayEvent['dataInici']; else if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniTime" >Start time</label>
                         <div class="col-md-6">
                             <input id="tbIniTime" name="tbIniTime" type="time" value="<?if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDistance" >Distance</label>
                         <div class="col-md-6">
                             <input id="tbDistance" name="tbDistance" type="number" step="0.1" value="<?if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
-
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPositive">Positive Slope (m+)</label>
                         <div class="col-md-6">
                             <input id="tbPositive" name="tbPositive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbNegtive">Negative Slope (m-)</label>
                         <div class="col-md-6">
                             <input id="tbNegtive" name="tbNegtive" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCheckpoints">Checkpoints</label>
                         <div class="col-md-6">
                             <input id="tbCheckpoints" name="tbCheckpoints" type="number" value="<?if ($arrayProva != false) echo $arrayProva['num_avituallaments'] ?>">
-
-
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbTimeLimit">Time Limit</label>
                         <div class="col-md-6">
                             <input id="tbTimeLimit" name="tbTimeLimit" type="time" value="<?if ($arrayProva != false) echo $arrayProva['temps_limit'] ?>" >
-
                         </div>
                     </div>
 

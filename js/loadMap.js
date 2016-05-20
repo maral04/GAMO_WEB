@@ -21,5 +21,5 @@ $(document).ready(function() {
     var map = new google.maps.Map(document.getElementById("map"),
         mapOptions);
 
-    loadGPXFileIntoGoogleMap(map, "track/"+$('#map').attr('idprova')+"/asd.gpx");
+    loadGPXFileIntoGoogleMap(map, "track/"+$('#map').attr('idprova')+"/"+$('#map').attr('nomgpx'));
 });

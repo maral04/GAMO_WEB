@@ -41,10 +41,12 @@ if(!isset($_GET['id']))header("Location: index.php");
                         if(file_exists("images/proves/".$prova['Id']."/".$prova['Imatges'])) $img = "images/proves/".$prova['Id']."/".$prova['Imatges'];
                         else $img = "images/proves/Captura.png";
                             echo "<div class='grid_4'>
-                                <img class='imgFitxa' src='".$img."' alt=''>
+                                <div style='height:365px;'>";
+                            echo"<img class='imgFitxa' src='".$img."' alt=''>";
+                            echo"</div>
                                 <div class='grid_11'>
                                     <!--Mapa amb la ruta de la prova.-->
-                                    <div id='map' idprova='".$prova['Id']."'>
+                                    <div id='map' idprova='".$prova['Id']."' nomgpx='".$prova['recorregut']."'>
                                 </div>
                             </div>
                             </div>";
