@@ -336,7 +336,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbManager">Manager web site</label>
                         <div class="col-md-6">
-                            <input id="tbManager" name="tbManager" type="text" placeholder="http://olladenuria.cat/" value ="<?php if ($arrayProva != false) echo $arrayProva['pagina_organitzacio']?>">
+                            <input id="tbManager" name="tbManager" type="text" placeholder="www.gamo.ml" value ="<?php if ($arrayProva != false) echo $arrayProva['pagina_organitzacio']?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -346,7 +346,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbLimitInscrits">Limit enrollments</label>
+                        <label class="col-md-4 control-label" for="tbLimitInscrits">Limit Enrollments</label>
                         <div class="col-md-6">
                             <input id="tbLimitInscrits" name="tbLimitInscrits" type="number" value ="<?php if ($arrayProva != false)echo $arrayProva['limit_inscrits']?>" >
                         </div>

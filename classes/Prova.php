@@ -76,7 +76,6 @@ class Prova
             $sql = "SELECT * FROM prova WHERE prova.id = " . trim($id);
             $result = $conn->query($sql);
 
-
             if ($result->num_rows > 0) {
                 $arrayProva = mysqli_fetch_assoc($result);
                 //$this->setId($arrayProva['Id']);
