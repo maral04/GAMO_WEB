@@ -30,8 +30,9 @@
             <h3 class="registre h3__head1">New event</h3>
         </div>
         <div class="grid_10 block3 form-user" id="profile" >
-            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateEvent.php">
                 <input type="text" name="idUser" class="idUser" >
+                <?php if($arrayEvent != false ) echo "<input type=\"text\" name=\"idEvent\" class=\"idEvent\" value='".$arrayEvent['Id']."' >"?>
 
                 <div class="grid_3">
                     <!-- Text input-->
@@ -133,7 +134,7 @@
                         <span class="spanSubmit3">Submit</span>
                         <?php
                         if(!$arrayEvent) echo "<input  type='submit' name='submitEvent' class='btn upload' class='upload' value='Submit'/>";
-                        else echo "<input  type=\"submit\" name=\"updatetEvent\" class=\"btn upload\" class=\"upload\" value=\"Submit\"/>"
+                        else echo "<input  type=\"submit\" name=\"updateEvent\" class=\"btn upload\" class=\"upload\" value=\"Submit\"/>"
                         ?>
                     </div>
                     <?php

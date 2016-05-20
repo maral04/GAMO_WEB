@@ -26,8 +26,9 @@ class Event
         $this->db = new DataBase();
     }
 
-    public function init( $idOrganitzador, $Name, $Description , $IniDate, $FinalDate , $Country, $Region, $City, $Address,$cp)
+    public function init( $idOrganitzador, $Name, $Description , $IniDate, $FinalDate , $Country, $Region, $City, $Address,$cp,$id = null)
     {
+        if($id != null )$this->setId($id);
         $this->setIdOrganitzador($idOrganitzador);
         $this->setName($Name);
         $this->setDescription($Description);
@@ -70,8 +71,9 @@ class Event
             //if (!$this->exist()) {
             echo "update";
             if ($conn != null) {
-                $mysql1 = mysqli_prepare($conn, "UPDATE event SET (idOrganitzador=?,titol=?,dataInici=?,dataFinal=?,descripcio=?,cp=?,
-                                                    estat=?,regio=?,poblacio=?,direccio=?)
+                var_dump($this->id);
+                $mysql1 = mysqli_prepare($conn, "UPDATE event SET idOrganitzador=?,titol=?,dataInici=?,dataFinal=?,descripcio=?,cp=?,
+                                                    estat=?,regio=?,poblacio=?,direccio=?
                                                     WHERE id = ".$this->id);
                 //die(mysqli_error($conn));
 
@@ -81,9 +83,7 @@ class Event
                 if (mysqli_stmt_execute($mysql1));
                 else echo mysqli_stmt_error($mysql1);
 
-                $id = mysqli_insert_id($conn);
-                $this->setId($id);
-                return $id;
+                return $this->id;
             }
             $error = "Error with register ";
         }
