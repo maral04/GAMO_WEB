@@ -19,51 +19,55 @@ if(isset($_POST['submitProva'])){
     if(isset($_POST['sport'])) $sport = $_POST['sport'];
     else $sport = "";
     $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$sport,$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits']);
-    if(isset($_SESSION['idEvent'])){
-        if($_SESSION['idEvent'] != null){
-            $provaAmbEvent = true;
-            $result = $prova->save($_SESSION['idEvent']);
-        }else{
+    if($error == "") {
+        if (isset($_SESSION['idEvent'])) {
+            if ($_SESSION['idEvent'] != null) {
+                $provaAmbEvent = true;
+                $result = $prova->save($_SESSION['idEvent']);
+            } else {
 
+            }
+        } else {
+            $result = $prova->save();
+        }
+        /*if($_POST['submitProva'] == 'New prova') $result = $prova->save($_POST['idEvent']);
+        else {
+            $prova->setIdEvent($_POST['idEvent']);
+            $result = $prova->save();
+        }
+        echo "result ".$result;
+        //var_dump($_POST);*/
+
+        if (is_numeric($result)) {
+            echo "Numeric";
+            if (trim($_FILES['tbImages']['name']) != "") {
+                // echo "name ".$_FILES['tbImages'];
+                $file = carregarFitxer($_FILES['tbImages'], $result, 1);
+                if (trim($file) != "") $prova->setImg($file);
+                else $prova->setImg(null);
+            } else {
+                echo "Null";
+                $prova->setImg(null);
+            }
+            if (trim($_FILES['tbTrack']['name']) != "") {
+                // echo "name ".$_FILES['tbImages'];
+                $file2 = carregarFitxer($_FILES['tbTrack'], $result, 2);
+                if (trim($file2) != "") $prova->setTrack($file2);
+                else $prova->setTrack(null);
+            } else {
+                echo "Null";
+                $prova->setTrack(null);
+            }
+            $prova->updateImg();
+            $prova->updateGpx();
+
+            if ($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
+            else header("Location: ../createProva.php?result=unic");
+        } else {
+            echo $result;
         }
     }else{
-        $result = $prova->save();
-    }
-    /*if($_POST['submitProva'] == 'New prova') $result = $prova->save($_POST['idEvent']);
-    else {
-        $prova->setIdEvent($_POST['idEvent']);
-        $result = $prova->save();
-    }
-    echo "result ".$result;
-    //var_dump($_POST);*/
-
-    if(is_numeric($result)){
-        echo "Numeric";
-        if(trim($_FILES['tbImages']['name']) != ""){
-           // echo "name ".$_FILES['tbImages'];
-            $file = carregarFitxer($_FILES['tbImages'],$result,1);
-            if(trim($file) != "") $prova->setImg($file);
-            else $prova->setImg(null);
-        }else{
-            echo "Null";
-            $prova->setImg(null);
-        }
-        if(trim($_FILES['tbTrack']['name']) != ""){
-            // echo "name ".$_FILES['tbImages'];
-            $file2 = carregarFitxer($_FILES['tbTrack'],$result,2);
-            if(trim($file2) != "") $prova->setTrack($file2);
-            else $prova->setTrack(null);
-        }else{
-            echo "Null";
-            $prova->setTrack(null);
-        }
-        $prova->updateImg();
-        $prova->updateGpx();
-
-        if($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
-        else header("Location: ../createProva.php?result=unic");
-    }else{
-        echo $result;
+        header("Location: ../createProva.php?error=".$error);
     }
 
     var_dump($prova);

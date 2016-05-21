@@ -41,16 +41,20 @@ class Prova
 
     public function init( $idOrganitzador, $Name, $Description , $IniDate, $IniTime  ,$Distance, $Positive, $Negtive, $Checkpoints, $TimeLimit, $sport, $Country, $Region, $City, $Address,$cp, $Manager, $Price,  $InscripcionsIni, $InscripcionsFin, $limitInscripcions, $id = null)
     {
+        $error = "";
+        var_dump($IniDate);
+        var_dump($IniTime);
         if($id != null) $this->id = $id;
 
         $this->setIdOrganitzador($idOrganitzador);
         $this->setName($Name);
         $this->setDescription($Description);
-        $this->setIniDate($IniDate);
+        if(!$this->setIniDate($IniDate)) $error = "Data inicial no valida";
         $this->setIniTime($IniTime);
-        $this->setDistance($Distance);
-        $this->setPositive($Positive);
-        $this->setNegtive($Negtive);
+        echo "ini time ". $this->IniTime. "  ".$this->IniDate;
+        if(!$this->setDistance($Distance)) $error = "Distancia negativa";
+        if(!$this->setPositive($Positive)) $error = "Desnivell positiu negatiu ";
+        if(!$this->setNegtive($Negtive))$error = "Desnivell negatiu negatiu ";;
         $this->setCheckpoints($Checkpoints);
         $this->setTimeLimit($TimeLimit);
         $this->setsport($sport);
@@ -59,11 +63,17 @@ class Prova
         $this->setCity($City);
         $this->setAddress($Address);
         $this->setManager($Manager);
-        $this->setPrice($Price);
+        var_dump($Price);
+
+        if(!$this->setPrice($Price)) $error = "Preu negatiu";
+
         $this->setInscripcionsIni($InscripcionsIni);
         $this->setInscripcionsFin($InscripcionsFin);
         $this->setPostalCode($cp);
-        $this->setInscripcionsLimit($limitInscripcions);
+        if(!$this->setInscripcionsLimit($limitInscripcions)) echo "Limit d'inscrits negatiu";
+
+        //die($error);
+        return $error;
     }
     public function load($id = null){
         if($this->db == null){
@@ -125,11 +135,12 @@ class Prova
                                                         descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
                                                         temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
                                                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
+                $date_time = $this->IniDate.$this->IniTime;
+                die($this->IniDate."-".$this->IniTime);
                 //die(mysqli_error($conn));
                 mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
                     $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
-                    $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
+                    $date_time, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
                     $this->Country, $this->Region, $this->City, $this->Address);
 
                 if (mysqli_stmt_execute($mysql2)) {
@@ -206,7 +217,16 @@ class Prova
 
     public function setInscripcionsLimit($InscripcionsLimit)
     {
-        $this->InscripcionsLimit = $InscripcionsLimit;
+        if(trim($InscripcionsLimit) != ""){
+            if($InscripcionsLimit > 0) {
+                $this->InscripcionsLimit = $InscripcionsLimit;
+                return true;
+            }
+            else return false;
+        }else{
+            $this->InscripcionsLimit = $InscripcionsLimit;
+            return true;
+        }
     }
 
 
@@ -230,7 +250,16 @@ class Prova
 
     public function setIniDate($IniDate)
     {
-        $this->IniDate = $IniDate;
+        echo $IniDate;
+        $d = DateTime::createFromFormat('Y-m-d', $IniDate);
+        var_dump($d && $d->format('d-m-Y') === $IniDate);
+        die("".($d && $d->format('d-m-Y') === $IniDate));
+        if($d && $d->format('d-m-Y') === $IniDate){
+            $this->IniDate = $IniDate;
+            die($d->format('d-m-Y'));
+            return true;
+        }return false;
+
     }
 
     public function setIniTime($IniTime)
@@ -240,23 +269,57 @@ class Prova
 
     public function setDistance($Distance)
     {
-        $this->Distance = $Distance;
+        if(trim ($Distance)){
+            if($Distance > 0)  {
+                $this->Distance = $Distance;
+                return true;
+            }
+            else return false;
+        }else{
+            $this->Distance = $Distance;
+            return true;
+        }
     }
 
     public function setPositive($Positive)
     {
-        $this->Positive = $Positive;
+        if(trim($Positive) != "") {
+            if ($Positive > 0){
+                $this->Positive = $Positive;
+                return true;
+            }
+            else return false;
+        }else {
+            $this->Positive = $Positive;
+            return true;
+        }
     }
 
     public function setNegtive($Negtive)
     {
-        $this->Negtive = $Negtive;
+        if(trim($Negtive) != "") {
+            if ($Negtive > 0) {
+                $this->Negtive = $Negtive;
+                return true;
+            }
+            else return false;
+        }else{
+            $this->Negtive = $Negtive;
+            return true;
+        }
     }
 
 
     public function setCheckpoints($Checkpoints)
     {
-        $this->Checkpoints = $Checkpoints;
+        if(trim($Checkpoints) != ""){
+            if($Checkpoints > 0){
+                $this->Checkpoints = $Checkpoints;
+                return true;
+            }
+            else return false;
+        }else return false;
+
     }
 
     public function setTimeLimit($TimeLimit)
@@ -315,7 +378,15 @@ class Prova
 
     public function setPrice($Price)
     {
-        $this->Price = $Price;
+        if(trim($Price) != "") {
+            $Price = intval($Price);
+            if ($Price > 0) $this->Price = $Price;
+            else return false;
+        }else{
+            echo "buid";
+            $this->Price = $Price;
+            return true;
+        }
     }
 
 
