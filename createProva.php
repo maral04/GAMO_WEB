@@ -400,7 +400,7 @@
 <script>
     $(document).ready(function(){
         if($('#popup').length){
-            swal({   title: "Vols crear més proves?",   text: "You will not be able to recover this imaginary file!",   type: "success",   showCancelButton: true,   confirmButtonColor: "#88c886",   confirmButtonText: "Seguir",   cancelButtonText: "Finalize!",   closeOnConfirm: true,   closeOnCancel: false }, function(isConfirm){   if (!isConfirm) {location.href= "actions/validateProva.php?final=true"   } });
+            swal({   title: "Create more proves?",   text: "You will not be able to recover this imaginary file!",   type: "success",   showCancelButton: true,   confirmButtonColor: "#88c886",   confirmButtonText: "Continue",   cancelButtonText: "Finish!",   closeOnConfirm: true,   closeOnCancel: false }, function(isConfirm){   if (!isConfirm) {location.href= "actions/validateProva.php?final=true"   } });
         }
     });
 </script>
