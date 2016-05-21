@@ -173,8 +173,8 @@ class User
             if (!$this->exist(true)) {
                 var_dump($this->phone2);
                 if($this->img == null){
-                    $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=?, img=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
-                    mysqli_stmt_bind_param($mysql, "ssssssssissssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode, $this->img);
+                    $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
+                    mysqli_stmt_bind_param($mysql, "ssssssssisssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode);
                 }else{
                     $mysql = mysqli_prepare($conn, "UPDATE usuari SET nom=?, cNom=?, email=?, esport=?, talla=?, tel1=?, tel2=?, dataNaix=?, FK_id_club =?, estat=?, regio=?, poblacio=?, direccio=?, cp=?, img=? WHERE Id = ".$this->id) or die(mysqli_error($conn));
                     mysqli_stmt_bind_param($mysql, "ssssssssissssss", $this->name , $this->lastname, $this->email, $this->sport, $this->tshirt, $this->phone1, $this->phone2, $this->birth, $this->club, $this->country, $this->region, $this->city, $this->address, $this->postalCode, $this->img);

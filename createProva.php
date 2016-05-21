@@ -131,37 +131,37 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniTime" >Start time</label>
                         <div class="col-md-6">
-                            <input id="tbIniTime" name="tbIniTime" type="time" value="<?if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
+                            <input id="tbIniTime" name="tbIniTime" type="time" value="<?php if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDistance" >Distance</label>
                         <div class="col-md-6">
-                            <input id="tbDistance" name="tbDistance" type="number" min="0" step="0.1" value="<?if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
+                            <input id="tbDistance" name="tbDistance" type="number" min="0" step="0.1" value="<?php if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbPositive">Positive Slope (m+)</label>
                         <div class="col-md-6">
-                            <input id="tbPositive" name="tbPositive" min="0" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
+                            <input id="tbPositive" name="tbPositive" min="0" type="number" value="<?php if ($arrayProva != false) echo $arrayProva['desnivellPositiu'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbNegtive">Negative Slope (m-)</label>
                         <div class="col-md-6">
-                            <input id="tbNegtive" name="tbNegtive" min="0" type="number" value="<?if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
+                            <input id="tbNegtive" name="tbNegtive" min="0" type="number" value="<?php if ($arrayProva != false) echo $arrayProva['desnivellNegatiu'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCheckpoints">Checkpoints</label>
                         <div class="col-md-6">
-                            <input id="tbCheckpoints" min="0" name="tbCheckpoints" type="number" value="<?if ($arrayProva != false) echo $arrayProva['num_avituallaments'] ?>">
+                            <input id="tbCheckpoints" min="0" name="tbCheckpoints" type="number" value="<?php if ($arrayProva != false) echo $arrayProva['num_avituallaments'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbTimeLimit">Time Limit</label>
                         <div class="col-md-6">
-                            <input id="tbTimeLimit" name="tbTimeLimit" type="time" value="<?if ($arrayProva != false) echo $arrayProva['temps_limit'] ?>" >
+                            <input id="tbTimeLimit" name="tbTimeLimit" type="time" value="<?php if ($arrayProva != false) echo $arrayProva['temps_limit'] ?>" >
                         </div>
                     </div>
 
@@ -170,7 +170,7 @@
                         <div id="sports">
                             <div>
                                 <?php
-                                if(strpos($arrayProva['esports'], 'bike') != false) {
+                                if(strpos($arrayProva['esports'], 'bike') !== false) {
                                     echo "<img id='img-bike'  class='icon-selected' src=\"images/icons/bike.png\"/>";
                                     echo "<span>MTB</span>";
                                     echo "<input id='s-bike' checked type='checkbox' name='sport[]' value='bike'>";
@@ -183,7 +183,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(strpos($arrayProva['esports'], 'hiking') != false) {
+                                if(strpos($arrayProva['esports'], 'hiking') !== false) {
                                     echo "<img id='img-hike'  class='icon-selected' src=\"images/icons/hiking.png\"/>";
                                     echo "<span>Hiking</span>";
                                     echo "<input id='s-hike' checked type='checkbox' name='sport[]' value='hiking'>";
@@ -196,7 +196,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(strpos($arrayProva['esports'], 'skiing') != false) {
+                                if(strpos($arrayProva['esports'], 'skiing') !== false) {
                                     echo "<img id='img-ski'  class='icon-selected' src=\"images/icons/skiing.png\"/>";
                                     echo "<span>Skiing</span>";
                                     echo "<input id='s-ski' checked type='checkbox' name='sport[]' value='skiing'>";
@@ -209,7 +209,7 @@
                             </div>
                             <div>
                                 <?php
-                                if(strpos($arrayProva['esports'], 'trail') != false ) {
+                                if(strpos($arrayProva['esports'], 'trail') !== false ) {
                                     echo "<img id='img-trail' class='icon-selected' src=\"images/icons/trail.png\"/>";
                                     echo "<span>Trail</span>";
                                     echo "<input id='s-trail' checked type=\"checkbox\" name=\"sport[]\" value=\"trail\">";

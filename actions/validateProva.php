@@ -82,6 +82,7 @@ if(isset($_POST['submitProva'])){
             $file = carregarFitxer($_FILES['tbImages'],$result,1);
             if(trim($file) != "") $prova->setImg($file);
             else $prova->setImg(null);
+            $prova->updateImg();
         }else{
             echo "Null";
             $prova->setImg(null);
@@ -91,12 +92,13 @@ if(isset($_POST['submitProva'])){
             $file2 = carregarFitxer($_FILES['tbTrack'],$result,2);
             if(trim($file2) != "") $prova->setTrack($file2);
             else $prova->setTrack(null);
+            $prova->updateGpx();
         }else{
             echo "Null";
             $prova->setTrack(null);
         }
-        $prova->updateImg();
-        $prova->updateGpx();
+
+
 
         /*if($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
         else header("Location: ../createProva.php?result=unic");*/
