@@ -1,24 +1,42 @@
 <?php
 
-echo "
+include_once "classes/Prova.php";
+include_once "classes/User.php";
+include_once "classes/DataBase.php";
+$usuari = new User();
+$db = new DataBase();
+
+if (isset($_SESSION['idUser'])) {
+    $arrayUser = $usuari->load($_SESSION['idUser']);
+} else {
+    $arrayUser = false;
+}
+?>
 <h3 class='h3__head1'>Your Events</h3>
-<ul class='list'>
-        <li>
-            <div class='list_count'>1</div>
-            <div class='extra_wrapper'>
-Future Feature*.
-            </div>
-            <div class='extra_wrapper'>
-(We're Working on it)
-            </div>
-        </li>
-        <!--<li>
-            <div class='list_count'>2</div>
-            <div class='extra_wrapper'>
-                BLA2 BLA.
-            </div>
-        </li>-->
-    </ul>";
+<?php
+if($arrayUser!= false) {
+    $conn = $db->connect();
+    $sql = "SELECT * FROM inscripcio INNER JOIN prova on FK_id_prova = prova.id WHERE id_participant = " . $arrayUser['Id'];
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $i = 1;
+        echo "<ul class='list'>";
+        while ($proves = mysqli_fetch_assoc($result)) {
+            echo "<li>";
+            echo "<div class='list_count'><a href='fitxaProva.php?id=".$proves['Id']."'>$i</a></div>";
+            echo "<div class='extra_wrapper'><a href='fitxaProva.php?id=".$proves['Id']."'>" . $proves['nom'] . "</a></div>";
+            echo "<div class='extra_wrapper'>" . date("Y-m-d", strtotime($proves['data_hora_inici'])) . "</div>";
+            echo "</li>";
+            $i++;
+        }
+        echo "<ul>";
+    }else{
+        echo "Events you joined will be displayed here";
+    }
+}else{
+    echo "<a class=\"link link--kukuri l4\" data-letters=\"Join\" href=\"register.php\">Join</a> to see your events";
+}
+
 ?>
 
 

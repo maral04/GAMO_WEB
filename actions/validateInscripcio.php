@@ -1,12 +1,15 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Arnau
- * Date: 19/05/2016
- * Time: 12:13
+ * Date: 02/05/2016
+ * Time: 9:44
  */
 include_once "../classes/User.php";
 include_once "../classes/Prova.php";
+include_once "../classes/DataBase.php";
+
 $db = new DataBase();
 $conn = $db->connect();
 
