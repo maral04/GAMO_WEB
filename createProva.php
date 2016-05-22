@@ -111,7 +111,7 @@
                 <div class="grid_3">
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbName">Name</label>
+                        <label class="col-md-4 control-label" for="tbName">Name*</label>
                         <div class="col-md-6">
                             <input id="tbName" name="tbName" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['titol']; else if ($arrayProva != false) echo $arrayProva['nom'] ?>" required="">
                         </div>
@@ -254,20 +254,14 @@
 
                         }
                     });
-
                 </script>
                 <div class="grid_3">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCountry">Country</label>
+                        <label class="col-md-4 control-label" for="tbCountry">Country*</label>
                         <div class="col-md-6">
-
                             <input id="tbCountry" name="tbCountry" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['estat']; else if ($arrayProva != false) echo $arrayProva['estat'] ?>" required="">
-
-
                         </div>
                     </div>
-
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbRegion">Region</label>
                         <div class="col-md-6">
@@ -280,7 +274,6 @@
                             <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['poblacio']; else if ($arrayProva != false) echo $arrayProva['poblacio'] ?>">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbAddress">Address</label>
                         <div class="col-md-6">
@@ -314,6 +307,9 @@
                                         if(this.files[0].size > 10000000){
                                             $('#tbImages').val('');
                                             alert("Error: Too Big Image! (10MB limit)");
+                                        }else{
+                                            $('#ius').remove();
+                                            $("<div id='ius'>Image Uploaded Succesfully!</div>").insertAfter('#prevImg');
                                         }
                                     }
                                 });
@@ -325,6 +321,8 @@
                                         if(this.files[0].size > 15000000){
                                             $('#tbTrack').val('');
                                             alert("Error: Too Big Track! (15MB limit)");
+                                        }else{
+                                            $("<div id='tus'>Track Uploaded Succesfully!</div>").insertAfter('#prevImg');
                                         }
                                     }else{
                                         $('#tbTrack').val('');
