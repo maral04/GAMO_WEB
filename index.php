@@ -190,22 +190,11 @@ if ($numProves['COUNT(*)'] > 1) {
     /*No hi ha cap event!!*/
 } ?>
 </div>
+
 <div class="grid_4">
-    <h3 class="h3__head1">Your Events</h3>
-    <ul class="list">
-        <li>
-            <div class="list_count">1</div>
-            <div class="extra_wrapper">
-                Bla, bla, bla.
-            </div>
-        </li>
-        <li>
-            <div class="list_count">2</div>
-            <div class="extra_wrapper">
-                BLA2 BLA.
-            </div>
-        </li>
-    </ul>
+    <?php
+    include_once 'yourEvents.php';
+    ?>
 </div>
 <div class="clear"></div>
 </div>
