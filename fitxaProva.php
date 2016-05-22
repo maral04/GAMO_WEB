@@ -84,9 +84,10 @@ if(!isset($_GET['id']))header("Location: index.php");
                                         $inscrit = mysqli_fetch_assoc($result);
                                         if($inscrit['count(*)'] < 1){
                                             echo "<div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'><a href='actions/validateInscripcio.php?idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'>JOIN</a></div>";
+                                        }else{
+                                            echo "<div class='grid_1 gran campsFitxa leaveBtn link--kukuri l3'><a class='gran'>LEAVE</a></div>";
                                         }
                                     }
-
                                     echo "
                                 </div>
                             </div>
