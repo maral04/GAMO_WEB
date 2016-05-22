@@ -85,7 +85,7 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbClub">Club</label>
                         <div class="col-md-6">
@@ -105,13 +105,13 @@
                             </select>
                         </div>
                     </div>
-=======
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="tbBirth">Birthdate</label>
                                 <div class="col-md-6">
                                     <input id="tbBirth" name="tbBirth" type="date"
                                            value="<?php if ($arrayUser != false) echo $arrayUser['dataNaix'] ?>">
->>>>>>> 25520cc3a1defab6da159ceb8b6483b4019bd249
+
 
                                 </div>
                             </div>
