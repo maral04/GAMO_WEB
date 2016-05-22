@@ -48,7 +48,13 @@ if(!isset($_GET['id']))header("Location: index.php");
                             echo"</div>
                                 <div class='grid_11'>
                                     <!--Mapa amb la ruta de la prova.-->
-                                    <div id='map' idprova='".$prova['Id']."' nomgpx='".$prova['recorregut']."'>
+                                    ";
+                                        if($prova['recorregut'] != null){
+                                            echo "<div id='map' idprova='".$prova['Id']."' nomgpx='".$prova['recorregut']."'>";
+                                        }else{
+                                            echo "<div>";
+                                        }
+                                    echo "
                                 </div>
                             </div>
                             </div>";
