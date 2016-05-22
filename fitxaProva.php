@@ -12,6 +12,8 @@ if(!isset($_GET['id']))header("Location: index.php");
 
     if(isset($_SESSION['idUser'])) {
         $idUser = $_SESSION['idUser'];
+    }else{
+        $idUser = false;
     }
 
     ?>
@@ -73,11 +75,22 @@ if(!isset($_GET['id']))header("Location: index.php");
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/mPpl.png' alt='Max. Participants'>Max. Participants: ".$prova['limit_inscrits']."</div>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/www.png' alt='Organization'><a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a></div>
                                     <!-- 8digits+km o queda malament. -->
-                                    <div class='grid_2 gran campsFitxa'><img class='icoFitxa' src='images/icons/distance.png' alt='Distance'>".$prova['distancia']."Km</div>
-                                    <!-- Canviar el link per un unir-se amb el token de la prova -->
-                                    <div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'><a href='actions/validateInscripcio.php?idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'>JOIN</a></div>
+                                    <div class='grid_2 gran campsFitxa'><img class='icoFitxa' src='images/icons/distance.png' alt='Distance'>".$prova['distancia']."Km</div>";
+                                    if($idUser) {
+                                        $sql = "SELECT count(*) FROM inscripcio WHERE FK_id_prova = " . $prova['Id'] . " AND id_participant = " . $idUser;
+                                        $conn = $db->connect();
+
+                                        $result = $conn->query($sql);
+                                        $inscrit = mysqli_fetch_assoc($result);
+                                        if($inscrit['count(*)'] < 1){
+                                            echo "<div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'><a href='actions/validateInscripcio.php?idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'>JOIN</a></div>";
+                                        }
+                                    }
+
+                                    echo "
                                 </div>
-                            </div>";
+                            </div>
+                            ";
                         ?>
                     </div>
                 </div>

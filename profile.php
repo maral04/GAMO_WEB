@@ -110,7 +110,7 @@
                                 <?php
                                 $resultClubs = $db->recuperarClubs();
                                 while ($clubs = mysqli_fetch_assoc($resultClubs)) {
-                                    //var_dump($clubs);
+                                    echo $clubs['nom'].$arrayUser['nomClub'];
                                     if(trim($clubs['nom']) == trim($arrayUser['nom'])){
                                         echo "<option value='".$clubs['Id']."' selected>".$clubs['nom']."</option>";
                                     }else{

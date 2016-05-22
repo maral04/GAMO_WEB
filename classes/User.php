@@ -57,7 +57,7 @@ class User
         $conn = $this->db->connect();
 
         if($id != null){
-            $sql = "SELECT usuari.*, club.Nom FROM usuari INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.id = ".trim($id);
+            $sql = "SELECT usuari.*, club.nom as nomClub FROM usuari INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.id = ".trim($id);
             $result = $conn->query($sql);
         }
 
@@ -343,12 +343,16 @@ class User
         $this->img = $img;
     }
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
+
+    public function getImg()
+    {
+        return $this->img;
+    }
+
+
 
 }
