@@ -56,14 +56,13 @@ if(!isset($_GET['id']))header("Location: index.php");
                             echo "<div>";
                         }
                         echo "</div>";
-
                             if($prova['recorregut'] != null){
                                 echo "
-                                <div class='fileUpload btn btn-primary prImg fright'>
+                                <a href='track/".$prova['Id']."/".$prova['recorregut']."'>
+                                <div class='fileUpload btn btn-primary download fright'>
                                     <img class='cpImg' src='images/icons/download.png'/>
                                     <span class='spanUpload'>Download</span>
-                                    <a href='track/".$prova['Id']."/".$prova['recorregut']."'>AHMEEED</a>
-                                </div>";
+                                </div></a>";
                                 }
                             echo " </div>
                             </div>";
