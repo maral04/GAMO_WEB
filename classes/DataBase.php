@@ -118,7 +118,7 @@ class DataBase
     }
 
     public function recuperarProva ($idProva){
-        $sql = "SELECT * FROM prova WHERE Id = ".$idProva;
+        $sql = "SELECT *, (SELECT count(*) FROM inscripcio WHERE FK_id_prova = ".$idProva.") as inscrits FROM prova WHERE Id = ".$idProva;
 
         $result = $this->conn->query($sql);
 
