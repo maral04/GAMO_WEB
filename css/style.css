@@ -1099,7 +1099,7 @@ h4{
 .noTop{
     padding-top:0px;
 }
-.idUser, .idLocal, .idEvent{
+.idUser, .idLocal, .idEvent, .idProva{
     visibility: hidden;
     position:absolute;
 }
@@ -1233,14 +1233,22 @@ h4{
     height:80%;
 }
 
-.joinBtn{
+.joinBtn, .leaveBtn{
     border-radius: 25px;
     border: 2px solid #88c886;
     padding:6px 14px 6px 28px;
 }
 
+.leaveBtn{
+    padding-right:36px;
+}
+
 .joinBtn:hover{
     background-color:#ffffff;
+}
+
+.leaveBtn:hover{
+    background-color:#FF6E6E;
 }
 
 #tbDescripcio{
@@ -1254,4 +1262,13 @@ h4{
 .club{
     float:left;
     margin-left:24%;
+}
+
+#ius, #tus{
+    margin-top:2%;
+}
+
+.download{
+    padding-left:3%;
+    padding-right:2%;
 }

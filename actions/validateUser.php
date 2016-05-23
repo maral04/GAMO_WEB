@@ -83,15 +83,17 @@ if(isset($_POST['submitUser'])){
         $error = $user->save(true);
 
         if($error == "") {
-            $files = glob('../images/profile/'.$_POST['idUser'].'/*'); // get all file names
-            foreach($files as $file){ // iterate files
-                if(is_file($file) && $file != "../images/profile/".$_POST['idUser'].'/'.$imatge ) {
-                   unlink($file); // delete file
+            if($user->getImg()  != null) {
+                /*Si el form ens envia alguna imatge eliminem totes les imatges d'aquest usuari*/
+                $files = glob('../images/profile/' . $_POST['idUser'] . '/*'); // get all file names
+                foreach ($files as $file) { // iterate files
+                    if (is_file($file) && $file != "../images/profile/" . $_POST['idUser'] . '/' . $imatge) {
+                        unlink($file); // delete file
+                    }
                 }
             }
             header("Location: ../profile.php");
-        }
-        else header("Location: ../profile.php?error=".$error);
+        } else header("Location: ../profile.php?error=".$error);
     }else header("Location: ../profile.php?error=".$error);
 
 }
