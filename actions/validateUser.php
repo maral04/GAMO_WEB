@@ -8,7 +8,8 @@
 
 include_once "../classes/User.php";
 $user = new User();
-//var_dump($_POST);
+var_dump($_POST);
+
 if(isset($_POST['submitUser'])){
 
     $res = $user->init($_POST['tbName'],$_POST['tbLastName'], $_POST['tbEmail'],$_POST['tbPassword'],$_POST['tbPasswordConfirm']);
@@ -78,6 +79,7 @@ if(isset($_POST['submitUser'])){
         if (!$user->setPhone2($_POST['tbPhone2'])) $error = "Invalid Phone Number";
     }
     if(isset($_POST['sport']))$user->setSport($_POST['sport']);
+    if(isset($_POST['gender']))$user->setGender($_POST['gender']);
 
     if($error == "") {
         $error = $user->save(true);

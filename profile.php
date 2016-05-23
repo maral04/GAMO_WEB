@@ -89,13 +89,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbClub">Club</label>
                         <div class="col-md-6">
-                            <select id="tbClub" name="tbClub" type="text" placeholder="" class="form-control input-md" >
+                            <select id="tbClub" name="tbClub" class="form-control input-md" >
                                 <option></option>
                                 <?php
                                 $resultClubs = $db->recuperarClubs();
                                 while ($clubs = mysqli_fetch_assoc($resultClubs)) {
-                                    echo $clubs['nom'].$arrayUser['nomClub'];
-                                    if(trim($clubs['nom']) == trim($arrayUser['nom'])){
+                                    //echo "-".trim($clubs['nom'])."-".trim($arrayUser['nomClub'])."-";
+                                    if(trim($clubs['nom']) === trim($arrayUser['nomClub'])){
                                         echo "<option value='".$clubs['Id']."' selected>".$clubs['nom']."</option>";
                                     }else{
                                         echo "<option value='" . $clubs['Id'] . "' >" . $clubs['nom'] . "</option>";
@@ -132,23 +132,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="tbClub">Club</label>
-                                <div class="col-md-6">
-                                    <select id="tbClub" name="tbClub" type="text" placeholder=""
-                                            class="form-control input-md">
-                                        <option></option>
-                                        <?php
-                                        $resultClubs = $db->recuperarClubs();
-                                        while ($clubs = mysqli_fetch_assoc($resultClubs)) {
-                                            //var_dump($clubs);
-                                            if (trim($clubs['nom']) == trim($arrayUser['nom'])) {
-                                                echo "<option value='" . $clubs['Id'] . "' selected>" . $clubs['nom'] . "</option>";
-                                            } else {
-                                                echo "<option value='" . $clubs['Id'] . "' >" . $clubs['nom'] . "</option>";
-                                            }
-                                        }
-                                        ?>
-                                    </select>
+                                <label class="col-md-4 control-label" for="tbGender">Gender</label>
+                                <div>
+                                    <?php
+                                    if($arrayUser['gender']=='Male'){
+                                        echo "<input type=\"radio\" name=\"gender\" checked value=\"Male\">Male";
+                                        echo "<input type=\"radio\" name=\"gender\" value=\"Female\">Famele";
+                                    }else if($arrayUser['gender']=='Female'){
+                                        echo "<input type=\"radio\" name=\"gender\" value=\"Male\">Male";
+                                        echo "<input type=\"radio\" name=\"gender\" checked value=\"Female\">Famele";
+                                    }else{
+                                        echo "<input type=\"radio\" name=\"gender\" value=\"Male\">Male";
+                                        echo "<input type=\"radio\" name=\"gender\" value=\"Female\">Famele";
+                                    }
+                                    ?>
+
                                 </div>
                             </div>
 

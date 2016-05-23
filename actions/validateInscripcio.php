@@ -31,7 +31,7 @@ if(isset($_GET['leave']) && isset($_GET['idUser']) && isset($_GET['idProva'])){
             $data = date("d-m-Y");
             mysqli_stmt_bind_param($mysql, "sss", $_GET['idProva'], $_GET['idUser'], $data);
 
-            if (mysqli_stmt_execute($mysql)) return true;
+            if (mysqli_stmt_execute($mysql)) header("Location: ../fitxaProva.php?id=".$_GET['idProva']);
             else die(mysqli_stmt_error($mysql));
         }
     }
