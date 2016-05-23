@@ -47,6 +47,8 @@
                         echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td>" . $arrayEvent['gender'] . "</td><td>" . $arrayEvent['nomClub'] . "</td></tr>";
                     }
                     echo "</table>";
+                }else{
+                    echo "There're no participants yet, be the first to <a class='click' onclick='location.href=\"fitxaProva.php?id=".$idProva."\"'>JOIN! :)</a> </br>";
                 }
             } else {
                 header("Location: index.php");
