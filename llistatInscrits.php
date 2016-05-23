@@ -16,7 +16,7 @@
         <?php
         if (isset($_GET['idProva'])) {
             $idProva = $_GET['idProva'];
-            $sql = "SELECT prova.nom as nomProva, usuari.nom, usuari.cNom, (SELECT nom FROM club WHERE usuari.FK_id_club = club.Id) as nomClub FROM inscripcio INNER JOIN prova on Fk_Id_prova = prova.Id INNER JOIN usuari on id_Participant = usuari.id  WHERE prova.Id =" . $idProva;
+            $sql = "SELECT prova.nom as nomProva, usuari.nom, usuari.cNom, usuari.gender, (SELECT nom FROM club WHERE usuari.FK_id_club = club.Id) as nomClub FROM inscripcio INNER JOIN prova on Fk_Id_prova = prova.Id INNER JOIN usuari on id_Participant = usuari.id  WHERE prova.Id =" . $idProva;
 
             $result = $db->getConn()->query($sql);
 
@@ -44,7 +44,7 @@
                         </script>
                         <?php
                     }
-                        echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td></td><td>" . $arrayEvent['nomClub'] . "</td></tr>";
+                        echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td>" . $arrayEvent['gender'] . "</td><td>" . $arrayEvent['nomClub'] . "</td></tr>";
                     }
                     echo "</table>";
                 }
