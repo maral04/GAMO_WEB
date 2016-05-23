@@ -13,6 +13,10 @@
     $arrayEvent = false;
     $arrayProva = false;
 
+    if(isset($_GET['eventId'])) {
+        $_SESSION['idEvent'] = $_GET['eventId'];
+    }
+
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
     }else{

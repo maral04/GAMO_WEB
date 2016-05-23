@@ -71,7 +71,11 @@
                                     <div class='block2'>
                                         <div class='grid_7'>
                                             <div class="grid_2">
-                                                <img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt="">
+                                                <?php
+                                                if($arrayEvent['imatges'] == null) echo '<img class="" src="images/events/default.png" alt="">';
+                                                else echo "<img class='' src='images/events/".$arrayEvent['Id']."/".$arrayEvent['imatges']."' alt=''>";
+                                                ?>
+                                                <!--<img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt=""> -->
                                             </div>
                                             <div class="grid_4">
                                                 <h1 class="eventTitle"><?php echo $arrayEvent['titol'] ?></h1>
@@ -98,7 +102,11 @@
                                     <div class='block3 click' onclick="location.href='createProva.php?provaId=<?php echo $prova['Id'];?>'">
                                         <div class='block2'>
                                             <div class='grid_2'>
-                                                <img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">
+                                                <?php
+                                                if($prova['Imatges'] == null) echo '<img class="" src="images/events/default.png" alt="">';
+                                                else echo "<img class='' src='images/proves/".$prova['Id']."/".$prova['Imatges']."' alt=''>";
+                                                ?>
+                                                <!--<img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">-->
                                             </div>
                                             <div class='grid_4 g4Gran'>
                                                 <h4><?php echo $prova['nom'] ?></h4>
@@ -120,6 +128,11 @@
                                 </div>
                                 <?php
                             }
+                            echo "<div class='grid_8'>
+                                    <div class='block3 click campsFitxa' style='text-align: center; background-color: #DFFBDE ;' onclick=\"location.href='createProva.php?eventId=".$arrayEvent['Id']."'\">
+                                        <img class='icoFitxa' src='images/icons/add.png'/> Add event
+                                    </div>
+                                  </div>";
                         }
                    }
                 } else {
