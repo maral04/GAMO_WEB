@@ -41,6 +41,13 @@ if(!isset($_GET['id']))header("Location: index.php");
                         echo "<div class='grid_4'>
                                 <div style='height:365px;'>";
                         echo"<img class='imgFitxa' src='".$img."' alt=''>";
+                        echo "<div class='sportsSobre'>";
+                            foreach(explode(',', $prova['esports'])as $sport){
+                                if($prova['esports'] != null){
+                                    echo "<img class='icoFitxa' src='images/icons/".$sport.".png'>";
+                                }
+                            }
+                        echo"</div>";
                         echo"</div>
                                 <div class='grid_11'>
                                     <!--Mapa amb la ruta de la prova.-->
@@ -52,10 +59,17 @@ if(!isset($_GET['id']))header("Location: index.php");
                             echo "<div>";
                         }
                         echo "</div>";
+                            echo "
+                            <a href='llistatInscrits.php?idProva=".$prova['Id']."'>
+                                <div class='fileUpload btn btn-primary download'>
+                                    <img class='cpImg' src='images/icons/mPplW.png'/>
+                                    <span class='spanUpload'>Participants List</span>
+                                </div></a>
+                            ";
                             if($prova['recorregut'] != null && (strpos($prova['recorregut'], ".gpx")!==false) || (strpos($prova['recorregut'], ".xml")!==false)){
                                 echo "
                                 <a href='track/".$prova['Id']."/".$prova['recorregut']."'>
-                                <div class='fileUpload btn btn-primary download fright'>
+                                <div class='fileUpload btn btn-primary download fRight'>
                                     <img class='cpImg' src='images/icons/download.png'/>
                                     <span class='spanUpload'>Download</span>
                                 </div></a>";

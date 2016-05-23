@@ -1014,8 +1014,8 @@ h4{
     width: 50px;
     float:left;
     text-align: center;
-
 }
+
 #sports img{
     opacity: 0.5;
     width:40px;
@@ -1152,6 +1152,7 @@ h4{
 
 .imgFitxa{
     width:365px;
+    max-height:345px;
 }
 
 .icoFitxa{
@@ -1308,3 +1309,18 @@ tr:nth-child(even) {
     background-color: #B4DEB2;
     color:#ffffff;
 }
+
+/* Coses marçal, no tocal!
+.sportsSobre{
+    display:block;
+}
+
+.sportsSobre > img:first-child{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sportsSobre > img{
+
+}*/
