@@ -41,7 +41,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                         <?php
                         $desnivellAcumulat = $prova['desnivellPositiu']+$prova['desnivellNegatiu'];
                         if(file_exists("images/proves/".$prova['Id']."/".$prova['Imatges'])) $img = "images/proves/".$prova['Id']."/".$prova['Imatges'];
-                        else $img = "images/proves/Captura.png";
+                        else $img = "images/proves/default.png";
                         echo "<div class='grid_4'>
                                 <div style='height:365px;'>";
                         echo"<img class='imgFitxa' src='".$img."' alt=''>";

@@ -41,17 +41,14 @@ class Prova
 
     public function init( $idOrganitzador, $Name, $Description , $IniDate, $IniTime  ,$Distance, $Positive, $Negtive, $Checkpoints, $TimeLimit, $sport, $Country, $Region, $City, $Address,$cp, $Manager, $Price,  $InscripcionsIni, $InscripcionsFin, $limitInscripcions, $id = null)
     {
-        $error = "";
-        var_dump($IniDate);
-        var_dump($IniTime);
-        if($id != null) $this->id = $id;
 
+        $error = "";
+        if($id != null) $this->id = $id;
         $this->setIdOrganitzador($idOrganitzador);
         $this->setName($Name);
         $this->setDescription($Description);
         if(!$this->setIniDate($IniDate)) $error = "Data inicial no valida";
         $this->setIniTime($IniTime);
-        echo "ini time ". $this->IniTime. "  ".$this->IniDate;
         if(!$this->setDistance($Distance)) $error = "Distancia negativa";
         if(!$this->setPositive($Positive)) $error = "Desnivell positiu negatiu ";
         if(!$this->setNegtive($Negtive))$error = "Desnivell negatiu negatiu ";;
@@ -63,7 +60,6 @@ class Prova
         $this->setCity($City);
         $this->setAddress($Address);
         $this->setManager($Manager);
-        var_dump($Price);
 
         if(!$this->setPrice($Price)) $error = "Preu negatiu";
 
@@ -72,7 +68,6 @@ class Prova
         $this->setPostalCode($cp);
         if(!$this->setInscripcionsLimit($limitInscripcions)) echo "Limit d'inscrits negatiu";
 
-        //die($error);
         return $error;
     }
     public function load($id = null){
@@ -136,7 +131,6 @@ class Prova
                                                         temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
                                                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 $date_time = $this->IniDate.$this->IniTime;
-                die($this->IniDate."-".$this->IniTime);
                 //die(mysqli_error($conn));
                 mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
                     $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
@@ -250,15 +244,17 @@ class Prova
 
     public function setIniDate($IniDate)
     {
-        echo $IniDate;
-        $d = DateTime::createFromFormat('Y-m-d', $IniDate);
-        var_dump($d && $d->format('d-m-Y') === $IniDate);
-        die("".($d && $d->format('d-m-Y') === $IniDate));
-        if($d && $d->format('d-m-Y') === $IniDate){
-            $this->IniDate = $IniDate;
-            die($d->format('d-m-Y'));
-            return true;
-        }return false;
+
+        if($IniDate != "") {
+            if(preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $IniDate)){
+                //it's ok
+                $this->IniDate = $IniDate;
+                return true;
+            }else{
+                return false;
+                //it's bad
+            }
+        }else return true;
 
     }
 
@@ -380,8 +376,10 @@ class Prova
     {
         if(trim($Price) != "") {
             $Price = intval($Price);
-            if ($Price > 0) $this->Price = $Price;
-            else return false;
+            if ($Price > 0) {
+                $this->Price = $Price;
+                return true;
+            } else return false;
         }else{
             echo "buid";
             $this->Price = $Price;

@@ -37,7 +37,7 @@ if(isset($_POST['submitProva'])){
         }
         echo "result ".$result;
         //var_dump($_POST);*/
-
+        echo "result ".$result;
         if (is_numeric($result)) {
             echo "Numeric";
             if (trim($_FILES['tbImages']['name']) != "") {
