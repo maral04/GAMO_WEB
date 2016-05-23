@@ -49,14 +49,14 @@ if(!isset($_GET['id']))header("Location: index.php");
                                 <div class='grid_11'>
                                     <!--Mapa amb la ruta de la prova.-->
                                     ";
-                        if($prova['recorregut'] != null){
+                        if($prova['recorregut'] != null && (strpos($prova['recorregut'], ".gpx")!==false) || (strpos($prova['recorregut'], ".xml")!==false)){
                             echo "<div id='map' idprova='".$prova['Id']."' nomgpx='".$prova['recorregut']."'>";
 
                         }else{
                             echo "<div>";
                         }
                         echo "</div>";
-                            if($prova['recorregut'] != null){
+                            if($prova['recorregut'] != null && (strpos($prova['recorregut'], ".gpx")!==false) || (strpos($prova['recorregut'], ".xml")!==false)){
                                 echo "
                                 <a href='track/".$prova['Id']."/".$prova['recorregut']."'>
                                 <div class='fileUpload btn btn-primary download fright'>
