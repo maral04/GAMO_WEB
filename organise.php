@@ -67,17 +67,6 @@
                         if($arrayEvent != false){?>
                             <div class="grid_9">
 
-
-                                <!-- FES SERVIR QUESTO **** -->
-                                <?php/*
-                                $numProves = $db->recuperarNumProves($event['Id']);
-                                if ($numProves['COUNT(*)']<= 1) {
-                                echo "
-
-                                ";*/?>
-                                    
-
-
                                 <div class='block3 click eventDiv' onclick="location.href='createEvent.php?eventId=<?php echo $arrayEvent['Id'];?>'">
                                     <div class='block2'>
                                         <div class='grid_7'>
