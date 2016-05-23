@@ -101,6 +101,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                                         }else{
                                             echo "<a href='actions/validateInscripcio.php?leave=true&idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'><div class='grid_1 gran campsFitxa leaveBtn link--kukuri l3'>LEAVE</div></a>";
                                         }
+                                        echo "<a href='llistatInscrits.php?idProva=".$prova['Id']."'>Llistat d'inscrits</a>";
                                     }
                                     echo "
                                 </div>
