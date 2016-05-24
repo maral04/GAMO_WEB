@@ -63,7 +63,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                             <a href='llistatInscrits.php?idProva=".$prova['Id']."'>
                                 <div class='fileUpload btn btn-primary download'>
                                     <img class='cpImg' src='images/icons/mPplW.png'/>
-                                    <span class='spanUpload'>Participants List</span>
+                                    <span class='spanUpload'>List of Participants</span>
                                 </div></a>
                             ";
                             if($prova['recorregut'] != null && (strpos($prova['recorregut'], ".gpx")!==false) || (strpos($prova['recorregut'], ".xml")!==false)){
