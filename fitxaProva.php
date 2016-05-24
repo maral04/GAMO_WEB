@@ -42,7 +42,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                                 <div style='height:365px;'>";
                         echo"<img class='imgFitxa' src='".$img."' alt=''>";
                         echo "<div class='sportsSobre'>";
-                            foreach(explode(',', $prova['esports'])as $sport){
+                            foreach(explode(',', rtrim($prova['esports'],','))as $sport){
                                 if($prova['esports'] != null){
                                     echo "<img class='icoFitxa' src='images/icons/".$sport.".png'>";
                                 }

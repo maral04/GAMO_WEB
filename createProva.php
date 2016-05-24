@@ -52,7 +52,13 @@
                     <div class='block2'>
                         <div class='grid_7'>
                             <div class="grid_2">
-                                <img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt="">
+                                <?php
+                                if(is_file("images/events/".$arrayEvent['Id']."/".$arrayEvent['imatges']))
+                                    echo "<img class='' src=\"images/events/". $arrayEvent['Id']."/".$arrayEvent['imatges']." alt=''>";
+                                else
+                                    echo "<img class='' src='images/events/default.png' alt=''>";
+
+                                ?>
                             </div>
                             <div class="grid_4">
                                 <h1 class="eventTitle"><?php echo $arrayEvent['titol'] ?></h1>
@@ -80,7 +86,15 @@
                     <div class='block3 click' onclick="location.href='createProva.php?provaId=<?php echo $prova['Id'] ?>#profile'">
                         <div class='block2'>
                             <div class='grid_2'>
-                                <img class="" src="images/proves/<?php echo $prova['Id']."/".$prova['Imatges']?>" alt="">
+
+                                <?php
+                                if(is_file("images/proves/".$prova['Id']."/".$prova['Imatges']))
+                                    echo "<img class='' src=\"images/proves/". $prova['Id']."/".$prova['Imatges']." alt=''>";
+                                else
+                                    echo "<img class='' src='images/proves/default.png' alt=''>";
+
+                                ?>
+
                             </div>
                             <div class='grid_4 g4Gran'>
                                 <h4><?php echo $prova['nom'] ?></h4>
@@ -104,7 +118,7 @@
         }
         ?>
         <div class="grid_10">
-            <h3 class="registre h3__head1">New prova</h3>
+            <h3 class="registre h3__head1">New event</h3>
         </div>
         <div class="grid_10 block3 form-user" id="profile" >
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateProva.php">

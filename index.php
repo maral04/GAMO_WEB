@@ -140,7 +140,13 @@
                 <div class='block2'>
                     <div class='grid_3'>";
                 if($event['imatges'] == null) echo '<img class="" src="images/events/default.png" alt="">';
-                else echo "<img class='' src='images/events/".$event['Id']."/".$event['imatges']."' alt=''>";
+                else{
+                    if(is_file("images/events/".$event['Id']."/".$event['imatges']))
+                    echo "<img class='' src='images/events/".$event['Id']."/".$event['imatges']."' alt=''>";
+                    else{
+                        echo '<img class="" src="images/events/default.png" alt="">';
+                    }
+                }
                 ?>
             </div>
             <div class="grid_4">

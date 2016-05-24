@@ -20,36 +20,41 @@
 
             $result = $db->getConn()->query($sql);
 
-            echo "<div class='grid_12'>";
+                echo "<div class='grid_12'>";
                 echo "<h3 class='registre h3__head1'></h3>";
-            echo "</div>";
-            echo "<div class='grid_11 block3'>";
+                echo "</div>";
+                echo "<div class='grid_11 block3'>";
+            if(is_object($result)){
+
                 if ($result->num_rows > 0) {
                     echo "<table class='taulaintro'>";
                     echo "<tr>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Gender</th>
-                        <th>Club</th></tr>
-                        ";
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Club</th></tr>
+                            ";
                     $i = 0;
                     while ($arrayEvent = mysqli_fetch_assoc($result)) {
-                    if($i == 0){
-                        $i=1;
-                        ?>
-                        <script>
-                            $( document ).ready(function() {
-                                $('.registre').text("List of Participants in <?php echo $arrayEvent['nomProva'] ?>");
-                            });
-                        </script>
-                        <?php
-                    }
+                        if ($i == 0) {
+                            $i = 1;
+                            ?>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.registre').text("List of Participants in <?php echo $arrayEvent['nomProva'] ?>");
+                                });
+                            </script>
+                            <?php
+                        }
                         echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td>" . $arrayEvent['gender'] . "</td><td>" . $arrayEvent['nomClub'] . "</td></tr>";
                     }
                     echo "</table>";
-                }else{
-                    echo "There're no participants yet, be the first to <a class='click' onclick='location.href=\"fitxaProva.php?id=".$idProva."\"'>JOIN! :)</a> </br>";
+                } else {
+                    echo "There're no participants yet, be the first to <a class='click' onclick='location.href=\"fitxaProva.php?id=" . $idProva . "\"'>JOIN! :)</a> </br>";
                 }
+            }else{
+                echo "There're no participants yet, be the first to <a class='click' onclick='location.href=\"fitxaProva.php?id=" . $idProva . "\"'>JOIN! :)</a> </br>";
+            }
             } else {
                 header("Location: index.php");
             }
