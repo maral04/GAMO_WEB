@@ -136,17 +136,16 @@
                                 <div>
                                     <?php
                                     if($arrayUser['gender']=='Male'){
-                                        echo "<input type=\"radio\" name=\"gender\" checked value=\"Male\">Male";
-                                        echo "<input type=\"radio\" name=\"gender\" value=\"Female\">Famele";
+                                        echo "<label class='click'><input class='click' type=\"radio\" name=\"gender\" checked value=\"Male\"><a>Male</a></label>";
+                                        echo "<label class='click'><input class='click' type=\"radio\" name=\"gender\" value=\"Female\"><a>Female</a></label>";
                                     }else if($arrayUser['gender']=='Female'){
-                                        echo "<input type=\"radio\" name=\"gender\" value=\"Male\">Male";
-                                        echo "<input type=\"radio\" name=\"gender\" checked value=\"Female\">Famele";
+                                        echo "<label class='click'><input class='click' type=\"radio\" name=\"gender\" value=\"Male\"><a>Male</a></label>";
+                                        echo "<label class='click'><input class='click' type=\"radio\" name=\"gender\" checked value=\"Female\"><a>Female</a></label>";
                                     }else{
-                                        echo "<input type=\"radio\" name=\"gender\" value=\"Male\">Male";
-                                        echo "<input type=\"radio\" name=\"gender\" value=\"Female\">Famele";
+                                        echo "<label class='click'><input class='click' type=\"radio\" name=\"gender\" value=\"Male\"><a>Male</a></label>";
+                                        echo "<label class='click'><input class='click' type=\"radio\" name=\"gender\" value=\"Female\"><a>Female</a></label>";
                                     }
                                     ?>
-
                                 </div>
                             </div>
 

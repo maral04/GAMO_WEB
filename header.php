@@ -2,6 +2,10 @@
     <div class="container_12">
         <div class="grid_12">
             <div class="grid_2 menuUser"><a class="link link--kukuri l1" data-letters="Profile" href="profile.php"><?php if(isset($_SESSION['idUser'])) echo "Profile";?></a></div>
+
+            <?php
+                var_dump($_SESSION);
+            ?>
             <div class="grid_2 menuUser"><a class="link link--kukuri l2" data-letters="Organise" href="organise.php"><?php if(isset($_SESSION['idUser'])) echo "Organise";?></a></div>
                 <?php
                 echo "<div class='grid_2 menuUser fRight'>";

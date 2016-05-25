@@ -83,7 +83,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                                     ".$prova['nom']."
                                 </h1>
                                 <!-- Població (localitzacio)) -->
-                                <a>".$prova['poblacio'].", ".$prova['regio']." (".$prova['estat'].")</a>
+                                <a>".$prova['poblacio']." (".$prova['cp']."), ".$prova['regio']." - ".$prova['estat']."</a>
                                 <div class='fRight'>
                                     <!-- data_hora_inici (prova) -->
                                     <a>Start: ".$prova['data_hora_inici']."</a>
