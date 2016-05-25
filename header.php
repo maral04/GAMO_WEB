@@ -1,11 +1,20 @@
 <header>
     <div class="container_12">
         <div class="grid_12">
-            <div class="grid_2 menuUser"><a class="link link--kukuri l1" data-letters="Profile" href="profile.php"><?php if(isset($_SESSION['idUser'])) echo "Profile";?></a></div>
-
-            <?php
-                var_dump($_SESSION);
-            ?>
+            <div class="grid_2 menuUser">
+                <?php if(isset($_SESSION['idUser'])){ ?>
+                    <!--<a href='profile.php'>--><img class='icoFitxa2'
+                    <?php if($_SESSION['imgUser'] == null){
+                        echo "src='images/icons/profileDefault.png'";
+                        echo "alt='Profile Image'>";
+                    } else{
+                        echo "src='images/profile/".$_SESSION['idUser']."/".$_SESSION['imgUser']."'";
+                        echo "alt='Profile Image'>";
+                    } ?>
+                    <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>
+                    <!--</a>-->
+                <?php }?>
+            </div>
             <div class="grid_2 menuUser"><a class="link link--kukuri l2" data-letters="Organise" href="organise.php"><?php if(isset($_SESSION['idUser'])) echo "Organise";?></a></div>
                 <?php
                 echo "<div class='grid_2 menuUser fRight'>";
