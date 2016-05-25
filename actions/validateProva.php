@@ -128,9 +128,11 @@ function carregarFitxer($f, $id, $type) {
         }
         echo $root.$id. "/" . $f['name'];
         if (move_uploaded_file($f['tmp_name'], $root.$id. "/" . $f['name'])) {
-            $nomFitxer = $f['name'];
+            rename($root.$id. "/" . $f['name'],$root.$id. "/" . $newName);
+            $nomFitxer = $newName;
         } else {
-            $nomFitxer = $f['name'];
+            rename($root.$id. "/" . $f['name'],$root.$id. "/" . $newName);
+            $nomFitxer = $newName;
             echo "Error en guardar el fitxer al servidor";
         }
     } else {

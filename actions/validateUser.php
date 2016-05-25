@@ -48,18 +48,6 @@ if(isset($_POST['submitUser'])){
     //var_dump($_POST);
     //var_dump($_FILES);
     $error = "";
-
-    if(trim($_FILES['img']['name']) != ""){
-        $imatge = carregarFitxer($_FILES['img'],$_POST['idUser']);
-        if(trim($imatge) != "") {
-
-            $user->setImg($imatge);
-        }
-        else $user->setImg(null);
-    }else{
-        $user->setImg(null);
-    }
-
     $user->load($_POST['idUser']);
     $user->setId($_POST['idUser']);
     $user->setEmail($_POST['tbEmail']);
@@ -84,6 +72,18 @@ if(isset($_POST['submitUser'])){
     if(isset($_POST['sport']))$user->setSport($_POST['sport']);
     if(isset($_POST['gender']))$user->setGender($_POST['gender']);
 
+
+    if(trim($_FILES['img']['name']) != ""){
+        $imatge = carregarFitxer($_FILES['img'],$_POST['idUser']);
+        if(trim($imatge) != "") {
+
+            $user->setImg($imatge);
+        }
+        else $user->setImg(null);
+    }else{
+        $user->setImg(null);
+    }
+
     if($error == "") {
         $error = $user->save(true);
 
@@ -92,6 +92,7 @@ if(isset($_POST['submitUser'])){
                 /*Si el form ens envia alguna imatge eliminem totes les imatges d'aquest usuari*/
                 $files = glob('../images/profile/' . $_POST['idUser'] . '/*'); // get all file names
                 foreach ($files as $file) { // iterate files
+
                     if (is_file($file) && $file != "../images/profile/" . $_POST['idUser'] . '/' . $imatge) {
                         unlink($file); // delete file
                     }
@@ -104,6 +105,9 @@ if(isset($_POST['submitUser'])){
 }
 
 function carregarFitxer($f, $id) {
+    $temp = explode(".", $f["name"]);
+    $newName = $id.".".end($temp);
+
     $nomFitxer = "";
     //var_dump($f);
 
@@ -111,16 +115,17 @@ function carregarFitxer($f, $id) {
         if (!file_exists('../images/profile/'.$id)) {
             mkdir('../images/profile/'.$id, 0777, true);
         }
-        echo '../images/profile/'.$id. "/" . $f['name'];
+        //echo '../images/profile/'.$id. "/" . $f['name'];
         if (move_uploaded_file($f['tmp_name'], '../images/profile/'.$id. "/" . $f['name'])) {
-            $nomFitxer = $f['name'];
+            rename('../images/profile/'.$id. "/" . $f['name'],'../images/profile/'.$id. "/" . $newName);
+            $nomFitxer = $newName;
         } else {
-            $nomFitxer = $f['name'];
+            rename('../images/profile/'.$id. "/" . $f['name'],'../images/profile/'.$id. "/" . $newName);
+            $nomFitxer = $newName;
             echo "Error en guardar el fitxer al servidor";
         }
     } else {
         echo "Error en carregar l'imatge";
     }
-
     return $nomFitxer;
 }
