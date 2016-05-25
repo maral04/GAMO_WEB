@@ -104,8 +104,7 @@ if(isset($_POST['submitProva'])){
 
 
 
-        if($provaAmbEvent == true) header("Location: ../organise.php");
-        else header("Location: ../organise.php");
+        header("Location: ../organise.php");
     }else{
         echo $result;
     }
@@ -113,6 +112,11 @@ if(isset($_POST['submitProva'])){
 }
 
 function carregarFitxer($f, $id, $type) {
+    $files = glob('../images/proves/' . $id . '/*'); // get all file names
+    foreach ($files as $file) { // iterate files
+        unlink($file); // delete file
+    }
+
     $temp = explode(".", $f["name"]);
     $newName = $id.".".end($temp);
 

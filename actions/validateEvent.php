@@ -68,6 +68,11 @@ if(isset($_POST['submitEvent'])) {
 }
 
 function carregarFitxer($f, $id, $type) {
+    $files = glob('../images/events/' . $id . '/*'); // get all file names
+    foreach ($files as $file) { // iterate files
+        unlink($file); // delete file
+    }
+
     $temp = explode(".", $f["name"]);
     $newName = $id.".".end($temp);
 
