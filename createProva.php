@@ -266,10 +266,8 @@
                         }else{
                             //$('#sports input').prop( "checked", false );
                             //$('#sports img').removeClass('icon-selected');
-
                             $('#'+id).prop( "checked", true );
                             $(this).addClass('icon-selected');
-
                         }
                     });
                 </script>
@@ -413,6 +411,15 @@
 </div>
 </div>
 </body>
+<!-- Filtra paraules malsonants -->
+
+<script>
+/*    $('#tbName').blur(function() {
+        $('#tbName').profanityFilter({
+            externalSwears: 'JSON/swearWords.json'
+        })
+    });*/
+</script>
 <script>
     $(document).ready(function(){
         if($('#popup').length){
