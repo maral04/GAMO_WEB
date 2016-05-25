@@ -69,6 +69,7 @@ class User
             $this->setName($arrayUser['nom']);
             $this->setLastname($arrayUser['cNom']);
             $this->setPassword($arrayUser['contrasenya']);
+            $this->setImg($arrayUser['img']);
             return $arrayUser;
         } else {
             $sql = "SELECT * FROM usuari WHERE id = '".trim($id)."'";
@@ -81,6 +82,8 @@ class User
                 $this->setName($arrayUser['nom']);
                 $this->setLastname($arrayUser['cNom']);
                 $this->setPassword($arrayUser['contrasenya']);
+                $this->setImg($arrayUser['img']);
+
                 return $arrayUser;
             }else return false;
         }
@@ -108,6 +111,8 @@ class User
             $this->setName($arrayUser['nom']);
             $this->setLastname($arrayUser['cNom']);
             $this->setPassword($arrayUser['contrasenya']);
+            $this->setImg($arrayUser['img']);
+
             return $arrayUser;
         } else {
             $sql = "SELECT * FROM usuari WHERE email = '".trim($email)."'";
@@ -120,6 +125,8 @@ class User
                 $this->setName($arrayUser['nom']);
                 $this->setLastname($arrayUser['cNom']);
                 $this->setPassword($arrayUser['contrasenya']);
+                $this->setImg($arrayUser['img']);
+
                 return $arrayUser;
             }else return false;
         }
