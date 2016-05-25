@@ -391,6 +391,12 @@ class Prova
     public function setInscripcionsIni($InscripcionsIni)
     {
         $this->InscripcionsIni = $InscripcionsIni;
+        /*if($InscripcionsIni != null){
+            $this->InscripcionsIni = $InscripcionsIni;
+        }else{
+
+            $this->InscripcionsIni = date();
+        }*/
     }
 
 
