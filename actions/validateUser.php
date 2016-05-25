@@ -33,6 +33,9 @@ if(isset($_POST['submitUser'])){
             $user->loadByEmail($_POST['tbEmail']);
 
             $_SESSION['idUser'] = $user->getId();
+            $_SESSION['nameUser'] = $user->getName();
+            $_SESSION['imgUser'] = $user->getImg();
+            var_dump($_SESSION);
             //var_dump($user->getId());
             header("Location: ../index.php");
         } else {

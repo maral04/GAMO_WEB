@@ -104,8 +104,8 @@ if(isset($_POST['submitProva'])){
 
 
 
-        /*if($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
-        else header("Location: ../createProva.php?result=unic");*/
+        if($provaAmbEvent == true) header("Location: ../organise.php");
+        else header("Location: ../organise.php");
     }else{
         echo $result;
     }
@@ -113,6 +113,9 @@ if(isset($_POST['submitProva'])){
 }
 
 function carregarFitxer($f, $id, $type) {
+    $temp = explode(".", $f["name"]);
+    $newName = $id.".".end($temp);
+
     $nomFitxer = "";
     //var_dump($f);
     if ($type == 1) $root = '../images/proves/';

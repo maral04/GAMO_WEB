@@ -311,6 +311,8 @@ class User
         $this->tshirt = $tshirt;
     }
 
+
+
     public function setClub($club)
     {
         if(trim($club)!= "") $this->club = $club;
@@ -362,6 +364,11 @@ class User
     public function getImg()
     {
         return $this->img;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
 

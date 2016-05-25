@@ -28,7 +28,7 @@
     }else {
         if(isset($_GET['provaId'])) {
             $arrayProva = $prova->load($_GET['provaId']);
-            var_dump($arrayProva);
+            //var_dump($arrayProva);
 
         }else $arrayProva = false;
     }
@@ -54,7 +54,7 @@
                             <div class="grid_2">
                                 <?php
                                 if(is_file("images/events/".$arrayEvent['Id']."/".$arrayEvent['imatges']))
-                                    echo "<img class='' src=\"images/events/". $arrayEvent['Id']."/".$arrayEvent['imatges']." alt=''>";
+                                    echo "<img class='' src='images/events/". $arrayEvent['Id']."/".$arrayEvent['imatges']."' alt=''>";
                                 else
                                     echo "<img class='' src='images/events/default.png' alt=''>";
 
@@ -89,7 +89,7 @@
 
                                 <?php
                                 if(is_file("images/proves/".$prova['Id']."/".$prova['Imatges']))
-                                    echo "<img class='' src=\"images/proves/". $prova['Id']."/".$prova['Imatges']." alt=''>";
+                                    echo "<img class='' src='images/proves/". $prova['Id']."/".$prova['Imatges']."' alt=''>";
                                 else
                                     echo "<img class='' src='images/proves/default.png' alt=''>";
 
@@ -376,13 +376,25 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbInscripcionsIni">Open Registration Date</label>
                         <div class="col-md-6">
-                            <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['obertura_inscripcions']?>" >
-                        </div>
+                            <?php
+                            $inici = "";
+                            $final = "";
+                            if($arrayProva != false){
+                                $createDate = new DateTime($arrayProva['obertura_inscripcions']);
+                                $inici = $createDate->format('Y-m-d');
+                                $createDate2 = new DateTime($arrayProva['tancament_inscripcionts']);
+                                $final = $createDate2->format('Y-m-d');
+                                $createDate3 = new DateTime($arrayProva['tancament_inscripcionts']);
+                                $final = $createDate3->format('Y-m-d');
+                            }
+                            ?>
+                            <input id="tbInscripcionsIni" name="tbInscripcionsIni" type="date" value ="<?php if ($arrayProva != false)echo $inici?>" >
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbInscripcionsFin">Final Registration Date</label>
                         <div class="col-md-6">
-                            <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" value ="<?php if ($arrayProva != false)echo $arrayProva['tancament_inscripcionts']?>">
+                            <input id="tbInscripcionsFin" name="tbInscripcionsFin" type="date" value ="<?php if ($arrayProva != false)echo $final?>">
                         </div>
                     </div>
                 </div>
