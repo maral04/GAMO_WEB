@@ -131,7 +131,7 @@ class Prova
                                                         temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
                                                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 $date_time = $this->IniDate.$this->IniTime;
-                //die(mysqli_error($conn));
+                //die($date_time);
                 mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
                     $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
                     $date_time, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
@@ -143,6 +143,8 @@ class Prova
                     if (trim($error) == "") return $this->id;
                 } else echo mysqli_stmt_error($mysql2);
             } else {
+                $date_time = $this->IniDate." ".$this->IniTime;
+                //die($date_time);
 
                 $mysql2 = mysqli_prepare($conn, "UPDATE prova SET preu=?,distancia=?,desnivellPositiu=?,desnivellNegatiu=?,
                                                         num_avituallaments=?,nom=?,pagina_organitzacio=?,esports=?,
@@ -152,7 +154,7 @@ class Prova
                 //die(mysqli_error($conn));
                 mysqli_stmt_bind_param($mysql2, "ddiiissssssssisssss",  $this->Price, $this->Distance, $this->Positive,
                     $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
-                    $this->IniDate, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
+                    $date_time, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
                     $this->Country, $this->Region, $this->City, $this->Address);
 
                 if (mysqli_stmt_execute($mysql2)) {
