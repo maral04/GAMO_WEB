@@ -42,11 +42,11 @@ if(!isset($_GET['id']))header("Location: index.php");
                                 <div style='height:365px;'>";
                         echo"<img class='imgFitxa' src='".$img."' alt=''>";
                         echo "<div class='sportsSobre'>";
-                            foreach(explode(',', rtrim($prova['esports'],','))as $sport){
-                                if($prova['esports'] != null){
-                                    echo "<img class='icoFitxa' src='images/icons/".$sport.".png'>";
-                                }
+                        foreach(explode(',', rtrim($prova['esports'],','))as $sport){
+                            if($prova['esports'] != null){
+                                echo "<img class='icoFitxa' src='images/icons/".$sport.".png'>";
                             }
+                        }
                         echo"</div>";
                         echo"</div>
                                 <div class='grid_11'>
@@ -59,24 +59,24 @@ if(!isset($_GET['id']))header("Location: index.php");
                             echo "<div>";
                         }
                         echo "</div>";
-                            echo "
+                        echo "
                             <a href='llistatInscrits.php?idProva=".$prova['Id']."'>
                                 <div class='fileUpload btn btn-primary download'>
                                     <img class='cpImg' src='images/icons/mPplW.png'/>
                                     <span class='spanUpload'>List of Participants</span>
                                 </div></a>
                             ";
-                            if($prova['recorregut'] != null && (strpos(strtolower($prova['recorregut']), ".gpx")!==false) || (strpos(strtolower($prova['recorregut']), ".xml")!==false)){
-                                echo "
+                        if($prova['recorregut'] != null && (strpos(strtolower($prova['recorregut']), ".gpx")!==false) || (strpos(strtolower($prova['recorregut']), ".xml")!==false)){
+                            echo "
                                 <a href='track/".$prova['Id']."/".$prova['recorregut']."'>
                                 <div class='fileUpload btn btn-primary download fRight'>
                                     <img class='cpImg' src='images/icons/download.png'/>
                                     <span class='spanUpload'>Download</span>
                                 </div></a>";
-                                }
-                            echo " </div>
+                        }
+                        echo " </div>
                             </div>";
-                            echo "
+                        echo "
                             <div class='grid_7'>
                                 <!-- nom (prova) -->
                                 <h1 class='eventTitle'>
@@ -96,23 +96,41 @@ if(!isset($_GET['id']))header("Location: index.php");
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeUP.png' alt='Positive Slope'>Positive Slope: ".$prova['desnivellPositiu']."mts</div>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeDOWN.png' alt='Negative Slope'>Negative Slope: ".$prova['desnivellNegatiu']."mts</div>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/slopeSUM.png' alt='Accumulated Slope'>Accumulated Slope: ".$desnivellAcumulat."mts</div>
-                                    <a href='llistatInscrits.php?idProva=".$prova['Id']."'><div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/mPpl.png' alt='Participants'>Participants: ".$prova['inscrits']." / ".$prova['limit_inscrits']." <img class='icoFitxa2' src='images/icons/listInscrits.png' alt='Participant List'>(List)</div></a>
+                                    <a href='llistatInscrits.php?idProva=".$prova['Id']."'><div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/mPpl.png' alt='Participants'>Participants: ".$prova['inscrits']." / ".$prova['limit_inscrits']."
+                                        ";
+                        if(isset($_SESSION['idUser']) && isset($_SESSION['inscrit'])){
+                            if($_SESSION['inscrit'] == true){
+                            ?>
+                                <img class='icoFitxa2' id='userInscrit'
+                                <?php if($_SESSION['imgUser'] == null){
+                                    echo "src='images/icons/profileDefault.png'";
+                                    echo "alt='Profile Image'>";
+                                } else{
+                                    echo "src='images/profile/".$_SESSION['idUser']."/".$_SESSION['imgUser']."'";
+                                    echo "alt='Profile Image'>";
+                                }
+                            }
+                        }
+                        echo "
+                                    </div></a>
                                     <div class='grid_3 campsFitxa'><img class='icoFitxa' src='images/icons/www.png' alt='Organization'><a href='http://".$prova['pagina_organitzacio']."' class='gran'>Organization Page</a></div>
                                     <!-- 8digits+km o queda malament. -->
                                     <div class='grid_2 gran campsFitxa'><img class='icoFitxa' src='images/icons/distance.png' alt='Distance'>".$prova['distancia']."Km</div>";
-                                    if($idUser) {
-                                        $sql = "SELECT count(*) FROM inscripcio WHERE FK_id_prova = " . $prova['Id'] . " AND id_participant = " . $idUser;
-                                        $conn = $db->connect();
+                        if($idUser) {
+                            $sql = "SELECT count(*) FROM inscripcio WHERE FK_id_prova = " . $prova['Id'] . " AND id_participant = " . $idUser;
+                            $conn = $db->connect();
 
-                                        $result = $conn->query($sql);
-                                        $inscrit = mysqli_fetch_assoc($result);
-                                        if($inscrit['count(*)'] < 1){
-                                            echo "<a href='actions/validateInscripcio.php?idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'><div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'>JOIN</div></a>";
-                                        }else{
-                                            echo "<a href='actions/validateInscripcio.php?leave=true&idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'><div class='grid_1 gran campsFitxa leaveBtn link--kukuri l3'>LEAVE</div></a>";
-                                        }
-                                    }
-                                    echo "
+                            $result = $conn->query($sql);
+                            $inscrit = mysqli_fetch_assoc($result);
+                            if($inscrit['count(*)'] < 1){
+                                $_SESSION['inscrit'] = true;
+                                echo "<a id='btnJoinLeave' href='actions/validateInscripcio.php?idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'><div class='grid_1 gran campsFitxa joinBtn link--kukuri l3'>JOIN</div></a>";
+                            }else{
+                                $_SESSION['inscrit'] = false;
+                                echo "<a id='btnJoinLeave' href='actions/validateInscripcio.php?leave=true&idProva=".$prova['Id']."&idUser=".$idUser."' class='gran'><div class='grid_1 gran campsFitxa leaveBtn link--kukuri l3'>LEAVE</div></a>";
+                            }
+                        }
+                        echo "
                                 </div>
                             </div>
                             ";
