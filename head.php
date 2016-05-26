@@ -1,6 +1,7 @@
 <?php session_start();?>
 <meta charset="UTF-8">
 <script src="js/jquery-1.12.3.min.js"></script>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/style_common.css" />
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery-migrate-1.2.1.js"></script>
