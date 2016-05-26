@@ -1286,9 +1286,7 @@ table {
 }
 
 table, th, td {
-    /*border: 1px solid white;*/
     border-color:white;
-
 }
 
 th {
@@ -1320,10 +1318,12 @@ tr:nth-child(even) {
     word-break:break-all;
     max-width:125px;
     overflow-x:hidden;
+    max-height:15px;
 }
 
 #menuLateral > a:hover{
     font-size:1.4em;
+    max-height:20px;
 }
 
 .h2v2{

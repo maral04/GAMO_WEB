@@ -18,7 +18,7 @@
                 <?php
                 if(isset($_SESSION['idUser'])){
                     echo "<img class='icoFitxa2' src='images/icons/organize.png' alt='Organize'>";
-                    echo "<a class='link link--kukuri l2' data-letters='Organize' href='organize.php'>Organise</a>";
+                    echo "<a class='link link--kukuri l2' data-letters='Organize' href='organize.php'>Organize</a>";
                  } ?>
             </div>
                 <?php
@@ -67,7 +67,7 @@
         }else{
             ?>
             <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>
-            <a class="link link--kukuri l2" data-letters="Organise" href="organize.php"><?php if(isset($_SESSION['idUser'])) echo "Organise";?></a>
+            <a class="link link--kukuri l2" data-letters="Organize" href="organize.php"><?php if(isset($_SESSION['idUser'])) echo "Organize";?></a>
             <?php
             echo "<a class='link link--kukuri l3' data-letters='Log Out' href='logout.php'>Log Out</a>";
         }
