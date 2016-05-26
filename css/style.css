@@ -1318,3 +1318,17 @@ tr:nth-child(even) {
 .sportsSobre > img{
 
 }*/
+#titol{
+    word-break:break-all;
+    color: #908b8b;
+    font-size: 42px;
+    line-height: 42px;
+    padding-top: 22px;
+    margin-bottom: 21px;
+    font-family: 'Economica', sans-serif;
+    font-weight: bold;
+}
+#sports{
+    margin-top: 23px;
+    margin-left: 25px   ;
+}

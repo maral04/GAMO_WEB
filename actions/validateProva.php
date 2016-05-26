@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_POST);
+//var_dump($_POST);
 include_once "../classes/Prova.php";
 include_once "../classes/Event.php";
 
@@ -15,6 +15,7 @@ if(isset($_SESSION['idUser'])) $idUser = $_SESSION['idUser'];
 else header("location: ../login.php");
 
 if(isset($_POST['submitProva'])){
+
     $provaAmbEvent = false;
     if(isset($_POST['sport'])) $sport = $_POST['sport'];
     else $sport = "";
@@ -42,8 +43,12 @@ if(isset($_POST['submitProva'])){
             echo "Numeric";
             if (trim($_FILES['tbImages']['name']) != "") {
                 // echo "name ".$_FILES['tbImages'];
+
                 $file = carregarFitxer($_FILES['tbImages'], $result, 1);
-                if (trim($file) != "") $prova->setImg($file);
+                if (trim($file) != "") {
+                    $prova->setImg($file);
+                    $prova->updateImg();
+                }
                 else $prova->setImg(null);
             } else {
                 echo "Null";
@@ -52,15 +57,19 @@ if(isset($_POST['submitProva'])){
             if (trim($_FILES['tbTrack']['name']) != "") {
                 // echo "name ".$_FILES['tbImages'];
                 $file2 = carregarFitxer($_FILES['tbTrack'], $result, 2);
-                if (trim($file2) != "") $prova->setTrack($file2);
+                if (trim($file2) != "") {
+                    $prova->setTrack($file2);
+                    $prova->updateGpx();
+                }
                 else $prova->setTrack(null);
             } else {
                 echo "Null";
                 $prova->setTrack(null);
             }
-            $prova->updateImg();
-            $prova->updateGpx();
-
+            echo "asdasdsa";
+            //var_dump($prova->getImg());
+            //var_dump($prova->getTrack());
+            //die();
             if ($provaAmbEvent == true) header("Location: ../createProva.php?result=multi");
             else header("Location: ../createProva.php?result=unic");
         } else {
@@ -72,6 +81,7 @@ if(isset($_POST['submitProva'])){
 
     var_dump($prova);
 }else if (isset($_POST['updateProva'])){
+
     if(isset($_POST['sport'])) $sport = $_POST['sport'];
     else $sport = "";
 
@@ -86,6 +96,7 @@ if(isset($_POST['submitProva'])){
             $file = carregarFitxer($_FILES['tbImages'],$result,1);
             if(trim($file) != "") $prova->setImg($file);
             else $prova->setImg(null);
+
             $prova->updateImg();
         }else{
             echo "Null";
@@ -94,16 +105,18 @@ if(isset($_POST['submitProva'])){
         if(trim($_FILES['tbTrack']['name']) != ""){
             // echo "name ".$_FILES['tbImages'];
             $file2 = carregarFitxer($_FILES['tbTrack'],$result,2);
+
             if(trim($file2) != "") $prova->setTrack($file2);
             else $prova->setTrack(null);
+
             $prova->updateGpx();
         }else{
             echo "Null";
             $prova->setTrack(null);
         }
 
-
-
+        //var_dump($prova->getTrack());
+        //die();
         header("Location: ../organise.php");
     }else{
         echo $result;
@@ -112,19 +125,20 @@ if(isset($_POST['submitProva'])){
 }
 
 function carregarFitxer($f, $id, $type) {
-    $files = glob('../images/proves/' . $id . '/*'); // get all file names
-    foreach ($files as $file) { // iterate files
-        unlink($file); // delete file
-    }
+
 
     $temp = explode(".", $f["name"]);
     $newName = $id.".".end($temp);
-
     $nomFitxer = "";
     //var_dump($f);
     if ($type == 1) $root = '../images/proves/';
     else if($type == 2) $root = '../track/';
     else $root = '../images/events/';
+
+    $files = glob($root . $id . '/*'); // get all file names
+    foreach ($files as $file) { // iterate files
+        unlink($file); // delete file
+    }
 
     if ($f['error'] == 0) {
         if (!file_exists($root.$id)) {
@@ -132,9 +146,12 @@ function carregarFitxer($f, $id, $type) {
         }
         echo $root.$id. "/" . $f['name'];
         if (move_uploaded_file($f['tmp_name'], $root.$id. "/" . $f['name'])) {
+            echo $root.$id. "/" . $f['name']." + ".$root.$id. "/" . $newName."<br>";
             rename($root.$id. "/" . $f['name'],$root.$id. "/" . $newName);
             $nomFitxer = $newName;
         } else {
+            echo $root.$id. "/" . $f['name']." + ".$root.$id. "/" . $newName."<br>";
+
             rename($root.$id. "/" . $f['name'],$root.$id. "/" . $newName);
             $nomFitxer = $newName;
             echo "Error en guardar el fitxer al servidor";
@@ -142,7 +159,6 @@ function carregarFitxer($f, $id, $type) {
     } else {
         echo "Error en carregar l'imatge";
     }
-
     return $nomFitxer;
 }
 

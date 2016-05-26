@@ -6,6 +6,22 @@
     <title>GAMO: Event List</title>
     <script>
         $(document).ready(function () {
+            $('#sports img').on('click', function () {
+                id = $(this).attr('id').replace('img-', '');
+                if($(this).hasClass("icon-selected"))window.location.replace("index.php");
+                else window.location.replace("index.php?sport="+id);
+                /*if ($(this).hasClass('icon-selected')) {
+                $('#' + id).prop("checked", false);
+
+                $(this).removeClass('icon-selected');
+            } else {
+                $('#sports input').prop("checked", false);
+                $('#sports img').removeClass('icon-selected');
+
+                $('#' + id).prop("checked", true);
+                $(this).addClass('icon-selected');
+            }*/
+            });
             $(".accordion").on("click", function () {
                 //Si troba la class "active", no fa la funció.
                 if ($(this).hasClass("active")) {
@@ -111,12 +127,42 @@
     <div class="content">
         <div class="container_12">
             <div class="grid_8">
-                <h3 class="h3__head1">Events</h3>
+                <div  class="click" style ='display: inline-flex;'><div id="titol" onclick="window.location.replace('index.php')">Events </div>
+                <div id="sports" >
+                    <div>
+                        <?php
+                            if(isset($_GET['sport'])){
+                                $esport = trim($_GET['sport']);
+                            }else{
+                                $esport = false;
+                            }
+                        ?>
+                        <img id='img-bike' <?php if ($esport === "bike")echo "class='icon-selected'" ?>  src='images/icons/bike.png'/>
+                    </div>
+                    <div>
+                        <img id='img-hiking' <?php if ($esport === "hiking")echo "class='icon-selected'" ?>  src='images/icons/hiking.png'/>
+                    </div>
+                    <div>
+                        <img id='img-skiing' <?php if ($esport === "skiing")echo "class='icon-selected'" ?>  src="images/icons/skiing.png"/>
+                    </div>
+                    <div>
+                        <img id='img-trail' <?php if ($esport === "trail")echo "class='icon-selected'" ?>  src="images/icons/trail.png"/>
+                    </div>
+                    <div>
+                        <img id='img-climbing' <?php if ($esport === "climbing")echo "class='icon-selected'" ?>  src="images/icons/climbing.png"/>
+                    </div>
+                </div>
+                </div>
                 <!-- RecuperarEvents -->
                 <?php
                 include_once 'classes/DataBase.php';
                 $db = new DataBase();
-                $result = $db->recuperarEvent();
+                if(isset($_GET['sport'])){
+                    $result = $db->recuperarEvent(false,$_GET['sport']);
+                }else{
+                    $result = $db->recuperarEvent();
+                }
+
 
                 if ($result){
                 while ($event = mysqli_fetch_assoc($result)) {

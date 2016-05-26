@@ -166,6 +166,7 @@ class Prova
     }
 
     public function updateImg(){
+        //die($this->img);
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
         echo "Update img ".$this->img;
@@ -177,6 +178,8 @@ class Prova
     }
 
     public function updateGpx(){
+        //die($this->track);
+
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
         echo "Update track ".$this->track;

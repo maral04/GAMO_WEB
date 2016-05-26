@@ -88,6 +88,7 @@
                             <div class='grid_2'>
 
                                 <?php
+                                echo "images/proves/".$prova['Id']."/".$prova['Imatges'];
                                 if(is_file("images/proves/".$prova['Id']."/".$prova['Imatges']))
                                     echo "<img class='' src='images/proves/". $prova['Id']."/".$prova['Imatges']."' alt=''>";
                                 else

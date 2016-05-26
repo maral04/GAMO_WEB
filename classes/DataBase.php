@@ -37,11 +37,11 @@ class DataBase
     }
 
 
-    public function recuperarEvent ($id = false, $filter = false){
+    public function recuperarEvent ($id = false, $esport = false){
 
         if($id == false) {
-            if($filter){
-                $sql = "SELECT * FROM event WHERE esport LIKE %".$filter."%";
+            if($esport){
+                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$esport."%')";
             }else $sql = "SELECT * FROM event ORDER BY dataInici DESC";
 
             $result = $this->conn->query($sql);
