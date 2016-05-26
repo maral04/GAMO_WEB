@@ -1155,9 +1155,9 @@ h4{
 }
 
 .icoFitxa2{
-    width:18px;
-    margin-top:1%;
-    margin-right:1%;
+    width:22px;
+    margin-top:0.5%;
+    margin-right:2%;
     margin-left:2%;
 }
 
@@ -1304,20 +1304,29 @@ tr:nth-child(even) {
     color:#ffffff;
 }
 
-
-
-/* Coses marçal, no tocal!
-.sportsSobre{
-    display:block;
+#menuLateral {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    width: 8em;
+    margin-top: -2.5em;
 }
 
-.sportsSobre > img:first-child{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#menuLateral > a{
+    margin-top:6%;
 }
 
-.sportsSobre > img{
+.h2v2{
+    font-size:2.5em;
+    padding:0px;
+}
 
-}*/
+.h2v2 > img{
+    width:42px;
+    margin-top:1.5%;
+    margin-right:2%;
+}
 
+.h2v2:hover{
+    background-color:#D3FAD2;
+}

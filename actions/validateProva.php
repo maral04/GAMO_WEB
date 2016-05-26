@@ -100,7 +100,7 @@ if(isset($_POST['submitProva'])){
             echo "Null";
             $prova->setTrack(null);
         }
-        header("Location: ../organise.php");
+        header("Location: ../organize.php");
     }else{
         echo $result;
     }

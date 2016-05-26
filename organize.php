@@ -30,7 +30,7 @@
     </script>
     <div class="container_12">
         <div class="grid_10">
-            <h3 class="registre h3__head1">Organise</h3>
+            <h3 class="registre h3__head1">Organize</h3>
         </div>
         <div class="grid_11 block3">
             <div class='grid_3'>
@@ -137,40 +137,19 @@
                                 </div>
                                 <?php
                             }
-                            echo "<div class='grid_8'>
-                                    <div class='block3 click campsFitxa' style='text-align: center; background-color: #DFFBDE ;' onclick=\"location.href='createProva.php?eventId=".$arrayEvent['Id']."'\">
-                                        <img class='icoFitxa' src='images/icons/add.png'/> Add event
+                        echo "<div class='grid_8'>
+                                <div class='block3 click campsFitxa' style='text-align: center; background-color: #DFFBDE ;' onclick=\"location.href='createProva.php?eventId=".$arrayEvent['Id']."'\">
+                                    <div>
+                                        <h2 class='h2v2'><img src='images/icons/add.png'>Add Event</h2>
                                     </div>
-                                  </div>";
+                                </div>
+                              </div>";
                         }
                    }
-                } else {
-                    //nofunka
                 }
             ?>
             <?php
-            /*
-            $sql = "SELECT event.*, poblacio FROM event WHERE idOrganitzador = ".$_SESSION['idUser'];
 
-            if($db == null)$db = new DataBase();
-            $conn = $db->connect();
-
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                echo "<table>";
-                echo "<tr><th>Name</th><th>Description</th><th>Date</th><th>City</th></tr>";
-                while($event = mysqli_fetch_assoc($result)){
-                    echo "<tr>";
-                    echo "<td>".$event['titol']."</td>";
-                    echo "<td>".$event['descripcio']."</td>";
-                    $data=date_create($event['dataInici']);
-                    echo "<td>".date_format($data, 'd-m-Y')."</td>";
-                    echo "<td>".$event['poblacio']."</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-            }            */
             ?>
 
         </div>

@@ -58,7 +58,7 @@ if(isset($_POST['submitEvent'])) {
             $event->setImg(null);
         }
         $event->updateImg();
-        header("Location: ../organise.php");
+        header("Location: ../organize.php");
     } else {
         header("Location: ../createEvent.php?error=" . $result);
     }

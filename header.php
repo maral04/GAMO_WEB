@@ -3,7 +3,7 @@
         <div class="grid_12">
             <div class="grid_2 menuUser">
                 <?php if(isset($_SESSION['idUser'])){ ?>
-                    <!--<a href='profile.php'>--><img class='icoFitxa2'
+                    <img class='icoFitxa2'
                     <?php if($_SESSION['imgUser'] == null){
                         echo "src='images/icons/profileDefault.png'";
                         echo "alt='Profile Image'>";
@@ -12,17 +12,17 @@
                         echo "alt='Profile Image'>";
                     } ?>
                     <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>
-                    <!--</a>-->
                 <?php }?>
             </div>
-            <div class="grid_2 menuUser"><a class="link link--kukuri l2" data-letters="Organise" href="organise.php"><?php if(isset($_SESSION['idUser'])) echo "Organise";?></a></div>
+            <div class="grid_2 menuUser"><img class='icoFitxa2' src='images/icons/organize.png' alt='Logout'><a class="link link--kukuri l2" data-letters="Organize" href="organize.php"><?php if(isset($_SESSION['idUser'])) echo "Organise";?></a></div>
                 <?php
                 echo "<div class='grid_2 menuUser fRight'>";
                     if(!isset($_SESSION['idUser'])){
-                        echo "<a class='link link--kukuri l3' data-letters='Log In' href='login.php' </a>Log In";
+                        echo "<a class='link link--kukuri l3' data-letters='Log In' href='login.php'>Log In</a>";
                     }else{
-                        echo "<a class='link link--kukuri l3' data-letters='Log Out' href='logout.php' </a>Log Out";
+                        echo "<img class='icoFitxa2' src='images/icons/logout.png' alt='Logout'><a class='link link--kukuri l3' data-letters='Log Out' href='logout.php'> Log Out</a>";
                     }
+
                     echo "</div>";
                 ?>
             <div class="grid_2 menuUser fRight"><a class="link link--kukuri l4" data-letters="Join" href="register.php"><?php if(!isset($_SESSION['idUser'])) echo "Join";?></a></div>
@@ -46,4 +46,24 @@
         </div>
         <div class="clear"></div>
     </div>
+    <ul id="menuLateral">
+        <span>Side Menu</span>
+        <?php
+        if(!isset($_SESSION['idUser'])){
+        ?>
+            </br>
+            <a class="link link--kukuri l4" data-letters="Join" href="register.php"><?php if(!isset($_SESSION['idUser'])) echo "Join";?></a>
+            </br>
+        <?php
+            echo "<a class='link link--kukuri l3' data-letters='Log In' href='login.php'>Log In</a>";
+        }else{
+            ?>
+            <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>
+            <a class="link link--kukuri l2" data-letters="Organise" href="organize.php"><?php if(isset($_SESSION['idUser'])) echo "Organise";?></a>
+            <?php
+            echo "<a class='link link--kukuri l3' data-letters='Log Out' href='logout.php'>Log Out</a>";
+        }
+        ?>
+
+    </ul>
 </header>
