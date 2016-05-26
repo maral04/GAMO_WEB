@@ -1048,6 +1048,8 @@ h4{
     overflow: hidden;
     /*line-height: 0.75;*/
     color: #908b8b;
+    max-width:135px;
+    overflow-x:hidden;
 }
 
 .link--kukuri:hover {
@@ -1314,6 +1316,14 @@ tr:nth-child(even) {
 
 #menuLateral > a{
     margin-top:6%;
+    border:double 4px #EEF6F4;
+    word-break:break-all;
+    max-width:125px;
+    overflow-x:hidden;
+}
+
+#menuLateral > a:hover{
+    font-size:1.4em;
 }
 
 .h2v2{
@@ -1341,6 +1351,7 @@ tr:nth-child(even) {
     font-family: 'Economica', sans-serif;
     font-weight: bold;
 }
+
 #sports {
     margin-top: 23px;
     margin-left: 25px;
