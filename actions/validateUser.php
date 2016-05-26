@@ -10,16 +10,19 @@ if(isset($_POST['submitUser'])){
 
     if($res === true) {
         $error = $user->save();
-        if($error !== true) header("Location: ../register.php?error=".$error);
-        else {
+        if($error !== true){
+            saveData();
+            header("Location: ../register.php?error=".$error);
+        }else {
             $_SESSION['idUser'] = $user->getId();
             $_SESSION['nameUser'] = $user->getName();
             $_SESSION['imgUser'] = $user->getImg();
-
             header("Location: ../profile.php");
         }
+    }else{
+        saveData();
+        header("Location: ../register.php?error=".$res);
     }
-    else header("Location: ../register.php?error=".$res);
     /*Validar registre d'usuari*/
 
 }else if (isset($_POST['submitLogin'])){
@@ -124,4 +127,11 @@ function carregarFitxer($f, $id) {
         echo "Error en carregar l'imatge";
     }
     return $nomFitxer;
+}
+
+//Guarda les dades en cas que l'usuari s'equivoqui en algo.
+function saveData(){
+    $_SESSION['nomTMP'] = $_POST['tbName'];
+    $_SESSION['lastTMP'] = $_POST['tbLastName'];
+    $_SESSION['mailTMP'] = $_POST['tbEmail'];
 }

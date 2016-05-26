@@ -29,14 +29,26 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbName">Name</label>
                             <div class="col-md-6">
-                                <input id="tbNom" name="tbName" type="text" placeholder="Jack" class="form-control input-md" required="" tabindex="0" autofocus>
+                                <input id="tbNom" name="tbName" type="text" placeholder="Jack" class="form-control input-md" required="" tabindex="0" autofocus
+                                    <?php
+                                    if(isset($_SESSION['nomTMP'])){
+                                        echo "value='".$_SESSION['nomTMP']."'";
+                                    }
+                                    ?>
+                                >
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbLastName">Last name</label>
                             <div class="col-md-6">
-                                <input id="tbCognoms" name="tbLastName" type="text" placeholder="Sparrow" class="form-control input-md" required="" tabindex="0">
+                                <input id="tbCognoms" name="tbLastName" type="text" placeholder="Sparrow" class="form-control input-md" required="" tabindex="0"
+                                    <?php
+                                    if(isset($_SESSION['lastTMP'])){
+                                        echo "value='".$_SESSION['lastTMP']."'";
+                                    }
+                                    ?>
+                                >
                             </div>
                         </div>
 
@@ -44,7 +56,13 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbEmail">Email</label>
                             <div class="col-md-6">
-                                <input id="tbEmail" name="tbEmail" type="email" placeholder="captain@blackpearl.com" class="form-control input-md" required="" tabindex="0">
+                                <input id="tbEmail" name="tbEmail" type="email" placeholder="captain@blackpearl.com" class="form-control input-md" required="" tabindex="0"
+                                    <?php
+                                    if(isset($_SESSION['mailTMP'])){
+                                        echo "value='".$_SESSION['mailTMP']."'";
+                                    }
+                                    ?>
+                                >
                             </div>
                         </div>
 

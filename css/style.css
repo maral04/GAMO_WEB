@@ -635,7 +635,7 @@ footer:after {
 
 @media only screen and (max-width: 995px) {
  body {
- min-width: 768px;
+    min-width: 768px;
 }
 
 
@@ -1304,6 +1304,8 @@ tr:nth-child(even) {
     color:#ffffff;
 }
 
+
+
 /* Coses marçal, no tocal!
 .sportsSobre{
     display:block;
@@ -1318,3 +1320,4 @@ tr:nth-child(even) {
 .sportsSobre > img{
 
 }*/
+
