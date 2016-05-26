@@ -51,10 +51,13 @@
         </div>
         <div class="clear"></div>
     </div>
-    <?php
+    <script>
+        /*
         //Si estem a join o login, no mostra el menú lateral.
-        /********/
-    ?>
+        if ( document.URL.contains("register.php")) {
+            alert("GNAR");
+        }*/
+    </script>
     <ul id="menuLateral">
         <?php
         if(!isset($_SESSION['idUser'])){
@@ -72,6 +75,5 @@
             echo "<a class='link link--kukuri l3' data-letters='Log Out' href='logout.php'>Log Out</a>";
         }
         ?>
-
     </ul>
 </header>
