@@ -1305,6 +1305,7 @@ tr:nth-child(even) {
 }
 
 #menuLateral {
+    display:none;
     position: fixed;
     right: 0;
     top: 50%;

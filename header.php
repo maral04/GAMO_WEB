@@ -52,28 +52,32 @@
         <div class="clear"></div>
     </div>
     <script>
-        /*
         //Si estem a join o login, no mostra el menú lateral.
-        if ( document.URL.contains("register.php")) {
-            alert("GNAR");
-        }*/
+        $(document).ready(function () {
+            if(window.location.href.indexOf("register.php") != -1 || window.location.href.indexOf("login.php") != -1) {
+                //No mostra el menu lateral.
+            }else{
+                //Mostra el menu lateral
+                $('#menuLateral').fadeIn(335);
+            }
+        });
     </script>
-    <ul id="menuLateral">
-        <?php
-        if(!isset($_SESSION['idUser'])){
-        ?>
-            </br>
-            <a class="link link--kukuri l4" data-letters="Join" href="register.php"><?php if(!isset($_SESSION['idUser'])) echo "Join";?></a>
-            </br>
-        <?php
-            echo "<a class='link link--kukuri l3' data-letters='Log In' href='login.php'>Log In</a>";
-        }else{
-            ?>
-            <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>
-            <a class="link link--kukuri l2" data-letters="Organize" href="organize.php"><?php if(isset($_SESSION['idUser'])) echo "Organize";?></a>
+    <?php
+        echo "<div id='menuLateral'>";
+            if(!isset($_SESSION['idUser'])){
+    ?>
+                </br>
+                <a class="link link--kukuri l4" data-letters="Join" href="register.php"><?php if(!isset($_SESSION['idUser'])) echo "Join";?></a>
+                </br>
             <?php
-            echo "<a class='link link--kukuri l3' data-letters='Log Out' href='logout.php'>Log Out</a>";
-        }
-        ?>
-    </ul>
+                echo "<a class='link link--kukuri l3' data-letters='Log In' href='login.php'>Log In</a>";
+            }else{
+            ?>
+                <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>
+                <a class="link link--kukuri l2" data-letters="Organize" href="organize.php"><?php if(isset($_SESSION['idUser'])) echo "Organize";?></a>
+                <?php
+                echo "<a class='link link--kukuri l3' data-letters='Log Out' href='logout.php'>Log Out</a>";
+            }
+        echo "</div>";
+                ?>
 </header>
