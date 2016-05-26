@@ -10,7 +10,7 @@
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/jquery.mobile.customized.min.js"></script>
 <script src="js/rotate.js"></script>
-<script type="text/javascript" src="js/jquery.profanityfilter.min.js"></script>
+<!--<script type="text/javascript" src="js/jquery.profanityfilter.min.js"></script>-->
 
 <script>
     //Navega fins a l'element desitjat.
