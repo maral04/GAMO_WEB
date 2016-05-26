@@ -27,7 +27,7 @@ if (isset($_POST['submitClub'])) {
                 $club->setUrlImg(null);
             }
             $club->validate($_POST["tbName"],$_POST["tbDescr"]);
-            header("Location: ../organise.php");
+            header("Location: ../organize.php");
         }else if($_POST["edit"]!=false){
 
             if(trim($_FILES['img']['name']) != ""){
@@ -38,7 +38,7 @@ if (isset($_POST['submitClub'])) {
                 $club->setUrlImg(null);
             }
             $club->validate($_POST["tbName"],$_POST["tbDescr"],$_POST["edit"]);
-            header("Location: ../organise.php");
+            header("Location: ../organize.php");
 
 
         }

@@ -1,29 +1,28 @@
 <?php session_start();
-/**
- * Created by PhpStorm.
- * User: Arnau
- * Date: 25/04/2016
- * Time: 12:27
- */
 
 include_once "../classes/User.php";
 $user = new User();
-var_dump($_POST);
+//var_dump($_POST);
 
 if(isset($_POST['submitUser'])){
 
     $res = $user->init($_POST['tbName'],$_POST['tbLastName'], $_POST['tbEmail'],$_POST['tbPassword'],$_POST['tbPasswordConfirm']);
-    //var_dump($res);
 
     if($res === true) {
         $error = $user->save();
-        //var_dump($error);
-        if($error !== true) header("Location: ../register.php?error=".$error);
-        else {
-            header("Location: ../index.php");
+        if($error !== true){
+            saveData();
+            header("Location: ../register.php?error=".$error);
+        }else {
+            $_SESSION['idUser'] = $user->getId();
+            $_SESSION['nameUser'] = $user->getName();
+            $_SESSION['imgUser'] = $user->getImg();
+            header("Location: ../profile.php");
         }
+    }else{
+        saveData();
+        header("Location: ../register.php?error=".$res);
     }
-    else header("Location: ../register.php?error=".$res);
     /*Validar registre d'usuari*/
 
 }else if (isset($_POST['submitLogin'])){
@@ -128,4 +127,11 @@ function carregarFitxer($f, $id) {
         echo "Error en carregar l'imatge";
     }
     return $nomFitxer;
+}
+
+//Guarda les dades en cas que l'usuari s'equivoqui en algo.
+function saveData(){
+    $_SESSION['nomTMP'] = $_POST['tbName'];
+    $_SESSION['lastTMP'] = $_POST['tbLastName'];
+    $_SESSION['mailTMP'] = $_POST['tbEmail'];
 }
