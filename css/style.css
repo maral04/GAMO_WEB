@@ -1316,8 +1316,9 @@ tr:nth-child(even) {
 
 #menuLateral > a{
     margin-top:6%;
-    border:double 4px #EEF6F4;
+    border-bottom:solid 1px #908B8B;
     word-break:break-all;
+    min-width:45px;
     max-width:125px;
     overflow-x:hidden;
     max-height:15px;
