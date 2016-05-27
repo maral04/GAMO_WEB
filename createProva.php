@@ -190,11 +190,11 @@
                             <div>
                                 <?php
                                 if(strpos($arrayProva['esports'], 'bike') !== false) {
-                                    echo "<img id='img-bike'  class='icon-selected' src=\"images/icons/bike.png\"/>";
+                                    echo "/>";
                                     echo "<span>MTB</span>";
                                     echo "<input id='s-bike' checked type='checkbox' name='sport[]' value='bike'>";
                                 }else{
-                                    echo "<img id='img-bike'  src=\"images/icons/bike.png\"/>";
+                                    echo "/>";
                                     echo "<span>MTB</span>";
                                     echo "<input id='s-bike' type='checkbox' name='sport[]' value='bike'>";
                                 }
@@ -203,11 +203,11 @@
                             <div>
                                 <?php
                                 if(strpos($arrayProva['esports'], 'hiking') !== false) {
-                                    echo "<img id='img-hike'  class='icon-selected' src=\"images/icons/hiking.png\"/>";
+                                    echo "/>";
                                     echo "<span>Hiking</span>";
                                     echo "<input id='s-hike' checked type='checkbox' name='sport[]' value='hiking'>";
                                 }else{
-                                    echo "<img id='img-hike'  src=\"images/icons/hiking.png\"/>";
+                                    echo "/>";
                                     echo "<span>Hiking</span>";
                                     echo "<input id='s-hike' type='checkbox' name='sport[]' value='hiking'>";
                                 }
@@ -216,11 +216,11 @@
                             <div>
                                 <?php
                                 if(strpos($arrayProva['esports'], 'skiing') !== false) {
-                                    echo "<img id='img-ski'  class='icon-selected' src=\"images/icons/skiing.png\"/>";
+                                    echo "/>";
                                     echo "<span>Skiing</span>";
                                     echo "<input id='s-ski' checked type='checkbox' name='sport[]' value='skiing'>";
                                 }else{
-                                    echo "<img id='img-ski'  src=\"images/icons/skiing.png\"/>";
+                                    echo "/>";
                                     echo "<span>Skiing</span>";
                                     echo "<input id='s-ski' type='checkbox' name='sport[]' value='skiing'>";
                                 }
@@ -229,11 +229,11 @@
                             <div>
                                 <?php
                                 if(strpos($arrayProva['esports'], 'trail') !== false ) {
-                                    echo "<img id='img-trail' class='icon-selected' src=\"images/icons/trail.png\"/>";
+                                    echo "/>";
                                     echo "<span>Trail</span>";
                                     echo "<input id='s-trail' checked type=\"checkbox\" name=\"sport[]\" value=\"trail\">";
                                 }else{
-                                    echo "<img id='img-trail' src=\"images/icons/trail.png\"/>";
+                                    echo "/>";
                                     echo "<span>Trail</span>";
                                     echo "<input id='s-trail' type=\"checkbox\" name=\"sport[]\" value=\"trail\">";
                                 }
@@ -242,11 +242,11 @@
                             <div>
                                 <?php
                                 if(strpos($arrayProva['esports'], 'climbing') != false) {
-                                    echo " <img id='img-climb' class='icon-selected' src=\"images/icons/climbing.png\"/>";
+                                    echo "/>";
                                     echo "<span>Climbing</span>";
                                     echo "<input id='s-climb' checked type='checkbox' name='sport[]' value='climbing'>";
                                 }else{
-                                    echo "<img id='img-climb'  src=\"images/icons/climbing.png\"/>";
+                                    echo "/>";
                                     echo "<span>Climbing</span>";
                                     echo "<input id='s-climb' type=\"checkbox\" name=\"sport[]\" value=\"climbing\">";
                                 }
@@ -441,7 +441,7 @@
                     </div>
                     <?php
                     if(isset($_GET['error'])){
-                        echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                        echo "<div class='error'><img src='images/icons/error.png'/>" .$_GET['error']."</div>";
                     }
                     ?>
                 </div>
@@ -465,7 +465,7 @@
 <script>
     $(document).ready(function(){
         if($('#popup').length){
-            swal({   title: "Create more proves?",   text: "You will not be able to recover this imaginary file!",   type: "success",   showCancelButton: true,   confirmButtonColor: "#88c886",   confirmButtonText: "Continue",   cancelButtonText: "Finish!",   closeOnConfirm: true,   closeOnCancel: false }, function(isConfirm){   if (!isConfirm) {location.href= "actions/validateProva.php?final=true"   } });
+            swal({   title: "Create more proves?",   text: "You will not be able to recover this imaginary file!",   type: "success",   showCancelButton: true,   confirmButtonColor: "#88c886",   confirmButtonText: "Continue",   cancelButtonText: "Finish!",   closeOnConfirm: true,   closeOnCancel: false }, function(isConfirm){   if (!isConfirm) {location.href= "actions/validateProva.php"   } });
         }
     });
 </script>

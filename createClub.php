@@ -68,7 +68,7 @@
                         </div>
                         <?php
                         if(isset($_GET['error'])){
-                            echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
+                            echo "<div class='error'><img src='images/icons/error.png'/>" .$_GET['error']."</div>";
                         }
                         ?>
                     </fieldset>

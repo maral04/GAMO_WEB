@@ -67,7 +67,7 @@
                         if($arrayEvent != false){?>
                             <div class="grid_9">
 
-                                <div class='block3 click eventDiv' onclick="location.href='createEvent.php?eventId=<?php echo $arrayEvent['Id'];?>'">
+                                <div class='block3 click eventDiv' onclick="location.href='createPages/createEvent.php?eventId=<?php echo $arrayEvent['Id'];?>'">
                                     <div class='block2'>
                                         <div class='grid_7'>
                                             <div class="grid_2">
@@ -103,7 +103,7 @@
                             while ($prova = mysqli_fetch_assoc($proves)) {
                                 ?>
                                 <div class='grid_8'>
-                                    <div class='block3 click' onclick="location.href='createProva.php?provaId=<?php echo $prova['Id'];?>'">
+                                    <div class='block3 click' onclick="location.href='createPages/createProva.php?provaId=<?php echo $prova['Id'];?>'">
                                         <div class='block2'>
                                             <div class='grid_2'>
                                                 <?php
@@ -138,7 +138,7 @@
                                 <?php
                             }
                         echo "<div class='grid_8'>
-                                <div class='block3 click campsFitxa' style='text-align: center; background-color: #DFFBDE ;' onclick=\"location.href='createProva.php?eventId=".$arrayEvent['Id']."'\">
+                                <div class='block3 click campsFitxa' style='text-align: center; background-color: #DFFBDE ;' onclick=\"location.href='createPages/createProva.php?eventId=".$arrayEvent['Id']."'\">
                                     <div>
                                         <h2 class='h2v2'><img src='images/icons/add.png'>Add Event</h2>
                                     </div>
