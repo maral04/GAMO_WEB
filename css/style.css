@@ -1355,11 +1355,10 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
-#sports {
+.sports-filter{
     margin-top: 23px;
     margin-left: 25px;
 }
-
 .imgIndex{
     max-height:170px;
 }

@@ -128,7 +128,7 @@
         <div class="container_12">
             <div class="grid_8">
                 <div  class="click" style ='display: inline-flex;'><div id="titol" onclick="window.location.replace('index.php')">Events </div>
-                <div id="sports" >
+                <div id="sports" class="sports-filter">
                     <div>
                         <?php
                             if(isset($_GET['sport'])){
