@@ -167,6 +167,7 @@
                 if ($result){
                 while ($event = mysqli_fetch_assoc($result)) {
                 $numProves = $db->recuperarNumProves($event['Id']);
+                if($numProves['COUNT(*)'] <= 0) break;
                 //Si té una prova es prepara el link directe a aquesta.
                 if ($numProves['COUNT(*)'] <= 1) {
 

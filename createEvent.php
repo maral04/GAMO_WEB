@@ -89,7 +89,24 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbCountry">Country</label>
                         <div class="col-md-6">
-                            <input id="tbCountry" name="tbCountry" type="text" required="" value="<?php if($arrayEvent != false)echo $arrayEvent['estat']?>">
+                            <select id="tbCountry" name="tbCountry" style="width:173px;">
+                                <option></option>
+                                <?php
+                                $result = $db->recuperarPaisos();
+
+                                while ($pais = mysqli_fetch_assoc($result)) {
+                                    if($arrayEvent != false) {
+                                        if (trim($pais['country_name']) == trim($arrayEvent['estat'])) {
+                                            echo "<option value='" . $pais['country_name'] . "' selected>" . $pais['country_name'] . "</option>";
+                                        } else {
+                                            echo "<option value='" . $pais['country_name'] . "'>" . $pais['country_name'] . "</option>";
+                                        }
+                                    }else{
+                                        echo "<option value='" . $pais['country_name'] . "'>" . $pais['country_name'] . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

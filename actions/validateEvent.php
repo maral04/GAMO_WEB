@@ -53,11 +53,12 @@ if(isset($_POST['submitEvent'])) {
             $file = carregarFitxer($_FILES['tbImages'], $result, 3);
             if (trim($file) != "") $event->setImg($file);
             else $event->setImg(null);
+            $event->updateImg();
+
         } else {
             echo "Null";
             $event->setImg(null);
         }
-        $event->updateImg();
         header("Location: ../organize.php");
     } else {
         header("Location: ../createEvent.php?error=" . $result);
