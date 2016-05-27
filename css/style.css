@@ -1362,3 +1362,26 @@ tr:nth-child(even) {
 .imgIndex{
     max-height:170px;
 }
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin:auto;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: #908B8B;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+ul.pagination li a.active {
+    background-color: #88c886;
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}

@@ -249,10 +249,30 @@ if ($numProves['COUNT(*)'] > 1) {
     include_once 'yourEvents.php';
     ?>
 </div>
+
+<div class="grid_8" style="text-align: center;">
+    <ul class="pagination">
+        <?php
+            echo "<li><a href='#'>«</a></li>";
+
+            $i = 0;
+            while($i < 4){
+                echo "<li><a href='#'>".$i."</a></li>";
+                $i++;
+            }
+            //S'ha de fer onclick set class='active'
+
+            echo "<li><a href='#'>»</a></li>";
+
+        ?>
+    </ul>
+</div>
 <div class="clear"></div>
 </div>
 </div>
 </div>
+
+</body>
 <!--==============================footer=================================-->
 <footer>
     <?php
@@ -267,7 +287,6 @@ if ($numProves['COUNT(*)'] > 1) {
         $(".li2").attr("class", "li2 current");
         $(".li3").attr("class", "li3");
     });
-
     <!-- Funció D'accordion -->
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -278,5 +297,4 @@ if ($numProves['COUNT(*)'] > 1) {
         }
     }
 </script>
-</body>
 </html>

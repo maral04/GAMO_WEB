@@ -123,7 +123,6 @@
                                                 <div class='fRight'>
                                                     <a><?php echo $prova['data_hora_inici'] ?></a>
                                                 </div>
-
                                                 <div class='descripcioProva'>
                                                     <a><?php echo $prova['data_hora_inici'] ?></a>
                                                 </div>
