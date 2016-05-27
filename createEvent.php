@@ -49,14 +49,18 @@
                         <label class="col-md-4 control-label" for="tbDescription">Description</label>
                         <div class="col-md-6">
                             <input id="tbDescription" name="tbDescription" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['descripcio']?>" class="form-control input-md"  >
+
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniDate">Initial date</label>
                         <div class="col-md-6">
                             <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false)echo $arrayEvent['dataInici']?>">
+
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbFinDate">Final date</label>
                         <div class="col-md-6">
@@ -152,7 +156,7 @@
                     </div>
                     <?php
                     if(isset($_GET['error'])){
-                        echo "<div class='error'><img src='images/icons/error.png'/>" .$_GET['error']."</div>";
+                        echo "<div class='error'><img src='images/icons/error.png'/>".$_GET['error']."</div>";
                     }
                     ?>
                 </div>
