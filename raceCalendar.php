@@ -11,15 +11,6 @@
 			<?php
 			include_once 'header.php';
 			?>
-			<!--Funció canvi Current-->
-			<script type="text/javascript">
-				$(document).ready(function() {
-					//Remou current de tots i inclou a l'actual.
-					/*$(".li1").attr("class","li1");*/
-					$(".li2").attr("class","li2");
-					$(".li3").attr("class","li3 current");
-				});
-			</script>
 <!--==============================Content=================================-->
 			<div class="content">
 				<div class="container_12">
@@ -41,9 +32,9 @@
 					</div>
 					<div class="grid_8">
 						<h3>Zegama - Aizkorri</h3>
-						<iframe width="450" height="220" class="img_inner fleft" src="https://www.youtube.com/embed/65YISciOs9w" frameborder="0" allowfullscreen></iframe>
+
 						<!--<img src="images/page4_img1.jpg" alt="" class="img_inner fleft">-->
-						<--<div class="extra_wrapper">
+						<div class="extra_wrapper">
 							<p class="color1"><a href="#"> 22 de mayo del 2016</a></p>
 							Recorrido de media montaña por el macizo de Aratz y la Sierra del Aizkorri que incluye cuatro de las cimas más altas de la Comunidad Autónoma Vasca [Aratz – Aizkorri – Aketegi y Aitxuri]. Desde el pueblo de Zegama [296 m.] se alcanza el alto de Otzaurte [652 m.] para efectuar, a partir del citado puerto de montaña, un recorrido que transita por caminos y senderos de montaña de gran belleza natural, donde se combinan zonas de arbolado, principalmente hayedos, zonas escarpadas de roca viva y pastizales de altura. Técnico y de elevada dificultad.
 						</div>
@@ -78,5 +69,14 @@
 			?>
 		</footer>
 	</body>
+<!--Funció canvi Current-->
+<script type="text/javascript">
+	$(document).ready(function() {
+		//Remou current de tots i inclou a l'actual.
+		/*$(".li1").attr("class","li1");*/
+		$(".li2").attr("class","li2");
+		$(".li3").attr("class","li3 current");
+	});
+</script>
 </html>
 
