@@ -1318,7 +1318,7 @@ tr:nth-child(even) {
     margin-top:6%;
     border-bottom:solid 1px #908B8B;
     word-break:break-all;
-    min-width:45px;
+    min-width:40px;
     max-width:125px;
     overflow-x:hidden;
     max-height:15px;
@@ -1358,4 +1358,8 @@ tr:nth-child(even) {
 #sports {
     margin-top: 23px;
     margin-left: 25px;
+}
+
+.imgIndex{
+    max-height:170px;
 }

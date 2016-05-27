@@ -19,7 +19,6 @@
             $sql = "SELECT prova.nom as nomProva, usuari.nom, usuari.cNom, usuari.gender, (SELECT nom FROM club WHERE usuari.FK_id_club = club.Id) as nomClub FROM inscripcio INNER JOIN prova on Fk_Id_prova = prova.Id INNER JOIN usuari on id_Participant = usuari.id  WHERE prova.Id =" . $idProva;
 
             $result = $db->getConn()->query($sql);
-
                 echo "<div class='grid_12'>";
                 echo "<h3 class='registre h3__head1'></h3>";
                 echo "</div>";
@@ -49,6 +48,13 @@
                         echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td>" . $arrayEvent['gender'] . "</td><td>" . $arrayEvent['nomClub'] . "</td></tr>";
                     }
                     echo "</table>";
+                    echo "
+                        <a href='fitxaProva.php?id=".$_GET['idProva']."'>
+                            <div class='fileUpload btn btn-primary download'>
+                                <img class='cpImg' src='images/icons/backArrow.png'/>
+                                <span class='spanUpload'>Back to Event</span>
+                            </div></a>
+                        ";
                 } else {
                     echo "There're no participants yet, be the first to <a class='click' onclick='location.href=\"fitxaProva.php?id=" . $idProva . "\"'>JOIN! :)</a> </br>";
                 }
