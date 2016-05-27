@@ -24,14 +24,30 @@
     }
     if(isset($_SESSION['idEvent']) && !isset($_GET['provaId'])) {
         $arrayEvent = $event->load($_SESSION['idEvent']);
-
     }else {
         if(isset($_GET['provaId'])) {
             $arrayProva = $prova->load($_GET['provaId']);
             //var_dump($arrayProva);
+            $sql = "select idOrganitzador FROM event where Id IN (select FK_Id_event FROM prova where Id = ".$arrayProva['Id'].")";
+            $conn = $db->connect();
+            $result = $conn->query($sql);
+
+            if(is_object($result)) {
+                if ($result->num_rows > 0) {
+
+                    $organitzador = mysqli_fetch_assoc($result);
+                    //echo $organitzador['idOrganitzador'] ." - ". $arrayUser['Id'];
+                    if($organitzador['idOrganitzador'] != $arrayUser['Id'] ) header("Location: index.php");
+                } else {
+                    return false;
+                }
+            }else return false;
+
 
         }else $arrayProva = false;
     }
+
+
 
     if(isset($_GET['result'])){
         if($_GET['result'] == 'multi') echo "<div id='popup'></div>";
