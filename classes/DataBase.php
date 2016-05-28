@@ -37,12 +37,17 @@ class DataBase
     }
 
 
-    public function recuperarEvent ($id = false, $esport = false){
+    public function recuperarEvent ($id = false, $filtres = false){
 
         if($id == false) {
-            if($esport){
-                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$esport."%')";
-            }else $sql = "SELECT * FROM event ORDER BY dataInici DESC";
+            if(!isset($filtres['from']) || !isset($filtres['to'])){
+                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit 0,10";
+            }
+            if(isset($filtres['sport'])){
+                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit ".$filtres['from'].",".$filtres['to'];
+            }else $sql = "SELECT * FROM event ORDER BY dataInici DESC limit ".$filtres['from'].",".$filtres['to'];
+
+            //die($sql);
 
             $result = $this->conn->query($sql);
 

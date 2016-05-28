@@ -157,12 +157,22 @@
                 <?php
                 include_once 'classes/DataBase.php';
                 $db = new DataBase();
-                if(isset($_GET['sport'])){
-                    $result = $db->recuperarEvent(false,$_GET['sport']);
+                $filtres = array();
+
+                if(isset($_GET['pag'])){
+                    $pag = $_GET['pag']-1;
+                    $filtres['from'] = ($pag*5)+1;
+                    $filtres['to'] = $filtres['from']+5;
                 }else{
-                    $result = $db->recuperarEvent();
+                    $filtres['from'] = 0;
+                    $filtres['to'] = 5;
                 }
 
+                if(isset($_GET['sport'])){
+                    $filtres['sport'];
+                }
+
+                $result = $db->recuperarEvent(false,$filtres);
 
                 if ($result){
                 while ($event = mysqli_fetch_assoc($result)) {
@@ -255,9 +265,9 @@ if ($numProves['COUNT(*)'] > 1) {
         <?php
             echo "<li><a href='#'>«</a></li>";
 
-            $i = 0;
-            while($i < 4){
-                echo "<li><a href='#'>".$i."</a></li>";
+            $i = 1;
+            while($i < 5){
+                echo "<li><a href='?pag=".$i."'>".$i."</a></li>";
                 $i++;
             }
             //S'ha de fer onclick set class='active'
