@@ -37,7 +37,7 @@
         if($_GET['result'] == 'multi') echo "<div id='popup'></div>";
     }
     ?>
-    <script src="js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="js/sweetalert-master/dist/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 </head>
 
 <body class="" id="top">
