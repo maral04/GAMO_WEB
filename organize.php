@@ -72,11 +72,12 @@
                                         <div class='grid_7'>
                                             <div class="grid_2">
                                                 <?php
+
                                                 if($arrayEvent['imatges'] == null) echo '<img class="" src="images/events/default.png" alt="">';
                                                 else {
                                                     if(is_file("images/events/".$arrayEvent['Id']."/".$arrayEvent['imatges']))
                                                     echo "<img class='' src='images/events/".$arrayEvent['Id']."/".$arrayEvent['imatges']."' alt=''>";
-                                                    else "<img class='' src='images/events/default.png' alt=''>";
+                                                    else echo"<img class='' src='images/events/default.png' alt=''>";
                                                 }
                                                 ?>
                                                 <!--<img class="" src="images/events/<?php echo $arrayEvent['Id']."/".$arrayEvent['imatges']?>" alt=""> -->
