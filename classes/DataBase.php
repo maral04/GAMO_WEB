@@ -44,7 +44,7 @@ class DataBase
                 $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit 0,5";
             }*/
             if(isset($filtres['search'])){
-                $sql = "SELECT * FROM event where titol LIKE '%".$filtres['search']."%' limit ".$filtres['from'].",5";
+                $sql = "SELECT * FROM event WHERE Id IN (Select FK_Id_event FROM prova where nom LIKE '%".$filtres['search']."%' OR descripcio LIKE '%".$filtres['search']."%') OR titol LIKE '%".$filtres['search']."%' OR poblacio LIKE'%".$filtres['search']."%' limit ".$filtres['from'].",5";
             }else if(isset($filtres['sport'])){
                 $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit ".$filtres['from'].",5";
             }else $sql = "SELECT * FROM event ORDER BY dataInici DESC limit ".$filtres['from'].",5";

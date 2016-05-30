@@ -150,9 +150,15 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
 </div>
 
 <div class="grid_4">
-    <?php
-    include_once 'yourEvents.php';
-    ?>
+    <div  id="your-events">
+    <?php include_once 'yourEvents.php'; ?>
+    </div>
+    <div id="banner">
+        <img src="images/events/banner/olla.jpg">
+        <img src="images/events/banner/CamideCavalls360.jpg">
+        <img src="images/events/banner/ultramontseny.png">
+        <img src="images/events/banner/mtbrace.jpg">
+    </div>
 </div>
 
 <div class="grid_8" style="text-align: center;">

@@ -8,7 +8,9 @@
                         echo "src='images/icons/profileDefault.png'";
                         echo "alt='Profile Image'>";
                     } else{
+                        if(is_file("images/profile/".$_SESSION['idUser']."/".$_SESSION['imgUser']))
                         echo "src='images/profile/".$_SESSION['idUser']."/".$_SESSION['imgUser']."'";
+                        else echo "src='images/icons/profileDefault.png'";
                         echo "alt='Profile Image'>";
                     } ?>
                     <a class="link link--kukuri l1" data-letters="<?php echo $_SESSION['nameUser']; ?>" href="profile.php"><?php echo $_SESSION['nameUser'];?></a>

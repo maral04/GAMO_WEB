@@ -1396,3 +1396,6 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
     font-weight: bold;
     text-align: center;
 }
+#your-events{
+    min-height: 350px;
+}

@@ -40,12 +40,17 @@
                         <div class="grid_2">
                             <?php
                             echo "<label class='col-md-4 control-label' >Profile Image</label> ";
+
                             if ($arrayUser != false) {
-                                if (trim($arrayUser['img']) != "") echo "<img src='images/profile/" . $arrayUser['Id'] . "/" . $arrayUser['img'] . "' alt='Submit' class='subImg' id='prevImgP' width='150' >";
-                                else if (trim($arrayUser['esport']) != "") echo "<img src='images/icons/" . $arrayUser['esport'] . ".png' alt='Submit' class='subImg' id='prevImgP' width='150' >";
-                                else echo "<img src='images/icons/hiking.png' alt='Submit' class='subImg' width='150' >";
+                                if (is_file("images/profile/" . $arrayUser['Id'] . "/" . $arrayUser['img'])){
+                                    echo "<img src='images/profile/" . $arrayUser['Id'] . "/" . $arrayUser['img'] . "' alt='Submit' class='subImg' id='prevImgP' width='150' >";
+                                }else{
+                                    if (trim($arrayUser['esport']) != "") echo "<img src='images/icons/" . $arrayUser['esport'] . ".png' alt='Submit' class='subImg' id='prevImgP' width='150' >";
+                                    else echo "<img src='images/icons/hiking.png' alt='Submit' class='subImg' width='150' >";
+                                }
+
                             } else {
-                                echo "<img src='images/icons/hike.png' alt='Submit' class='subImg' width='150' >";
+                                echo "<img src='images/icons/hiking.png' alt='Submit' class='subImg' width='150' >";
                             }
                             ?>
                             <div class="fileUpload btn btn-primary">
