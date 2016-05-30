@@ -253,7 +253,7 @@ $cont++;
 }
 
 }
-if($cont == 0) echo "<div id='div-noresults'><p>There isn't events matching this selecition</p><img src='images/icons/mountains.png' id='img-noresults'></div>";
+if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the given filters.</p><img src='images/icons/mountains.png' id='img-noresults'></div>";
 ?>
 </div>
 
@@ -267,26 +267,38 @@ if($cont == 0) echo "<div id='div-noresults'><p>There isn't events matching this
     <ul class="pagination">
         <?php
             if(isset($filtres['sport'])){
-                $numEvenrs = $db->recuperarNumEvents($filtres);
+                $numEvents = $db->recuperarNumEvents($filtres);
             }else{
-                $numEvenrs = $db->recuperarNumEvents();
+                $numEvents = $db->recuperarNumEvents();
             }
 
-            $tmp = $numEvenrs['count(*)']/5;
+            $tmp = $numEvents['count(*)']/5;
             $numPag = ceil($tmp);
             $i = 1;
             if($numPag > 1) {
                 echo "<li><a href='index.php'>«</a></li>";
-
                 while ($i <= $numPag) {
-                    if ($i != 1) echo "<li><a href='?pag=" . $i . "'>" . $i . "</a></li>";
-                    else echo "<li><a href='index.php'>" . $i . "</a></li>";
+                    if ($i != 1){
+                        //Si cliquen qualsevol pàg, menys la 1.
+                        echo "<li><a ";
+                        if(isset($_GET['pag'])){
+                            if($i == $_GET['pag']){
+                                echo "class='active'";
+                            }
+                        }
+                        echo " href='?pag=" . $i . "'>" . $i . "</a></li>";
+                    }else{
+                        //Si cliquen a la pàg1.
+                        echo "<li><a ";
+                        if(!isset($_GET['pag'])){
+                            echo "class='active'";
+                        }
+                        echo "href='index.php'>" . $i . "</a></li>";
+                    }
                     $i++;
                 }
                 echo "<li><a href='?pag=".$numPag."'>»</a></li>";
-
             }
-            //S'ha de fer onclick set class='active'
         ?>
     </ul>
 </div>
