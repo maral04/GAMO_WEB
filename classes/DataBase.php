@@ -47,8 +47,6 @@ class DataBase
                 $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit ".$filtres['from'].",".$filtres['to'];
             }else $sql = "SELECT * FROM event ORDER BY dataInici DESC limit ".$filtres['from'].",".$filtres['to'];
 
-            //die($sql);
-
             $result = $this->conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -114,6 +112,22 @@ class DataBase
     public function recuperarNumProves ($idEvent){
 
         $sql = "SELECT COUNT(*) FROM prova WHERE FK_Id_event = ".$idEvent;
+
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return mysqli_fetch_assoc($result);
+        } else {
+            return false;
+        }
+    }
+
+    public function recuperarNumEvents ($filtre = false){
+
+        if(!$filtre)
+            $sql = "SELECT count(*) FROM event WHERE 0 < (SELECT count(*) FROM prova where Fk_Id_Event = event.Id)";
+        else
+            $sql = "SELECT count(*) FROM event WHERE 0 < (SELECT count(*) FROM prova where Fk_Id_Event = event.Id AND esports LIKE '%".$filtre['sport']."%')";
 
         $result = $this->conn->query($sql);
 

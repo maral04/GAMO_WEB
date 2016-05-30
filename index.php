@@ -161,7 +161,7 @@
 
                 if(isset($_GET['pag'])){
                     $pag = $_GET['pag']-1;
-                    $filtres['from'] = ($pag*5)+1;
+                    $filtres['from'] = ($pag*5);
                     $filtres['to'] = $filtres['from']+5;
                 }else{
                     $filtres['from'] = 0;
@@ -169,7 +169,7 @@
                 }
 
                 if(isset($_GET['sport'])){
-                    $filtres['sport'];
+                    $filtres['sport']=$_GET['sport'];
                 }
 
                 $result = $db->recuperarEvent(false,$filtres);
@@ -263,16 +263,24 @@ if ($numProves['COUNT(*)'] > 1) {
 <div class="grid_8" style="text-align: center;">
     <ul class="pagination">
         <?php
-            echo "<li><a href='#'>«</a></li>";
+            echo "<li><a href='index.php'>«</a></li>";
+            if(isset($filtres['sport'])){
+                $numEvenrs = $db->recuperarNumEvents($filtres);
+            }else{
+                $numEvenrs = $db->recuperarNumEvents();
+            }
 
+            $tmp = $numEvenrs['count(*)']/5;
+            $numPag = ceil($tmp);
             $i = 1;
-            while($i < 5){
-                echo "<li><a href='?pag=".$i."'>".$i."</a></li>";
+            while($i <= $numPag){
+                if($i != 1)echo "<li><a href='?pag=".$i."'>".$i."</a></li>";
+                else echo "<li><a href='index.php'>".$i."</a></li>";
                 $i++;
             }
             //S'ha de fer onclick set class='active'
 
-            echo "<li><a href='#'>»</a></li>";
+            echo "<li><a href='?pag=".$numPag."'>»</a></li>";
 
         ?>
     </ul>
