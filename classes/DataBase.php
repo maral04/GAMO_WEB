@@ -40,12 +40,14 @@ class DataBase
     public function recuperarEvent ($id = false, $filtres = false){
 
         if($id == false) {
-            if(!isset($filtres['from']) || !isset($filtres['to'])){
-                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit 0,10";
-            }
-            if(isset($filtres['sport'])){
-                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit ".$filtres['from'].",".$filtres['to'];
-            }else $sql = "SELECT * FROM event ORDER BY dataInici DESC limit ".$filtres['from'].",".$filtres['to'];
+            /*if(!isset($filtres['from']) || !isset($filtres['to'])){
+                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit 0,5";
+            }*/
+            if(isset($filtres['search'])){
+                $sql = "SELECT * FROM event where titol LIKE '%".$filtres['search']."%' limit ".$filtres['from'].",5";
+            }else if(isset($filtres['sport'])){
+                $sql = "SELECT * FROM event where Id IN (select FK_Id_event FROM prova where esports LIKE '%".$filtres['sport']."%') limit ".$filtres['from'].",5";
+            }else $sql = "SELECT * FROM event ORDER BY dataInici DESC limit ".$filtres['from'].",5";
 
             $result = $this->conn->query($sql);
 
@@ -126,8 +128,15 @@ class DataBase
 
         if(!$filtre)
             $sql = "SELECT count(*) FROM event WHERE 0 < (SELECT count(*) FROM prova where Fk_Id_Event = event.Id)";
-        else
-            $sql = "SELECT count(*) FROM event WHERE 0 < (SELECT count(*) FROM prova where Fk_Id_Event = event.Id AND esports LIKE '%".$filtre['sport']."%')";
+        else{
+            if(isset($filtre['sport']))
+                $sql = "SELECT count(*) FROM event WHERE 0 < (SELECT count(*) FROM prova where Fk_Id_Event = event.Id AND esports LIKE '%".$filtre['sport']."%')";
+            else if(isset($filtre['search']))
+                $sql = "SELECT count(*) FROM event WHERE titol LIKE '%".$filtre['search']."%' OR poblacio LIKE '%".$filtre['search']."%'";
+            else
+                $sql = "SELECT count(*) FROM event WHERE 0 < (SELECT count(*) FROM prova where Fk_Id_Event = event.Id)";
+
+        }
 
         $result = $this->conn->query($sql);
 
