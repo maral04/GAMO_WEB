@@ -1385,3 +1385,18 @@ ul.pagination li a.active {
 }
 
 ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
+
+#img-noresults {
+    height: 150px;
+}
+#div-noresults{
+    word-break:break-all;
+    color: #908b8b;
+    font-size: 30px;
+    line-height: 42px;
+    padding-top: 22px;
+    margin-bottom: 21px;
+    font-family: 'Economica', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}

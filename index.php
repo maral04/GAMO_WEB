@@ -173,6 +173,7 @@
                 }
 
                 $result = $db->recuperarEvent(false,$filtres);
+                $cont = 0;
 
                 if ($result){
                 while ($event = mysqli_fetch_assoc($result)) {
@@ -247,11 +248,13 @@ if ($numProves['COUNT(*)'] > 1) {
     echo "<div class='panel' eventpanelid='" . $event['Id'] . "'></div>";
 }
 ?>
-<?php }
+<?php
+$cont++;
+}
 
-} else {
-    /*No hi ha cap event!!*/
-} ?>
+}
+if($cont == 0) echo "<div id='div-noresults'><p>There isn't events matching this selecition</p><img src='images/icons/mountains.png' id='img-noresults'></div>";
+?>
 </div>
 
 <div class="grid_4">
@@ -263,7 +266,6 @@ if ($numProves['COUNT(*)'] > 1) {
 <div class="grid_8" style="text-align: center;">
     <ul class="pagination">
         <?php
-            echo "<li><a href='index.php'>«</a></li>";
             if(isset($filtres['sport'])){
                 $numEvenrs = $db->recuperarNumEvents($filtres);
             }else{
@@ -273,15 +275,18 @@ if ($numProves['COUNT(*)'] > 1) {
             $tmp = $numEvenrs['count(*)']/5;
             $numPag = ceil($tmp);
             $i = 1;
-            while($i <= $numPag){
-                if($i != 1)echo "<li><a href='?pag=".$i."'>".$i."</a></li>";
-                else echo "<li><a href='index.php'>".$i."</a></li>";
-                $i++;
+            if($numPag > 1) {
+                echo "<li><a href='index.php'>«</a></li>";
+
+                while ($i <= $numPag) {
+                    if ($i != 1) echo "<li><a href='?pag=" . $i . "'>" . $i . "</a></li>";
+                    else echo "<li><a href='index.php'>" . $i . "</a></li>";
+                    $i++;
+                }
+                echo "<li><a href='?pag=".$numPag."'>»</a></li>";
+
             }
             //S'ha de fer onclick set class='active'
-
-            echo "<li><a href='?pag=".$numPag."'>»</a></li>";
-
         ?>
     </ul>
 </div>
