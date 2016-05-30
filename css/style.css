@@ -520,7 +520,6 @@ a.gal:hover img {
 .map {
     position: relative;
 }
- 
 
 .map figure {
     position: relative;
@@ -555,8 +554,6 @@ a.gal:hover img {
 	display: inline-block;
 	text-align: left;
 }
-
-
 
 /**Footer**/
 
@@ -638,7 +635,6 @@ footer:after {
     min-width: 768px;
 }
 
-
 .fl1 {
     float: none;
     margin-left: 0 !important;
@@ -670,7 +666,6 @@ footer:after {
     white-space: normal;
 }
 
-
 .caption .price {
     display: none;
 }
@@ -691,8 +686,6 @@ footer:after {
 .fl1.fl2 {
     clear: both;
 }
-
-
 
 }
 
@@ -981,10 +974,6 @@ div.panel.show {
     width:100%;
 }
 
-#profile input, select{
-
-}
-
 h4{
     font-size:1.4em;
 }
@@ -998,10 +987,6 @@ h4{
 .menuUser{
     font-size:1.6em;
     margin-bottom:2%;
-}
-
-.menuUser:hover{
-    /*background-color:#F3F3F3;*/
 }
 
 #sports div{
@@ -1018,10 +1003,14 @@ h4{
     float: left;
     cursor: pointer;
 }
+
+#sports > div > img:hover{
+    background-color:white;
+}
+
 #sports input, #ids{
     visibility: hidden;
     position:absolute;
-
 }
 
 #sports .icon-selected{
@@ -1359,6 +1348,13 @@ tr:nth-child(even) {
     margin-top: 23px;
     margin-left: 25px;
 }
+
+.sports-filter > div > img:hover{
+    background-color:#EEF6F4;
+    min-width:47px;
+    max-width:47px;
+}
+
 .imgIndex{
     max-height:170px;
 }
