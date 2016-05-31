@@ -20,7 +20,7 @@ if($arrayUser!= false) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $i = 1;
-        echo "<ul class='list'>";
+        echo "<ul class='list sideList'>";
         while ($proves = mysqli_fetch_assoc($result)) {
             echo "<li>";
             echo "<div class='list_count'><a href='fitxaProva.php?id=".$proves['Id']."'>$i</a></div>";

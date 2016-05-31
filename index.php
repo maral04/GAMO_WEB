@@ -149,7 +149,7 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
 ?>
 </div>
 
-<div class="grid_4">
+<div class="grid_3 sideGrid">
     <div  id="your-events">
     <?php include_once 'yourEvents.php'; ?>
     </div>

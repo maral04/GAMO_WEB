@@ -1399,3 +1399,17 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 #your-events{
     min-height: 350px;
 }
+
+.sideList{
+    max-height:250px;
+    overflow-y:scroll;
+}
+
+.sideGrid{
+    width:340px!important;
+}
+
+.buscador{
+
+}
+
