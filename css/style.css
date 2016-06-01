@@ -1421,6 +1421,7 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 
 #buscador{
     margin: auto;
+    margin-right:0px;
     width:30%;
 }
 
