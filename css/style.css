@@ -1005,7 +1005,7 @@ h4{
 }
 
 #sports > div > img:hover{
-    background-color:white;
+    background-color:#eef6f4;
 }
 
 #sports input, #ids{
@@ -1400,6 +1400,16 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
     min-height: 350px;
 }
 
+#your-events>p{
+    text-align:center;
+    margin:auto;
+}
+
+#loJoin{
+    text-align:center;
+    font-size:1.6em;
+}
+
 .sideList{
     max-height:250px;
     overflow-y:scroll;
@@ -1411,11 +1421,15 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 
 #buscador{
     margin: auto;
-    width:50%;
+    width:30%;
 }
 
 #eventsSearch{
     margin-left:6%;
+}
+
+.icoYourEvents{
+    width:22px;
 }
 
 
