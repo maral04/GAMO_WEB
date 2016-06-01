@@ -16,7 +16,7 @@
     <div class="content">
         <div class="container_12">
             <div class="grid_8">
-                <div  class="click" style ='display: inline-flex;'><div id="titol" onclick="window.location.replace('index.php')">Events </div>
+                <div  class="click" style ='display: flex;'><div id="titol" onclick="window.location.replace('index.php')">Events </div>
                 <div id="sports" class="sports-filter">
                     <div>
                         <?php
@@ -41,7 +41,10 @@
                         <img id='img-climbing' <?php if ($esport === "climbing")echo "class='icon-selected'" ?>  src="images/icons/climbing.png"/>
                     </div>
                 </div>
-                    <div id="buscador"><input id='eventsSearch' type="text" placeholder="Search"></div>
+                    <div id="buscador">
+                        <input id='eventsSearch' type="text" placeholder="Search">
+                        <img class='icoFitxa2' src='images/icons/magnifier.png' alt='Search'>
+                    </div>
                 </div>
                 <!-- RecuperarEvents -->
                 <?php

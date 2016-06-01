@@ -1409,7 +1409,13 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
     width:340px!important;
 }
 
-.buscador{
-
+#buscador{
+    margin: auto;
+    width:50%;
 }
+
+#eventsSearch{
+    margin-left:6%;
+}
+
 
