@@ -3,7 +3,7 @@
 	<?php
 	include_once 'head.php';
 	?>
-	<title>GAMO: Race Calendar</title>
+	<title>GAMO: About GAMO</title>
 </head>
 	<body class="" id="top">
 		<div class="main">
@@ -15,7 +15,7 @@
 			<div class="content">
 				<div class="container_12">
 					<div class="grid_4">
-						<h3>Membership</h3>
+						<h3 class="h3__head1">Membership</h3>
 						<ul class="list1 color1">
 							<li><a href="#">Femus at magna non nunc tristique </a></li>
 							<li><a href="#">Eliquam nibh ante, egestas id dictum </a></li>
@@ -73,7 +73,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		//Remou current de tots i inclou a l'actual.
-		/*$(".li1").attr("class","li1");*/
 		$(".li2").attr("class","li2");
 		$(".li3").attr("class","li3 current");
 	});

@@ -45,7 +45,7 @@
                     <ul class="sf-menu">
                         <!--<li class="li1"><a href="eliminaralPUBLICAR/index.php">Home</a></li>-->
                         <li class="li2"><a href="index.php">Event List</a></li>
-                        <li class="li3"><a href="raceCalendar.php">Race Calendar</a></li>
+                        <li class="li3"><a href="aboutGAMO.php">About GAMO</a></li>
                     </ul>
                 </nav>
                 <div class="clear"></div>
