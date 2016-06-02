@@ -232,9 +232,6 @@ a:hover {
 .oh {
 	overflow: hidden;
 }
-.fright {
-	float: right !important;
-}
 .upp {
 	text-transform: uppercase;
 }
@@ -871,7 +868,7 @@ header h1 a {
 }
 
 .fRight{
-    float:right;
+    float:right !important;
 }
 
 .gran{
@@ -1430,6 +1427,10 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 
 #btnCancel{
     margin-top:0px;
+}
+
+.deleteImg{
+    margin-right:4%;
 }
 
 

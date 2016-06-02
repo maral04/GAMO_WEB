@@ -53,7 +53,7 @@
                     </a>
                 </div>
             </div>
-            </br></br></br>
+            </br></br></br></br>
             <?php
                 $arrayEvent = false;
 
@@ -94,6 +94,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <a class="fRight deleteImg" href="">
+                                            <img class="cpImg" src="images/icons/delete.png"/>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
