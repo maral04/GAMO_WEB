@@ -168,6 +168,10 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
     <ul class="pagination">
         <?php
             if(isset($filtres['sport']) || isset($filtres['search'])){
+                $strFiltre = "&";
+                if(isset($filtres['sport']))$strFiltre .= "sport=".$filtres['sport'];
+                if(isset($filtres['search']))$strFiltre .= "search=".$filtres['search'];
+
                 $numEvents = $db->recuperarNumEvents($filtres);
             }else{
                 $numEvents = $db->recuperarNumEvents();
@@ -187,6 +191,7 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
                                 echo "class='active'";
                             }
                         }
+                        if(isset($strFiltre))echo " href='?pag=" . $i . $strFiltre. "'>" . $i . "</a></li>";
                         echo " href='?pag=" . $i . "'>" . $i . "</a></li>";
                     }else{
                         //Si cliquen a la pàg1.
