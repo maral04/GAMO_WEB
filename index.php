@@ -16,7 +16,7 @@
     <div class="content">
         <div class="container_12">
             <div class="grid_8">
-                <div  class="click" style ='display: flex;'><div id="titol" onclick="window.location.replace('index.php')">Events </div>
+                <div class="click" style ='display: flex;'><div id="titol" onclick="window.location.replace('index.php')">Events </div>
                 <div id="sports" class="sports-filter">
                     <div>
                         <?php
@@ -43,7 +43,7 @@
                 </div>
                     <div id="buscador">
                         <input id='eventsSearch' type="text" placeholder="Search">
-                        <img class='icoFitxa2' src='images/icons/magnifier.png' alt='Search'>
+                        <img id='btnBuscar' class='icoFitxa2' src='images/icons/magnifier.png' alt='Search'>
                     </div>
                 </div>
                 <!-- RecuperarEvents -->
@@ -226,6 +226,10 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
         $( "#eventsSearch" ).submit(function( event ) {
             alert( "Handler for .submit() called." );
             event.preventDefault();
+        });
+
+        $( "#btnBuscar" ).click(function() {
+            window.location.href = "index.php?search="+$("#eventsSearch").val().trim();
         });
 
         $("#eventsSearch").bind("keypress", {}, keypressInBox);
