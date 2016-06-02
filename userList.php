@@ -34,21 +34,16 @@
                             ";
                     while ($arrayEvent = mysqli_fetch_assoc($result)) {
                         echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td>
-
-                        <div class='slideTwo'>
-                            <input type='checkbox' value='None' id='slideTwo' name='check' />
-                            <label for='slideTwo'></label>
-                        </div>
-                        </td></tr>";
+                        <div class=''>
+                            <input type='checkbox' value='None' id='' name='check' />
+                        </div>";
                     }
                     echo "</table>";
-
                 } else {
                 }
             }else{
 
             }
-
         ?>
     </div>
 </div>
