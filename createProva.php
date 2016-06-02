@@ -13,6 +13,9 @@
     $arrayEvent = false;
     $arrayProva = false;
 
+    /*Check organizador*/
+    $arrayUser = Array();
+
     if(isset($_GET['eventId'])) {
         $_SESSION['idEvent'] = $_GET['eventId'];
     }
@@ -28,7 +31,7 @@
     }else {
         if(isset($_GET['provaId'])) {
             $arrayProva = $prova->load($_GET['provaId']);
-            //var_dump($arrayProva);
+            if($arrayProva['idOrganitzador'] != $arrayUser['Id'])header("Location: organize.php");
 
         }else $arrayProva = false;
     }
@@ -36,6 +39,8 @@
     if(isset($_GET['result'])){
         if($_GET['result'] == 'multi') echo "<div id='popup'></div>";
     }
+    var_dump($_SESSION);
+    var_dump($_GET);
     ?>
     <script src="js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 </head>

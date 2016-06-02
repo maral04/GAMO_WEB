@@ -125,14 +125,14 @@ class Prova
                     $this->setIdEvent($idEvent);
                 }
 
-                $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
+                $mysql2 = mysqli_prepare($conn, "INSERT INTO prova (idOrganitzador,FK_Id_event,preu,distancia,desnivellPositiu,desnivellNegatiu,
                                                         num_avituallaments,nom,pagina_organitzacio,esports,
                                                         descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
                                                         temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
-                                                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 $date_time = $this->IniDate.$this->IniTime;
-                //die($date_time);
-                mysqli_stmt_bind_param($mysql2, "iddiiissssssssisssss", $this->idEvent, $this->Price, $this->Distance, $this->Positive,
+                //die(mysqli_error($conn));
+                mysqli_stmt_bind_param($mysql2, "iiddiiissssssssisssss",$this->idOrganitzador, $this->idEvent, $this->Price, $this->Distance, $this->Positive,
                     $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
                     $date_time, $this->InscripcionsIni, $this->InscripcionsFin, $this->TimeLimit, $this->InscripcionsLimit, $this->postalCode,
                     $this->Country, $this->Region, $this->City, $this->Address);
@@ -168,7 +168,6 @@ class Prova
     }
 
     public function updateImg(){
-        //die($this->img);
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();
         echo "Update img ".$this->img;
@@ -180,7 +179,6 @@ class Prova
     }
 
     public function updateGpx(){
-        //die($this->track);
 
         if($this->db == null)$this->db = new DataBase();
         $conn = $this->db->connect();

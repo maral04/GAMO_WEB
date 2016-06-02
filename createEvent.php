@@ -6,7 +6,7 @@
 
     $db = new DataBase();
     $usuari = new User();
-
+    $arrayUser = Array();
     if(isset($_SESSION['idUser'])) {
         $arrayUser = $usuari->load($_SESSION['idUser']);
     }else{
@@ -15,6 +15,7 @@
     if(isset($_GET['eventId'])){
         $event = new Event();
         $arrayEvent = $event->load($_GET['eventId']);
+        if($arrayEvent['idOrganitzador'] != $_SESSION['idUser'])header("Location: organize.php");
     }else{
         $arrayEvent = false;
     }
