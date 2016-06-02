@@ -16,7 +16,7 @@
 				<div class="container_12">
 					<h3 class="h3__head1">About Gamo</h3>
 					<div>
-						<iframe width="95%" height="85%" frameborder="0" src="presentacio.html"></iframe>
+						<iframe width="95%" height="85%" frameborder="0" src="slides-deck.html"></iframe>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -38,4 +38,3 @@
 	});
 </script>
 </html>
-
