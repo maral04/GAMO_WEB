@@ -1084,7 +1084,7 @@ h4{
 .noTop{
     padding-top:0px;
 }
-.idUser, .idLocal, .idEvent, .idProva{
+.idUser, .idLocal, .idEvent, .idProva, #ipServer{
     visibility: hidden;
     position:absolute;
 }
