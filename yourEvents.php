@@ -16,7 +16,7 @@ if (isset($_SESSION['idUser'])) {
 <?php
 if($arrayUser!= false) {
     $conn = $db->connect();
-    $sql = "SELECT * FROM inscripcio INNER JOIN prova on FK_id_prova = prova.id WHERE id_participant = " . $arrayUser['Id'];
+    $sql = "SELECT * FROM inscripcio INNER JOIN prova on FK_id_prova = prova.id WHERE id_participant = " . $arrayUser['Id']." AND data_hora_inici >= CURDATE()";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $i = 1;
