@@ -1421,15 +1421,15 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 #buscador{
     margin: auto;
     margin-right:0px;
-    width:30%;
-}
-
-#eventsSearch{
-    margin-left:6%;
+    width:32%;
 }
 
 .icoYourEvents{
     width:22px;
+}
+
+#btnCancel{
+    margin-top:0px;
 }
 
 

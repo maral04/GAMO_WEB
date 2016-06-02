@@ -42,6 +42,7 @@
                     </div>
                 </div>
                     <div id="buscador">
+                        <a><img id='btnCancel' class='icoFitxa2' src='images/icons/cancel.png' alt='Cancel'></a>
                         <input id='eventsSearch' type="text" placeholder="Search">
                         <img id='btnBuscar' class='icoFitxa2' src='images/icons/magnifier.png' alt='Search'>
                     </div>
