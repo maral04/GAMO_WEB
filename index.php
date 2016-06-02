@@ -181,7 +181,9 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
             $i = 1;
             if($numPag > 1) {
 
-                echo "<li><a href='index.php'>«</a></li>";
+                if(isset($strFiltre)) echo "<li><a href='?pag=1" . $strFiltre. "'> « </a></li>";
+                else echo "<li><a href='index.php'>«</a></li>";
+
                 while ($i <= $numPag) {
                     if ($i != 1){
                         //Si cliquen qualsevol pàg, menys la 1.
@@ -191,15 +193,19 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
                                 echo "class='active'";
                             }
                         }
-                        if(isset($strFiltre))echo " href='?pag=" . $i . $strFiltre. "'>" . $i . "</a></li>";
-                        echo " href='?pag=" . $i . "'>" . $i . "</a></li>";
+                        if(isset($strFiltre)) echo " href='?pag=" . $i . $strFiltre. "'>" . $i . "</a></li>";
+                        else echo " href='?pag=" . $i . "'>" . $i . "</a></li>";
                     }else{
                         //Si cliquen a la pàg1.
                         echo "<li><a ";
                         if(!isset($_GET['pag'])){
                             echo "class='active'";
+                        }else{
+                            if($_GET['pag'] == 1)echo "class='active'";
                         }
-                        echo "href='index.php'>" . $i . "</a></li>";
+                        if(isset($strFiltre)) echo " href='?pag=1" . $strFiltre. "'> " . $i . " </a></li>";
+                        else echo "href='index.php'>" . $i . "</a></li>";
+                        //echo "href='index.php'>" . $i . "</a></li>";
                     }
                     $i++;
                 }
