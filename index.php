@@ -218,7 +218,7 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
 </div>
 </div>
 </div>
-
+<input type="text" id="ipServer" name="" value="<?php echo "$_SERVER[HTTP_HOST]" ?>">
 </body>
 <!--==============================footer=================================-->
 <footer>

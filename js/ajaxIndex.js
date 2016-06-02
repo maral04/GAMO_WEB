@@ -30,7 +30,7 @@ $(document).ready(function () {
 
             $.ajax({
                 // la URL para la petición
-                url: 'http://localhost/GAMO_WEB/api/events/getProves.php',
+                url: 'http://'+$("#ipServer").val()+'/GAMO_WEB/api/events/getProves.php',
 
                 // la información a enviar
                 // (también es posible utilizar una cadena de datos)
