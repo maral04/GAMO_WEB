@@ -14,23 +14,9 @@
 <!--==============================Content=================================-->
 			<div class="content">
 				<div class="container_12">
-
-
-
-
-					<div class="grid_4">
-						<h3 class="h3__head1">Utilitzar Reveal.js ?</h3>
-
-
-
-
-
-
-
-					</div>
-					<div class="grid_7">
-						<h3>Algo2</h3>
-
+					<h3 class="h3__head1">About Gamo</h3>
+					<div>
+						<iframe width="95%" height="85%" frameborder="0" src="presentacio.html"></iframe>
 					</div>
 					<div class="clear"></div>
 				</div>
