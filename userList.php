@@ -7,6 +7,7 @@
     $db = new DataBase();
     $conn = $db->connect();
     ?>
+    <title>GAMO: List of Users</title>
 </head>
 <body>
 <div class="main">
@@ -19,7 +20,7 @@
 
             $result = $db->getConn()->query($sql);
             echo "<div class='grid_12'>";
-            echo "<h3 class='registre h3__head1'></h3>";
+            echo "<h3 class='registre h3__head1'>List of Users</h3>";
             echo "</div>";
             echo "<div class='grid_11 block3'>";
             if(is_object($result)){
@@ -31,19 +32,14 @@
                             <th>Last Name</th>
                             <th>Disabled</th></tr>
                             ";
-                    $i = 0;
                     while ($arrayEvent = mysqli_fetch_assoc($result)) {
-                        if ($i == 0) {
-                            $i = 1;
-                            ?>
-                            <script>
-                                $(document).ready(function () {
-                                    $('.registre').text("List of Participants in <?php echo $arrayEvent['nomProva'] ?>");
-                                });
-                            </script>
-                            <?php
-                        }
-                        echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td><input type=\"checkbox\" name=\"vehicle\" value=\"Bike\"></td></tr>";
+                        echo "<tr><td>" . $arrayEvent['nom'] . "</td><td>" . $arrayEvent['cNom'] . "</td><td>
+
+                        <div class='slideTwo'>
+                            <input type='checkbox' value='None' id='slideTwo' name='check' />
+                            <label for='slideTwo'></label>
+                        </div>
+                        </td></tr>";
                     }
                     echo "</table>";
 
