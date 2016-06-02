@@ -64,7 +64,7 @@
                                 <h1 class="eventTitle"><?php echo $arrayEvent['titol'] ?></h1>
                                 <a><?php echo $arrayEvent['poblacio'] ?></a>
                                 <div class="fRight">
-                                    <a><?php echo date("Y-m-d", strtotime($arrayEvent['dataInici'])) ?></a>
+                                    <a><?php echo date("Y-m-d", strtotime($arrayEvent['dataInici'])); ?></a>
                                 </div>
                                 <div class="descripcioEvent">
                                     <!-- Descripció (event) -->
@@ -86,16 +86,13 @@
                     <div class='block3 click' onclick="location.href='createProva.php?provaId=<?php echo $prova['Id'] ?>#profile'">
                         <div class='block2'>
                             <div class='grid_2'>
-
                                 <?php
                                 echo "images/proves/".$prova['Id']."/".$prova['Imatges'];
                                 if(is_file("images/proves/".$prova['Id']."/".$prova['Imatges']))
                                     echo "<img class='' src='images/proves/". $prova['Id']."/".$prova['Imatges']."' alt=''>";
                                 else
                                     echo "<img class='' src='images/proves/default.png' alt=''>";
-
                                 ?>
-
                             </div>
                             <div class='grid_4 g4Gran'>
                                 <h4><?php echo $prova['nom'] ?></h4>
@@ -144,7 +141,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbIniDate">Initial Date</label>
                         <div class="col-md-6">
-                            <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo $arrayEvent['dataInici']; else if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
+                            <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo date("Y-m-d", strtotime($arrayEvent['dataInici'])); else if ($arrayProva != false) echo date("Y-m-d", strtotime($arrayEvent['data_hora_inici'])) ?>">
                         </div>
                     </div>
                     <div class="form-group">

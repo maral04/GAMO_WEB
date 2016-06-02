@@ -125,7 +125,7 @@
                                                     <a><?php echo $prova['data_hora_inici'] ?></a>
                                                 </div>
                                                 <div class='descripcioProva'>
-                                                    <a><?php echo $prova['data_hora_inici'] ?></a>
+                                                    <a><?php echo $prova['descripcio'] ?></a>
                                                 </div>
                                                 <a>Max. Participants: <?php echo $prova['limit_inscrits'] ?></a>
                                                 <div class='gran grid_1 fRight'>
