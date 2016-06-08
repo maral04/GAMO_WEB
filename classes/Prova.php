@@ -130,7 +130,8 @@ class Prova
                                                         descripcio,data_hora_inici,obertura_inscripcions,tancament_inscripcionts,
                                                         temps_limit,limit_inscrits,cp,estat,regio,poblacio,direccio)
                                                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                $date_time = $this->IniDate.$this->IniTime;
+                $date_time = $this->IniDate." ".$this->IniTime;
+                //die ($date_time);
                 //die(mysqli_error($conn));
                 mysqli_stmt_bind_param($mysql2, "iiddiiissssssssisssss",$this->idOrganitzador, $this->idEvent, $this->Price, $this->Distance, $this->Positive,
                     $this->Negtive, $this->Checkpoints, $this->Name, $this->Manager, $this->sport, $this->Description,
@@ -144,7 +145,20 @@ class Prova
                 } else echo mysqli_stmt_error($mysql2);
             } else {
                 $date_time = $this->IniDate." ".$this->IniTime;
-                //die($date_time);
+
+                if($idEvent){
+                    $mysqlEvent = mysqli_prepare($conn, "UPDATE event SET idOrganitzador=?,titol=?,dataInici=?,dataFinal=?,descripcio=?,cp=?,
+                                                    estat=?,regio=?,poblacio=?,direccio=?
+                                                    WHERE id = ".$idEvent);
+                    //die(mysqli_error($conn));
+
+                    mysqli_stmt_bind_param($mysqlEvent, "isssssssss", $this->idOrganitzador,$this->Name, $this->IniDate, $this->IniDate, $this->Description,
+                        $this->postalCode, $this->Country, $this->Region, $this->City,$this->Address);
+
+                    if (mysqli_stmt_execute($mysqlEvent)) {
+                        if (trim($error) == "") $this->idEvent = $idEvent;
+                    } else die(mysqli_stmt_error($mysqlEvent));
+                }
 
                 $mysql2 = mysqli_prepare($conn, "UPDATE prova SET preu=?,distancia=?,desnivellPositiu=?,desnivellNegatiu=?,
                                                         num_avituallaments=?,nom=?,pagina_organitzacio=?,esports=?,
@@ -384,7 +398,6 @@ class Prova
                 return true;
             } else return false;
         }else{
-            echo "buid";
             $this->Price = $Price;
             return true;
         }

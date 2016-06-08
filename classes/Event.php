@@ -28,17 +28,25 @@ class Event
 
     public function init( $idOrganitzador, $Name, $Description , $IniDate, $FinalDate , $Country, $Region, $City, $Address,$cp,$id = null)
     {
+        $error = "";
         if($id != null )$this->setId($id);
         $this->setIdOrganitzador($idOrganitzador);
         $this->setName($Name);
         $this->setDescription($Description);
         $this->setIniDate($IniDate);
         $this->setFinalDate($FinalDate);
+
+        if(!$this->checkDates()){
+            $error = "Initial date is after final date";
+        }
+
         $this->setCountry($Country);
         $this->setRegion($Region);
         $this->setCity($City);
         $this->setAddress($Address);
         $this->setPostalCode($cp);
+
+        return $error;
     }
 
     public function save($update = false){
@@ -132,6 +140,14 @@ class Event
 
         if (mysqli_stmt_execute($mysql)) echo "IMG actualitzat correctament";
         else $error = mysqli_stmt_error($mysql);
+    }
+
+    private function checkDates(){
+        $date1 = strtotime($this->IniDate);
+        $date2 = strtotime($this->FinalDate);
+
+        if($date1 > $date2) return false;
+        else return true;
     }
 
     public function getIdOrganitzador()

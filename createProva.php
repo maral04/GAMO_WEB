@@ -91,7 +91,6 @@
                         <div class='block2'>
                             <div class='grid_2'>
                                 <?php
-                                echo "images/proves/".$prova['Id']."/".$prova['Imatges'];
                                 if(is_file("images/proves/".$prova['Id']."/".$prova['Imatges']))
                                     echo "<img class='' src='images/proves/". $prova['Id']."/".$prova['Imatges']."' alt=''>";
                                 else
@@ -139,25 +138,25 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="tbDescription">Description</label>
                         <div class="col-md-6">
-                            <input id="tbDescription" name="tbDescription" type="text" placeholder="" class="form-control input-md" value="<?php if($arrayEvent != false) echo $arrayEvent['descripcio']; else if ($arrayProva != false) echo $arrayProva['descripcio'] ?>" >
+                            <input id="tbDescription" name="tbDescription"  type="text" placeholder="" class="form-control input-md" value="<?php if($arrayEvent != false) echo $arrayEvent['descripcio']; else if ($arrayProva != false) echo $arrayProva['descripcio'] ?>" >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbIniDate">Initial Date</label>
+                        <label class="col-md-4 control-label" for="tbIniDate">Initial Date*</label>
                         <div class="col-md-6">
-                            <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false) echo date("Y-m-d", strtotime($arrayEvent['dataInici'])); else if ($arrayProva != false) echo date("Y-m-d", strtotime($arrayEvent['data_hora_inici'])) ?>">
+                            <input id="tbIniDate" name="tbIniDate" required="" type="date" value="<?php if($arrayEvent != false) echo date("Y-m-d", strtotime($arrayEvent['dataInici'])); else if ($arrayProva != false) echo date("Y-m-d", strtotime($arrayEvent['data_hora_inici'])) ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbIniTime" >Start time</label>
+                        <label class="col-md-4 control-label" for="tbIniTime" >Start time*</label>
                         <div class="col-md-6">
-                            <input id="tbIniTime" name="tbIniTime" type="time" value="<?php if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
+                            <input id="tbIniTime" name="tbIniTime" required="" type="time" value="<?php if ($arrayProva != false) echo $arrayProva['data_hora_inici'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbDistance" >Distance</label>
+                        <label class="col-md-4 control-label" for="tbDistance" >Distance*</label>
                         <div class="col-md-6">
-                            <input id="tbDistance" name="tbDistance" type="number" min="0" step="0.1" value="<?php if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
+                            <input id="tbDistance" name="tbDistance" required="" type="number" min="0" step="0.1" value="<?php if ($arrayProva != false) echo $arrayProva['distancia'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -275,9 +274,9 @@
                 </script>
                 <div class="grid_3">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCountry">Country</label>
+                        <label class="col-md-4 control-label" for="tbCountry">Country*</label>
                         <div class="col-md-6">
-                            <select id="tbCountry" name="tbCountry" style="width:173px;">
+                            <select id="tbCountry" required="" name="tbCountry" style="width:173px;">
                                 <option></option>
                                 <?php
                                 $result = $db->recuperarPaisos();
@@ -303,34 +302,29 @@
                             </select>
                         </div>
                     </div>
-                    <!--<div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCountry">Country*</label>
-                        <div class="col-md-6">
-                            <input id="tbCountry" name="tbCountry" type="text"  value="<?php if($arrayEvent != false) echo $arrayEvent['estat']; else if ($arrayProva != false) echo $arrayProva['estat'] ?>" required="">
-                        </div>
-                    </div>-->
+
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbRegion">Region</label>
+                        <label class="col-md-4 control-label" for="tbRegion">Region*</label>
                         <div class="col-md-6">
-                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['regio']; else if ($arrayProva != false) echo $arrayProva['regio'] ?>">
+                            <input id="tbRegion" required="" name="tbRegion" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['regio']; else if ($arrayProva != false) echo $arrayProva['regio'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCity">City</label>
+                        <label class="col-md-4 control-label" for="tbCity">City*</label>
                         <div class="col-md-6">
-                            <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['poblacio']; else if ($arrayProva != false) echo $arrayProva['poblacio'] ?>">
+                            <input id="tbCity" name="tbCity" required="" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['poblacio']; else if ($arrayProva != false) echo $arrayProva['poblacio'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbAddress">Address</label>
+                        <label class="col-md-4 control-label" for="tbAddress">Address*</label>
                         <div class="col-md-6">
-                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['direccio']; else if ($arrayProva != false)echo $arrayProva['direccio'] ?>">
+                            <input id="tbAddress" name="tbAddress" required="" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['direccio']; else if ($arrayProva != false)echo $arrayProva['direccio'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCp">Postal code</label>
+                        <label class="col-md-4 control-label" for="tbCp">Postal code*</label>
                         <div class="col-md-6">
-                            <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayEvent != false) echo $arrayEvent['cp']; else if ($arrayProva != false)echo $arrayProva['cp'] ?>">
+                            <input id="tbCp" name="tbCp" type="text" required="" value="<?php if($arrayEvent != false) echo $arrayEvent['cp']; else if ($arrayProva != false)echo $arrayProva['cp'] ?>">
                         </div>
                     </div>
                 </div>

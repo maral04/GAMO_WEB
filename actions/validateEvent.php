@@ -15,9 +15,15 @@ var_dump($_POST);
 if(isset($_POST['submitEvent'])) {
     echo "INSERT";
     $event = new Event();
-    $event->init($idUser, $_POST['tbName'], $_POST['tbDescription'], $_POST['tbIniDate'], $_POST['tbFinDate'], $_POST['tbCountry'], $_POST['tbRegion'], $_POST['tbCity'], $_POST['tbAddress'], $_POST['tbCp']);
-    $result = $event->save();
-    echo "result " . $result;
+    $error = $event->init($idUser, $_POST['tbName'], $_POST['tbDescription'], $_POST['tbIniDate'], $_POST['tbFinDate'], $_POST['tbCountry'], $_POST['tbRegion'], $_POST['tbCity'], $_POST['tbAddress'], $_POST['tbCp']);
+    //die("location: createEvent.php?error=".$error);
+    if($error == ""){
+        $result = $event->save();
+    } else {
+
+        header("location: ../createEvent.php?error=".$error);
+        die($error);
+    }
 
     if (is_numeric($result)) {
         echo "Numeric";

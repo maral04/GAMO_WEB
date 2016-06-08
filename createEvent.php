@@ -38,7 +38,7 @@
                 <div class="grid_3">
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbName">Name</label>
+                        <label class="col-md-4 control-label" for="tbName">Name*</label>
                         <div class="col-md-6">
                             <input id="tbName" name="tbName" type="text" required="" value="<?php if($arrayEvent != false)echo $arrayEvent['titol']?>">
 
@@ -55,17 +55,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbIniDate">Initial date</label>
+                        <label class="col-md-4 control-label" for="tbIniDate">Initial date*</label>
                         <div class="col-md-6">
-                            <input id="tbIniDate" name="tbIniDate" type="date" value="<?php if($arrayEvent != false)echo $arrayEvent['dataInici']?>">
+                            <input id="tbIniDate" name="tbIniDate" required="" type="date" value="<?php if($arrayEvent != false)echo $arrayEvent['dataInici']?>">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbFinDate">Final date</label>
+                        <label class="col-md-4 control-label" for="tbFinDate">Final date*</label>
                         <div class="col-md-6">
-                            <input id="tbFinDate" name="tbFinDate" type="date" value="<?php if($arrayEvent != false)echo $arrayEvent['dataFinal']?>">
+                            <input id="tbFinDate" name="tbFinDate" required="" type="date" value="<?php if($arrayEvent != false)echo $arrayEvent['dataFinal']?>">
                         </div>
                     </div>
                 </div>
@@ -88,9 +88,9 @@
                 </script>
                 <div class="grid_3">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCountry">Country</label>
+                        <label class="col-md-4 control-label" for="tbCountry">Country*</label>
                         <div class="col-md-6">
-                            <select id="tbCountry" name="tbCountry" style="width:173px;">
+                            <select id="tbCountry" required="" name="tbCountry" style="width:173px;">
                                 <option></option>
                                 <?php
                                 $result = $db->recuperarPaisos();
@@ -111,27 +111,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbRegion">Region</label>
+                        <label class="col-md-4 control-label" for="tbRegion">Region*</label>
                         <div class="col-md-6">
-                            <input id="tbRegion" name="tbRegion" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['regio']?>">
+                            <input id="tbRegion" required="" name="tbRegion" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['regio']?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCity">City</label>
+                        <label class="col-md-4 control-label" for="tbCity">City*</label>
                         <div class="col-md-6">
-                            <input id="tbCity" name="tbCity" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['poblacio']?>">
+                            <input id="tbCity" required="" name="tbCity" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['poblacio']?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbAddress">Address</label>
+                        <label class="col-md-4 control-label" for="tbAddress">Address*</label>
                         <div class="col-md-6">
-                            <input id="tbAddress" name="tbAddress" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['direccio']?>">
+                            <input id="tbAddress" required="" name="tbAddress" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['direccio']?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="tbCp">Postal code</label>
+                        <label class="col-md-4 control-label" for="tbCp">Postal code*</label>
                         <div class="col-md-6">
-                            <input id="tbCp" name="tbCp" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['cp']?>">
+                            <input id="tbCp" name="tbCp"  required="" type="text" value="<?php if($arrayEvent != false)echo $arrayEvent['cp']?>">
                         </div>
                     </div>
                 </div>

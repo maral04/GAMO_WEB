@@ -86,7 +86,7 @@ if(isset($_POST['submitProva'])){
     else $sport = "";
 
     $error = $prova->init($idUser,$_POST['tbName'],$_POST['tbDescription'],$_POST['tbIniDate'],$_POST['tbIniTime'],$_POST['tbDistance'],$_POST['tbPositive'],$_POST['tbNegtive'],$_POST['tbCheckpoints'],$_POST['tbTimeLimit'],$sport,$_POST['tbCountry'],$_POST['tbRegion'],$_POST['tbCity'],$_POST['tbAddress'],$_POST['tbCp'],$_POST['tbManager'],$_POST['tbPrice'],$_POST['tbInscripcionsIni'],$_POST['tbInscripcionsFin'],$_POST['tbLimitInscrits'],$_POST['idProva']);
-    $result = $prova->save(false,true);
+    $result = $prova->save($_POST['idEvent'],true);
 
     if(is_numeric($result)){
         echo "Numeric";
