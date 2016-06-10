@@ -93,10 +93,10 @@
                 echo "
                 <div class='block2'>
                     <div class='grid_3'>";
-                if($proves['imatge'] == null) echo '<img class="imgIndex" src="images/events/default.png" alt="">';
+                if($event['imatges'] == null) echo '<img class="imgIndex" src="images/events/default.png" alt="">';
                 else{
-                    if(is_file("images/prova/".$proves['Id']."/".$proves['imatge']))
-                        echo "<img class='imgIndex' src='images/prova/".$proves['Id']."/".$proves['imatge']."' alt=''>";
+                    if(is_file("images/events/".$event['Id']."/".$event['imatges']))
+                        echo "<img class='imgIndex' src='images/events/".$event['Id']."/".$event['imatges']."' alt=''>";
                     else{
                         echo '<img class="imgIndex" src="images/events/default.png" alt="">';
                     }
