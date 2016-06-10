@@ -333,7 +333,7 @@
     </div>
     <div class="grid_4">
         <?php
-        include_once 'yourEvents.php';
+        include_once 'includes/yourEvents.php';
         ?>
     </div>
     <div class="clear"></div>

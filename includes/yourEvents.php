@@ -23,8 +23,8 @@ if($arrayUser!= false) {
         echo "<ul class='list sideList'>";
         while ($proves = mysqli_fetch_assoc($result)) {
             echo "<li>";
-            echo "<div class='list_count'><a href='fitxaProva.php?id=".$proves['Id']."'>$i</a></div>";
-            echo "<div class='extra_wrapper'><a href='fitxaProva.php?id=".$proves['Id']."'>" . $proves['nom'] . "</a></div>";
+            echo "<div class='list_count'><a href='../fitxaProva.php?id=" .$proves['Id']."'>$i</a></div>";
+            echo "<div class='extra_wrapper'><a href='../fitxaProva.php?id=" .$proves['Id']."'>" . $proves['nom'] . "</a></div>";
             echo "<div class='extra_wrapper'>" . date("Y-m-d", strtotime($proves['data_hora_inici'])) . "</div>";
             echo "</li>";
             $i++;
@@ -36,9 +36,9 @@ if($arrayUser!= false) {
 }else{
     echo "<p>Events you join will be displayed here.</p>";
     echo "<div id='loJoin'>";
-    echo "<a class='link link--kukuri l4' data-letters='Log In' href='login.php'>Log In</a>";
-    echo "&nbsp<img class='icoYourEvents' src='images/icons/rightLeft.png' alt='Choose'>&nbsp";
-    echo "<a class='link link--kukuri l4' data-letters='Join' href='register.php'>Join</a>";
+    echo "<a class='link link--kukuri l4' data-letters='Log In' href='../login.php'>Log In</a>";
+    echo "&nbsp<img class='icoYourEvents' src='../images/icons/rightLeft.png' alt='Choose'>&nbsp";
+    echo "<a class='link link--kukuri l4' data-letters='Join' href='../register.php'>Join</a>";
     echo "</div>";
 }
 

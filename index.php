@@ -155,7 +155,7 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
 
 <div class="grid_3 sideGrid">
     <div  id="your-events">
-    <?php include_once 'yourEvents.php'; ?>
+    <?php include_once 'includes/yourEvents.php'; ?>
     </div>
     <div id="banner">
         <img src="images/events/banner/olla.jpg">
