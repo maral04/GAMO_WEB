@@ -53,7 +53,7 @@
                                 echo "<img src='images/icons/hiking.png' alt='Submit' class='subImg' width='150' >";
                             }
                             ?>
-                            <div class="fileUpload btn btn-primary">
+                            <div style='width:120px;' class="fileUpload btn btn-primary">
                                 <img class='icoFitxa' src='images/icons/upImg.png' alt='Upload Image'><span
                                     class="spanUpload2">Upload</span>
                                 <input id="profileImage" type="file" class="upload" name="img" accept="image/*"/>

@@ -1197,7 +1197,7 @@ h4{
 }
 
 .fuv2{
-    padding-right:0%;
+    padding-right:2%;
 }
 
 #prevImg{
@@ -1431,4 +1431,11 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 
 .deleteImg{
     margin-right:4%;
+}
+
+.deleteImg > img:hover{
+    margin-left:8%;
+    min-width:38px;
+    max-width:38px;
+    border:solid 2px red;
 }

@@ -36,7 +36,7 @@
             <div class='grid_3'>
                 <div class='form-group'>
                     <a href='createEvent.php' class='spanUpload'>
-                        <div width='184' class='fileUpload fuv2 btn btn-primary prImg' >
+                        <div style='width:180px;' class='fileUpload fuv2 btn btn-primary prImg' >
                             <img  class='cpImg' src='images/icons/eventCalendar.png'/>
                             Create MultiEvent
                         </div>
@@ -58,7 +58,7 @@
                     <a href="createClub.php" class="spanUpload">
                         <div class="fileUpload fuv2 btn btn-primary prImg" >
                             <img class="cpImg" src="images/icons/shield.png"/>
-                            Register Club
+                            Create Club
                         </div>
                     </a>
                 </div>
@@ -104,7 +104,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a class="fRight deleteImg" href="">
+                                        <a class="fRight deleteImg" disabled href="">
                                             <img class="cpImg" src="images/icons/delete.png"/>
                                         </a>
                                     </div>

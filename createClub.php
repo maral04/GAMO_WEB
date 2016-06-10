@@ -2,6 +2,7 @@
     <?php
     include_once "head.php";
     include_once "classes/DataBase.php";
+    include_once "classes/User.php";
     include_once "classes/Club.php";
     $arrayDades;
     $_POST["edit"]=false;
@@ -21,6 +22,16 @@
                }
            }
     }
+
+    $usuari = new User();
+
+    if (isset($_SESSION['idUser'])) {
+        $arrayUser = $usuari->load($_SESSION['idUser']);
+        //var_dump($arrayUser);
+    } else {
+        header("Location: login.php");
+    }
+
     ?>
 </head>
 <body>
@@ -32,7 +43,7 @@
                 <form class="form-horizontal" method="post" enctype="multipart/form-data" action="actions/validateClub.php">
                     <fieldset>
                         <!-- Form Name -->
-                        <h3 class="registre h3__head1">Club Registration</h3>
+                        <h3 class="registre h3__head1">Club Creation</h3>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="tbName">Name<?php if(isset($_POST["idclub"]))echo ": ".$arrayDades["nom"]; ?></label>
