@@ -90,15 +90,30 @@
                     //Si l'event té més d'una prova, es preparen events desplegables.
                     echo "<div class='block3 accordion click eventDiv' eventid='" . $event['Id'] . "'>";
                 }
-                echo "
-                <div class='block2'>
-                    <div class='grid_3'>";
-                if($event['imatges'] == null) echo '<img class="imgIndex" src="images/events/default.png" alt="">';
-                else{
-                    if(is_file("images/events/".$event['Id']."/".$event['imatges']))
-                        echo "<img class='imgIndex' src='images/events/".$event['Id']."/".$event['imatges']."' alt=''>";
-                    else{
-                        echo '<img class="imgIndex" src="images/events/default.png" alt="">';
+
+                if ($numProves['COUNT(*)'] <= 1) {
+                    echo "
+                    <div class='block2'>
+                        <div class='grid_3'>";
+                    if ($proves['Imatges'] == null) echo '<img class="imgIndex" src="images/events/default.png" alt="">';
+                    else {
+                        if (is_file("images/proves/" . $proves['Id'] . "/" . $proves['Imatges']))
+                            echo "<img class='imgIndex' src='images/proves/" . $proves['Id'] . "/" . $proves['Imatges'] . "' alt=''>";
+                        else {
+                            echo '<img class="imgIndex" src="images/proves/default.png" alt="">';
+                        }
+                    }
+                }else{
+                    echo "
+                    <div class='block2'>
+                        <div class='grid_3'>";
+                    if ($event['imatges'] == null) echo '<img class="imgIndex" src="images/events/default.png" alt="">';
+                    else {
+                        if (is_file("images/events/" . $event['Id'] . "/" . $event['imatges']))
+                            echo "<img class='imgIndex' src='images/events/" . $event['Id'] . "/" . $event['imatges'] . "' alt=''>";
+                        else {
+                            echo '<img class="imgIndex" src="images/events/default.png" alt="">';
+                        }
                     }
                 }
                 ?>
