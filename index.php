@@ -173,10 +173,10 @@ if($cont == 0) echo "<div id='div-noresults'><p>No events were found with the gi
     <?php include_once 'includes/yourEvents.php'; ?>
     </div>
     <div id="banner">
-        <img src="images/events/banner/olla.jpg">
-        <img src="images/events/banner/CamideCavalls360.jpg">
-        <img src="images/events/banner/ultramontseny.png">
-        <img src="images/events/banner/mtbrace.jpg">
+        <a href="fitxaProva.php?id=39"><img src="images/events/banner/olla.jpg"></a>
+        <a href="fitxaProva.php?id=49"><img src="images/events/banner/CamideCavalls360.jpg"></a>
+        <a href="fitxaProva.php?id=53"><img src="images/events/banner/ultramontseny.png"></a>
+        <a href="fitxaProva.php?id=44"><img src="images/events/banner/mtbrace.jpg"></a>
     </div>
 </div>
 
