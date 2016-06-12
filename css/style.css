@@ -1431,6 +1431,7 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
 
 .deleteImg{
     margin-right:4%;
+    display:none;
 }
 
 .deleteImg > img:hover{
