@@ -72,7 +72,7 @@ if(!isset($_GET['id']))header("Location: index.php");
                         echo "</div>";
                         echo "
                             <a href='llistatInscrits.php?idProva=".$prova['Id']."'>
-                                <div class='fileUpload btn btn-primary download'>
+                                <div class='fileUpload btn btn-primary download' style='min-width:205px;'>
                                     <img class='cpImg' src='images/icons/mPplW.png'/>
                                     <span class='spanUpload'>List of Participants</span>
                                 </div></a>
