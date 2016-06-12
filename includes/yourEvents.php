@@ -36,9 +36,9 @@ if($arrayUser!= false) {
 }else{
     echo "<p>Events you join will be displayed here.</p>";
     echo "<div id='loJoin'>";
-    echo "<a class='link link--kukuri l4' data-letters='Log In' href='../login.php'>Log In</a>";
+    echo "<a class='link link--kukuri l4' data-letters='Log In' href='login.php'>Log In</a>";
     echo "&nbsp<img class='icoYourEvents' src='images/icons/rightLeft.png' alt='Choose'>&nbsp";
-    echo "<a class='link link--kukuri l4' data-letters='Join' href='../register.php'>Join</a>";
+    echo "<a class='link link--kukuri l4' data-letters='Join' href='register.php'>Join</a>";
     echo "</div>";
 }
 

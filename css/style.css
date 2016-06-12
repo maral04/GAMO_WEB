@@ -1393,7 +1393,8 @@ ul.pagination li a:hover:not(.active) {background-color: #B6E0B9;}
     text-align: center;
 }
 #your-events{
-    min-height: 350px;
+    min-height: 150px;
+    max-height: 350px;
 }
 
 #your-events>p{
