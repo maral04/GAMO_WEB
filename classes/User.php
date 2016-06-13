@@ -93,19 +93,19 @@ class User
         if($this->db == null){
             $this->db = new DataBase();
         }
-        echo $email;
+        //echo $email;
         $conn = $this->db->connect();
 
         if($email != null){
             $sql = "SELECT usuari.*, club.Nom FROM usuari
                     INNER JOIN club ON Fk_Id_Club = club.id WHERE usuari.email = '".trim($email)."'";
-            echo $sql;
+            //echo $sql;
             $result = $conn->query($sql);
         }
 
         if ($result->num_rows > 0) {
             $arrayUser = mysqli_fetch_assoc($result);
-            var_dump($arrayUser);
+            //var_dump($arrayUser);
             $this->setId($arrayUser['Id']);
             $this->setEmail($arrayUser['email']);
             $this->setName($arrayUser['nom']);
